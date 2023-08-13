@@ -80,11 +80,14 @@ export default {
       <div class="container-fluid" style="display: flex;">
         <img src="../components/icons/InfraCredit.png" alt="Image" style="margin: 10px 0 0 30px; width: 100px; height: 30px;">
         <v-tabs v-model="tab" style="border-bottom:none; margin-left: 34%;">
-          <v-tab value="one">Home</v-tab>
-          <v-tab value="two">Events</v-tab>
+          <v-tab value="one" style="color:#227CBF;font-family: Roboto;font-size: 16px;font-style: normal;font-weight: 400;line-height: 19.2px;">Home</v-tab>
+          <v-tab value="two" style="color:#808080;font-family: Roboto;font-size: 16px;font-style: normal;font-weight: 400;line-height: 19.2px;">Events</v-tab>
         </v-tabs>
         <v-spacer></v-spacer>
-        <v-list-item style="margin: 0 10px 0 0; padding: 0 1px 0 10px; width: 24px;" prepend-icon="mdi-bell-outline"></v-list-item>
+        <v-badge content=2 color="#227cbf" style="margin:10px 20px; ">
+          <v-icon icon="mdi-bell-outline" size="large" style="margin-top:0px;" />
+        </v-badge>
+        <!-- <v-list-item style="margin: 0 10px 0 0; padding: 0 1px 0 10px; width: 24px;" prepend-icon="mdi-bell-notification-outline"></v-list-item> -->
         <v-list-item style="margin: 0 1px 0 0; padding: 0 5px 0 5px;" prepend-avatar="https://cdn.vuetifyjs.com/images/john.jpg"></v-list-item>
       </div>
 
@@ -94,25 +97,25 @@ export default {
       <v-window v-model="tab">
         <v-window-item value="one">
           <div>
-            <h1 style="margin: 20px 0 0 30px; font-size: 25px;">
+            <h3 class="greet">
               Good afternoon, Mubarak Abubakar
-            </h1>
+            </h3>
           </div>
-          <div class="next" style="display: flex; color: white; background-image: linear-gradient(to right, rgb(40, 126, 193), rgb(85, 187, 105)); margin: 15px 30px 20px 30px; padding: 45px 15px; border-radius: 10px;">
+          <div class="next">
             <h2><b>Ready to create your next event?</b></h2>
             <v-spacer></v-spacer>
             <router-link to="/">
-              <v-btn style="background-color: white; color: rgb(40, 126, 193); border-radius: 100px;" dark>
-                Create event
+              <v-btn class="cbtn" dark>
+                <h6>Create event</h6>
               </v-btn>
             </router-link>
           </div>
-          <div class="prev" style="display: flex; margin: 10px 30px 20px 30px;">
-            <h2>Recent Co-DD Events &gt;</h2>
+          <div class="prev">
+            <h3>Recent Co-DD Events &gt;</h3>
             <v-spacer></v-spacer>
             <router-link to="/">
-              <v-btn style="background-color: rgba(235, 235, 235, 0.05); color: rgb(40, 126, 193); border: none; border-radius: 0px; box-shadow: none;" dark>
-                <b>View all</b>
+              <v-btn class="vbtn" dark>
+                <h4 class="plus">View all</h4>
               </v-btn>
             </router-link>
           </div>
@@ -161,7 +164,7 @@ export default {
               <v-spacer></v-spacer>
               <v-text-field v-model="search" append-icon="mdi-magnify" density="compact" label="Search" style="" variant="solo" single-line hide-details width="30"></v-text-field>
             </div>
-            <v-table>
+            <!-- <v-table>
               <thead>
                 <tr>
                   <th class="text-left">Deal ID</th>
@@ -182,7 +185,8 @@ export default {
                   </td>
                 </tr>
               </tbody>
-            </v-table>
+            </v-table> -->
+
           </div>
           <div class="text-center">
             <v-pagination v-model="page" :length="15" :total-visible="7"></v-pagination>
@@ -213,6 +217,87 @@ export default {
   justify-content: space-around;
 }
 
+.greet {
+  color: var(--black, #000);
+  font-family: Roboto;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28.8px;
+  margin: 20px 0 0 30px;
+}
+
+.next {
+  display: flex;
+  color: white;
+  background-image: linear-gradient(
+    to right,
+    rgb(40, 126, 193),
+    rgb(85, 187, 105)
+  );
+  margin: 15px 30px 20px 30px;
+  padding: 45px 15px;
+  border-radius: 10px;
+}
+
+.next h2 {
+  color: var(--white, #fff);
+  font-family: Roboto;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 43.2px;
+}
+
+.cbtn {
+  display: flex;
+  width: 200px;
+  height: 50px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 50px;
+  border: 1px solid var(--primary, #227cbf);
+  background: var(--white, #fff);
+  color: var(--primary, #227cbf);
+}
+
+.cbtn h6 {
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19.2px;
+}
+.prev {
+  display: flex;
+  margin: 10px 30px 20px 30px;
+}
+.prev h3 {
+  color: var(--black, #000);
+  font-family: Roboto;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28.8px;
+}
+.vbtn {
+  background-color: rgba(235, 235, 235, 0.05);
+  color: rgb(40, 126, 193);
+  border: none;
+  border-radius: 0px;
+  box-shadow: none;
+}
+.plus {
+  color: var(--primary, #227cbf);
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+}
 .admin {
   margin: 10px 30px 20px 30px;
   font-size: 12px;
@@ -224,6 +309,31 @@ export default {
 .status {
   padding: 0;
   margin: 0;
+}
+
+thead tr th {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14.4px;
+  padding: 15px;
+}
+
+tbody tr td {
+  color: var(--grey-dark, #808080);
+  /* Caption */
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.4px;
+  padding: 20px 15px;
+  cursor: pointer;
+}
+thead,
+tr {
+  box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.05);
+}
+.noshrink {
+  display: flex;
+  flex-shrink: 0;
 }
 </style>
   
