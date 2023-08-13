@@ -126,6 +126,12 @@ const props = defineProps({
 </template>
 
 <style scoped>
+tr {
+  border-radius: 10px 10px 0px 0px;
+  border: 1px solid var(--grey-light, #eee);
+  background: var(--white, #fff);
+  box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.05);
+}
 thead tr th {
   font-size: 12px;
   font-weight: 600;
