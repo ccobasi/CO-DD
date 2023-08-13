@@ -76,7 +76,7 @@ export default {
 </script>
 <template>
   <v-card>
-    <nav class="navbar navbar-expand-lg bg-light " style="height: 50px; border-image: linear-gradient(to right, rgb(40, 126, 193), rgb(85, 187, 105)) 1; border-bottom: 4px solid; padding-bottom: 5px; width: 100%;">
+    <nav class="navbar navbar-expand-lg bg-light ">
       <div class="container-fluid" style="display: flex;">
         <img src="../components/icons/InfraCredit.png" alt="Image" style="margin: 10px 0 0 30px; width: 100px; height: 30px;">
         <v-tabs v-model="tab" style="border-bottom:none; margin-left: 34%;">
@@ -197,6 +197,14 @@ export default {
   
 
 <style scoped>
+.navbar {
+  height: 50px;
+  border-image: linear-gradient(to right, rgb(40, 126, 193), rgb(85, 187, 105))
+    1;
+  border-bottom: 4px solid;
+  padding-bottom: 5px;
+  width: 100%;
+}
 /* Your existing scoped styles */
 .navbar-nav {
   margin-left: 200px;
