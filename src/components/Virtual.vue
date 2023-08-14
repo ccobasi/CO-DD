@@ -5,5 +5,5 @@ const router = useRouter()
 </script>
 
 <template>
-  <Home />
+  <Virtual />
 </template>

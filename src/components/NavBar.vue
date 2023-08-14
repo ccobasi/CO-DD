@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-light ">
+  <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid" style="display: flex;">
       <img src="../components/icons/InfraCredit.png" alt="Image" style="margin: 10px 0 0 30px; width: 100px; height: 30px;">
       <v-tabs v-model="tab" style="border-bottom:none; margin-left: 34%;">
@@ -18,16 +18,16 @@
 </template>
 
 <style scoped>
-nav {
-  background: #fff;
-}
 .navbar {
   height: 50px;
   border-image: linear-gradient(to right, rgb(40, 126, 193), rgb(85, 187, 105))
     1;
-  border-bottom: 4px solid;
+  border-bottom: 8px solid;
   padding-bottom: 5px;
   width: 100%;
+}
+.container-fluid {
+  background: #fff;
 }
 /* Your existing scoped styles */
 .navbar-nav {

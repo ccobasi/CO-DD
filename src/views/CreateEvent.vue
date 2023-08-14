@@ -2,29 +2,98 @@
   import NavBar from '../components/NavBar.vue'
 </script>
 <template>
-  <NavBar />
-  <div class="next">
-    <h2>Tell us a little about the event.</h2>
-    <p>You can always update these details later.</p>
-    <v-spacer></v-spacer>
 
-  </div>
-  <div class="form">
-    <form action="">
-      <div class="trans">
-        <caption>Transactions</caption>
-        <select class="form-select" aria-label="Default select example">
-          <option selected>Open this select menu</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
-      </div>
-    </form>
-  </div>
+  <body>
+    <NavBar />
+    <div class="next">
+      <h2>Tell us a little about the event.</h2>
+      <p>You can always update these details later.</p>
+      <v-spacer></v-spacer>
+
+    </div>
+    <div class="form">
+      <form action="">
+        <div class="trans">
+          <caption>Transactions</caption>
+          <select class="form-select" aria-label="Default select example">
+            <option selected>Select Transactions</option>
+            <option value="1">#CP4526-Lagos Free Zone Company</option>
+            <option value="2">#CP4526-konexa</option>
+            <option value="3">#CP4526-Banner Energy Limited</option>
+            <option value="4">#CP4526-Seplat</option>
+            <option value="5">#CP4526-9mobile</option>
+            <option value="6">#CP4526-Total</option>
+          </select>
+        </div>
+        <div class="trans">
+          <caption>Venue</caption>
+          <select class="form-select" aria-label="Default select example">
+            <option selected>Select Venue</option>
+            <option value="1">Physical(Internal)</option>
+            <option value="2">Physical(External)</option>
+            <option value="3">Virtual</option>
+          </select>
+          <p class="cap">Please provide address below if the venue is external</p>
+        </div>
+        <div class="address">
+          <div class="one">
+            <caption>Address</caption>
+            <input type="text">
+          </div>
+          <div class="one">
+            <caption>Address2</caption>
+            <input type="text">
+          </div>
+        </div>
+        <div class="address">
+          <div class="one">
+            <caption>State</caption>
+            <input type="text">
+          </div>
+          <div class="one">
+            <caption>Country</caption>
+            <input type="text">
+          </div>
+        </div>
+        <div class="address">
+          <div class="one">
+            <caption>Date</caption>
+            <input type="date" id="date" name="date">
+          </div>
+          <div class="one">
+            <caption>Time</caption>
+            <input type="time" id="appt" name="appt">
+          </div>
+        </div>
+        <div class="trans">
+          <caption>Time Zone</caption>
+          <select class="form-select" aria-label="Default select example">
+            <option selected>(GMT +01:00)Africa West Central</option>
+            <option value="1">(GMT +00:00)Greenwich(London)</option>
+            <option value="2">(GMT +01:00)Africa West Central</option>
+            <option value="3">(GMT +01:00)Europe Central</option>
+            <option value="4">(GMT +02:00)Europe Eastern</option>
+            <option value="5">(GMT +02:00)Egypt</option>
+          </select>
+        </div>
+        <div class="create">
+          <button class="cancel">
+            <caption>Cancel</caption>
+          </button>
+          <button class="createBtn">
+            <caption>Create Event</caption>
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
 </template>
 
 <style scoped>
+body {
+  background: #eeeeee;
+  height: 980px;
+}
 .next {
   color: white;
   background-image: linear-gradient(
@@ -78,7 +147,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 2px;
+  gap: 8px;
   align-self: stretch;
 }
 caption {
@@ -88,5 +157,65 @@ caption {
   font-style: normal;
   font-weight: 400;
   line-height: 14.4px;
+}
+.form-select {
+  width: 600px;
+  height: 40px;
+}
+.cap {
+  font-size: 10px;
+}
+.address {
+  display: flex;
+  gap: 20px;
+}
+.one {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  align-self: stretch;
+}
+input {
+  display: flex;
+  padding: 12.5px 14px;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  width: 290px;
+  border-radius: 5px;
+  border: 1px solid var(--grey-dark, #808080);
+  background: var(--white, #fff);
+
+  /* Shadow/xs */
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+.create {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  margin-top: 20px;
+}
+.cancel {
+  display: flex;
+  padding: 10px 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--grey-light, #eee);
+  background: var(--white, #fff);
+}
+.createBtn {
+  display: flex;
+  padding: 10px 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  background: var(--gradient, linear-gradient(90deg, #227cbf 0%, #47b65c 100%));
+  color: #fff;
 }
 </style>
