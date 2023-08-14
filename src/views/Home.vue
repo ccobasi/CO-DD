@@ -1,9 +1,6 @@
 <script>
-import Table from '../components/Tables/Table.vue'
+
 export default {
-    components: {
-        Table
-    },
     data: () => ({
         tab: null,
         recent: [
@@ -56,6 +53,7 @@ export default {
             switch (status) {
                 case 'Pending storage creation':
                     return 'background-color: rgb(254, 249, 195); border-radius: 40px; width: 60%; padding: 10px;';
+                    
                 case 'Pending document upload':
                     return 'background-color: rgb(254, 249, 195); border-radius: 40px;  width: 60%; padding: 10px;';
                 case 'Pending L&D verification':
@@ -91,7 +89,7 @@ export default {
         <v-badge content=2 color="#227cbf" style="margin:10px 20px; ">
           <v-icon icon="mdi-bell-outline" size="large" style="margin-top:0px;" />
         </v-badge>
-        <!-- <v-list-item style="margin: 0 10px 0 0; padding: 0 1px 0 10px; width: 24px;" prepend-icon="mdi-bell-notification-outline"></v-list-item> -->
+
         <v-list-item style="margin: 0 1px 0 0; padding: 0 5px 0 5px;" prepend-avatar="https://cdn.vuetifyjs.com/images/john.jpg"></v-list-item>
       </div>
 
@@ -191,12 +189,12 @@ export default {
                   <td>{{ item.venue }}</td>
                   <td>{{ item.datetime }}</td>
                   <td>
-                    <p class="status" :style="getStatusColor(item.status)">{{ item.status }}</p>
+                    <p class="status" :style="getStatusColor(item.status)"><i class="dot" style="background: orange;"></i>{{ item.status }}</p>
                   </td>
                 </tr>
               </tbody>
             </v-table>
-            <!-- <Table /> -->
+
           </div>
         </v-window-item>
 
@@ -219,14 +217,64 @@ export default {
               <v-spacer></v-spacer>
               <v-text-field v-model="search" append-icon="mdi-magnify" density="compact" label="Search" style="" variant="solo" single-line hide-details width="30"></v-text-field>
             </div>
-            <!-- <v-table>
+            <v-table>
               <thead>
                 <tr>
-                  <th class="text-left">Deal ID</th>
-                  <th class="text-left">Client Name</th>
-                  <th class="text-left">Venue</th>
-                  <th class="text-left">Date & Time</th>
-                  <th class="text-left">Status</th>
+                  <th class="text-left">
+                    <div class="d-flex align-center gap-1">
+                      <span> Deal ID </span>
+
+                      <span class="d-flex flex-column align-center">
+                        <v-icon icon="mdi-chevron-up" size="x-small" class="mb-n1"></v-icon>
+                        <v-icon icon="mdi-chevron-down" size="x-small"></v-icon>
+                      </span>
+
+                    </div>
+                  </th>
+                  <th class="text-left">
+                    <div class="d-flex align-center gap-1">
+                      <span> Client Name </span>
+
+                      <span class="d-flex flex-column align-center">
+                        <v-icon icon="mdi-chevron-up" size="x-small" class="mb-n1"></v-icon>
+                        <v-icon icon="mdi-chevron-down" size="x-small"></v-icon>
+                      </span>
+
+                    </div>
+                  </th>
+                  <th class="text-left">
+                    <div class="d-flex align-center gap-1">
+                      <span> Venue </span>
+
+                      <span class="d-flex flex-column align-center">
+                        <v-icon icon="mdi-chevron-up" size="x-small" class="mb-n1"></v-icon>
+                        <v-icon icon="mdi-chevron-down" size="x-small"></v-icon>
+                      </span>
+
+                    </div>
+                  </th>
+                  <th class="text-left">
+                    <div class="d-flex align-center gap-1">
+                      <span> Date & Time </span>
+
+                      <span class="d-flex flex-column align-center">
+                        <v-icon icon="mdi-chevron-up" size="x-small" class="mb-n1"></v-icon>
+                        <v-icon icon="mdi-chevron-down" size="x-small"></v-icon>
+                      </span>
+
+                    </div>
+                  </th>
+                  <th class="text-left">
+                    <div class="d-flex align-center gap-1">
+                      <span> Status </span>
+
+                      <span class="d-flex flex-column align-center">
+                        <v-icon icon="mdi-chevron-up" size="x-small" class="mb-n1"></v-icon>
+                        <v-icon icon="mdi-chevron-down" size="x-small"></v-icon>
+                      </span>
+
+                    </div>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -240,8 +288,8 @@ export default {
                   </td>
                 </tr>
               </tbody>
-            </v-table> -->
-            <Table />
+            </v-table>
+
           </div>
           <div class="text-center">
             <v-pagination v-model="page" :length="15" :total-visible="7"></v-pagination>
@@ -389,6 +437,11 @@ tr {
 .noshrink {
   display: flex;
   flex-shrink: 0;
+}
+.dot {
+  display: inline-block;
+  border-radius: 50%;
+  padding: 5px;
 }
 </style>
   

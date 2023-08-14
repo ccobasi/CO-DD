@@ -13,8 +13,8 @@ import * as directives from 'vuetify/directives'
 import '@mdi/font/css/materialdesignicons.css'
 
 
-// import "bootstrap/dist/css/bootstrap.min.css"
-// import "bootstrap"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap"
 
 
 const vuetify = createVuetify({
