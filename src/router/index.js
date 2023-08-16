@@ -7,6 +7,8 @@ import Success from '../views/Success.vue'
 import EventDetailsStorageCreation from '../views/EventDetailsStorageCreation.vue'
 import UploadDocument from '../views/UploadDocument.vue'
 import ConfirmEventDocument from '../views/ConfirmEventDocument.vue'
+import ScheduleDate from '../views/ScheduleDate.vue'
+import Invitation from '../views/Invitation.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -57,6 +59,18 @@ const router = createRouter({
       path: '/confirmevent',
       name: 'confirm event document',
       component: ConfirmEventDocument,
+     
+    },
+    {
+      path: '/scheduledate',
+      name: 'schedule date',
+      component: ScheduleDate,
+     
+    },
+    {
+      path: '/invitation',
+      name: 'event details invitation',
+      component: Invitation,
      
     },
   ]
