@@ -9,6 +9,8 @@ import UploadDocument from '../views/UploadDocument.vue'
 import ConfirmEventDocument from '../views/ConfirmEventDocument.vue'
 import ScheduleDate from '../views/ScheduleDate.vue'
 import Invitation from '../views/Invitation.vue'
+import InvitationTwo from '../views/InvitationTwo.vue'
+import InvestorDecision from '../views/InvestorDecision.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -71,6 +73,18 @@ const router = createRouter({
       path: '/invitation',
       name: 'event details invitation',
       component: Invitation,
+     
+    },
+    {
+      path: '/invitationtwo',
+      name: 'event details invitation two',
+      component: InvitationTwo,
+     
+    },
+    {
+      path: '/investordecision',
+      name: 'event details investordecision',
+      component: InvestorDecision,
      
     },
   ]
