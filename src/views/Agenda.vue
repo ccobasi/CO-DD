@@ -1,5 +1,6 @@
 <script setup>
     import NavBar from '../components/NavBar.vue'
+    import TableTwo from '../components/Tables/TableTwo.vue'
 </script>
 <template>
   <NavBar />
@@ -31,6 +32,10 @@
         <button class="createBtn">
           <caption>Proceed</caption>
         </button>
+
+      </div>
+      <div class="tab">
+        <TableTwo />
       </div>
     </div>
   </body>
@@ -51,7 +56,7 @@ body {
   padding: 30px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 20px;
+  gap: 10px;
   flex: 1 0 0;
   border-radius: 10px;
   border: 0.885px solid var(--gray-200, #e4e4e7);
@@ -85,6 +90,14 @@ h3 {
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
+}
+.text h6 {
+  color: var(--grey-dark, #808080);
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19.2px;
 }
 .check {
   display: flex;
@@ -174,6 +187,7 @@ input:checked + .slider:before {
   gap: 10px;
   border-radius: 5px;
   background: var(--gradient, linear-gradient(90deg, #227cbf 0%, #47b65c 100%));
+  color: #fff;
 }
 .createBtn caption {
   color: #fff;
@@ -183,5 +197,8 @@ input:checked + .slider:before {
   font-style: normal;
   font-weight: 400;
   line-height: 19.2px;
+}
+.tab {
+  visibility: hidden;
 }
 </style>
