@@ -11,6 +11,7 @@ import ScheduleDate from '../views/ScheduleDate.vue'
 import Invitation from '../views/Invitation.vue'
 import InvitationTwo from '../views/InvitationTwo.vue'
 import InvestorDecision from '../views/InvestorDecision.vue'
+import Access from '../views/Access.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -85,6 +86,12 @@ const router = createRouter({
       path: '/investordecision',
       name: 'event details investordecision',
       component: InvestorDecision,
+     
+    },
+    {
+      path: '/access',
+      name: 'event details access',
+      component: Access,
      
     },
   ]
