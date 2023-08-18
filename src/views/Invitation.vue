@@ -166,7 +166,7 @@
 
           <div class="create">
             <button class="createBtn">
-              <caption>Procced</caption>
+              <caption>Proceed</caption>
             </button>
           </div>
         </form>
