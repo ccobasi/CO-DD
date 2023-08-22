@@ -80,7 +80,7 @@
           <button class="cancel">
             <caption>Cancel</caption>
           </button>
-          <button class="createBtn">
+          <button class="createBtn" @click="$router.push('/success')">
             <caption>Create Event</caption>
           </button>
         </div>

@@ -125,8 +125,11 @@ export default {
             <h2><b>Ready to create your next event?</b></h2>
             <v-spacer></v-spacer>
             <router-link to="/createevent">
-              <v-btn class="cbtn" dark>
+              <!-- <v-btn class="cbtn" dark>
                 <h6>Create event</h6>
+              </v-btn> -->
+              <v-btn style=" color: #227cbf; background: #fff; margin: 2px 5px 20px 0; border-radius: 100px; text-transform:capitalize" dark>
+                Create event
               </v-btn>
             </router-link>
           </div>
@@ -231,7 +234,7 @@ export default {
               <b>Events</b>
             </h2>
             <v-spacer></v-spacer>
-            <router-link to="/">
+            <router-link to="/createevent">
               <v-btn style=" color: white; background-image: linear-gradient(to right, rgb(40, 126, 193), rgb(85, 187, 105)); margin: 2px 5px 20px 0; border-radius: 100px;" dark>
                 Create event
               </v-btn>
@@ -239,12 +242,12 @@ export default {
           </div>
 
           <div class="eve" style="border-radius: 15px;">
-            <div style="display: flex; margin-bottom: 0;padding-bottom: 0;">
+            <div class="top" style="display: flex; margin-bottom: 0;padding-bottom: 0;">
               <v-combobox label="Filter by: All" density="compact" :items="['All', 'Pending storage creation', 'Pending document upload', 'Pending L&D verification', 'Done']" variant="solo"></v-combobox>
               <v-spacer></v-spacer>
               <v-text-field v-model="search" append-icon="mdi-magnify" density="compact" label="Search" style="" variant="solo" single-line hide-details width="30"></v-text-field>
             </div>
-            <v-table>
+            <v-table style="border-radius:none">
               <thead>
                 <tr>
                   <th class="text-left">
@@ -311,7 +314,10 @@ export default {
                   <td>{{ item.venue }}</td>
                   <td>{{ item.datetime }}</td>
                   <td>
-                    <p class="status" :style="getStatusColor(item.status)">{{ item.status }}</p>
+                    <p class="status" :style="getStatusColor(item.status)">
+                      <i class="dot" :style="getStatusIcon(item.status)"></i>
+                      {{ item.status }}
+                    </p>
                   </td>
                 </tr>
               </tbody>
@@ -331,6 +337,15 @@ export default {
   
 
 <style scoped>
+.top {
+  display: flex;
+  padding: 18px 20px;
+  align-items: center;
+  gap: 125px;
+  border-radius: 10px 10px 0px 0px;
+  background: #fff;
+  box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.1);
+}
 .container-fluid {
   background: #fff;
 }

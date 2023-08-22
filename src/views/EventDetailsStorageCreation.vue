@@ -94,7 +94,7 @@
 
           </div>
           <div class="create">
-            <button class="createBtn">
+            <button class="createBtn" @click="$router.push('uploaddocument')">
               <caption>Notify transactor</caption>
             </button>
           </div>
@@ -276,6 +276,9 @@ hr {
   font-style: normal;
   font-weight: 400;
   line-height: 19.2px;
+}
+.createBtn caption {
+  color: #fff;
 }
 .switch {
   position: relative;

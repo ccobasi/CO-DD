@@ -1,5 +1,38 @@
-<script setup>
+<script>
     import NavBar from '../components/NavBar.vue'
+
+  export default {
+    components: NavBar,
+  data() {
+    return {
+      countdown: 5, // Set the initial countdown time in seconds
+    };
+  },
+  mounted() {
+    this.startRedirectTimer();
+  },
+  methods: {
+    startRedirectTimer() {
+      const redirectTime = 5000; // 5000 milliseconds (5 seconds)
+      
+      setTimeout(() => {
+        this.redirectToNewPage();
+      }, redirectTime);
+      
+      // Update countdown every second
+      const countdownInterval = setInterval(() => {
+        this.countdown--;
+        if (this.countdown <= 0) {
+          clearInterval(countdownInterval);
+        }
+      }, 1000);
+    },
+    redirectToNewPage() {
+      // Replace '/target-page' with the actual route you want to redirect to
+      this.$router.push('/eventdetails');
+    },
+  },
+};
 </script>
 <template>
   <NavBar />
@@ -10,6 +43,7 @@
       <h2>Great Job!</h2>
       <p>You have successfully created an event. Sit tight while it finishes loading</p>
       <p>Loading....</p>
+      <p>Redirecting in {{ countdown }} seconds...</p>
     </div>
   </body>
 </template>
