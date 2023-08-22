@@ -1,5 +1,30 @@
-<script setup>
+<script>
     import NavBar from '../components/NavBar.vue'
+
+ export default {
+  components:NavBar,
+  data() {
+    return {
+      textToCopy: 'https://www.infracredit_storage/app/public.link', // Replace with the text you want to copy
+      copiedMessage: '',
+    };
+  },
+  methods: {
+    copyToClipboard() {
+      const textarea = document.createElement('textarea');
+      textarea.value = this.textToCopy;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+
+      this.copiedMessage = 'Copied!';
+      setTimeout(() => {
+        this.copiedMessage = '';
+      }, 2000); // Clear the copied message after 2 seconds
+    },
+  },
+};
 </script>
 
 <template>
@@ -80,9 +105,10 @@
           <div class="storage">
             <caption>Storage Link</caption>
             <div class="input">
-              <h6>https://www.infracredit_storage/app/public.link</h6>
-              <div class="copy">
+              <input v-model="textToCopy" readonly />
+              <div class="copy" @click="copyToClipboard">
                 <h6>Copy<img src="../assets/frame.png" alt="copy"></h6>
+                <p>{{ copiedMessage }}</p>
 
               </div>
             </div>
@@ -101,7 +127,7 @@
 
           </div>
           <div class="create">
-            <button class="createBtn">
+            <button class="createBtn" @click="$router.push('confirmevent')">
               <caption>Notify L&D</caption>
             </button>
           </div>
@@ -242,6 +268,15 @@ hr {
   font-weight: 400;
   line-height: 14.4px;
 }
+.input input {
+  border: none;
+  color: var(--primary, #227cbf);
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 14.4px;
+}
 .copy h6 {
   color: var(--black, #000);
   font-family: Roboto;
@@ -298,6 +333,9 @@ hr {
   font-style: normal;
   font-weight: 400;
   line-height: 19.2px;
+}
+.createBtn caption {
+  color: #fff;
 }
 .switch {
   position: relative;
