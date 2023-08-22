@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import Events from '../views/Events.vue'
 import CreateEvent from '../views/CreateEvent.vue'
 import Virtual from '../views/Virtual.vue'
 import Success from '../views/Success.vue'
@@ -23,12 +22,6 @@ const router = createRouter({
       name: 'home',
       component: Home,
     
-    },
-    {
-      path: '/events',
-      name: 'events',
-      component: Events,
-     
     },
     {
       path: '/createevent',

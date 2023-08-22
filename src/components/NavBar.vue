@@ -1,3 +1,16 @@
+<script>
+
+export default {
+    data: () => ({
+        tab: null,
+    }),
+
+    return: {
+        page: 1,
+        search: '',
+    }
+};
+</script>
 <template>
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid" style="display: flex;">

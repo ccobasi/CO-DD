@@ -3,6 +3,7 @@
 export default {
     data: () => ({
         tab: null,
+    
         recent: [
             {
                 dealid: '#CP4526',
@@ -64,8 +65,25 @@ export default {
                     return 'background-color: rgb(254, 249, 195); border-radius: 40px;  width: 60%; padding: 10px;';
                 case 'Done':
                     return 'background-color: rgb(220, 252, 231); border-radius: 40px;  width: 60%; padding: 10px;';
-                //   default:
-                //     return 'background-color: rgb(254, 249, 195); border-radius: 10px;  width: 60%; padding: 10px;';
+                  // default:
+                  //   return 'background-color: rgb(254, 249, 195); border-radius: 10px;  width: 60%; padding: 10px;';
+            }
+        },
+        getStatusIcon(status) {
+            switch (status) {
+                
+                case 'Pending storage creation':
+                    return 'background-color: #ffbf1a; display: inline-block; border-radius: 50%; padding: 5px;';
+                case 'Pending document upload':
+                    return 'background-color: #ffbf1a; display: inline-block; border-radius: 50%; padding: 5px;';
+                case 'Pending L&D verification':
+                    return 'background-color: #ffbf1a; display: inline-block; border-radius: 50%; padding: 5px;';
+                case 'Pending schedule':
+                    return 'background-color: #ffbf1a; display: inline-block; border-radius: 50%; padding: 5px;';
+                case 'Pending access to dataroom':
+                    return 'background-color: #ffbf1a; display: inline-block; border-radius: 50%; padding: 5px;';
+                case 'Done':
+                    return 'background-color: #47b65c; display: inline-block; border-radius: 50%; padding: 5px;';
             }
         },
     },
@@ -106,7 +124,7 @@ export default {
           <div class="next">
             <h2><b>Ready to create your next event?</b></h2>
             <v-spacer></v-spacer>
-            <router-link to="/">
+            <router-link to="/createevent">
               <v-btn class="cbtn" dark>
                 <h6>Create event</h6>
               </v-btn>
@@ -115,9 +133,13 @@ export default {
           <div class="prev">
             <h3>Recent Co-DD Events &gt;</h3>
             <v-spacer></v-spacer>
-            <router-link to="/">
+            <router-link to="">
               <v-btn class="vbtn" dark>
-                <h4 class="plus">View all</h4>
+                <v-tabs v-model="tab">
+
+                  <v-tab value="two">View all</v-tab>
+                </v-tabs>
+
               </v-btn>
             </router-link>
           </div>
@@ -189,7 +211,12 @@ export default {
                   <td>{{ item.venue }}</td>
                   <td>{{ item.datetime }}</td>
                   <td>
-                    <p class="status" :style="getStatusColor(item.status)"><i class="dot" style="background: orange;"></i>{{ item.status }}</p>
+
+                    <p class="status" :style="getStatusColor(item.status)">
+                      <i class="dot" :style="getStatusIcon(item.status)"></i>
+                      {{ item.status }}
+
+                    </p>
                   </td>
                 </tr>
               </tbody>
@@ -304,6 +331,9 @@ export default {
   
 
 <style scoped>
+.container-fluid {
+  background: #fff;
+}
 .navbar {
   height: 50px;
   border-image: linear-gradient(to right, rgb(40, 126, 193), rgb(85, 187, 105))
@@ -365,6 +395,7 @@ export default {
   border: 1px solid var(--primary, #227cbf);
   background: var(--white, #fff);
   color: var(--primary, #227cbf);
+  text-transform: capitalize;
 }
 
 .cbtn h6 {
@@ -373,6 +404,8 @@ export default {
   font-style: normal;
   font-weight: 400;
   line-height: 19.2px;
+  text-decoration: none;
+  padding-top: 10px;
 }
 .prev {
   display: flex;
@@ -437,6 +470,12 @@ tr {
 .noshrink {
   display: flex;
   flex-shrink: 0;
+}
+
+.grade-btn {
+  min-width: 45px;
+  max-width: 65px;
+  border-radius: 40px;
 }
 .dot {
   display: inline-block;

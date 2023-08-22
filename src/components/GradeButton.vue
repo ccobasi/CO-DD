@@ -1,24 +1,25 @@
 <script setup>
-const {grade }= defineProps(["grade"])
+const {status }= defineProps(["status"])
 </script>
 
 <template>
-  <span v-if="grade === 'red'" style=" background: #FEE2E2; color: #940505;" class="grade-btn d-flex align-items-center justify-content-center gap-1 px-2 py-1">
-    <i class="dot " style="background: #f00;"></i>
+  <span v-if="status != 'done'" style=" background-color: rgb(255, 250, 214); color: orange;" class="grade-btn d-flex align-items-center justify-content-center gap-1 px-2 py-1">
+    <i class="dot " style="background: orange;"></i>
     Red
   </span>
-  <span v-else-if="grade === 'green'" style="background-color: rgb(216, 251, 216); color:green" class="grade-btn d-flex align-items-center justify-content-center gap-1 px-2 py-1">
+  <span v-else-if="status === 'done'" style="background-color: rgb(216, 251, 216); color:green" class="grade-btn d-flex align-items-center justify-content-center gap-1 px-2 py-1">
     <i class="dot" style="background: green"></i>
     Green
   </span>
-  <span v-else-if="grade === 'amber'" style="background-color: rgb(255, 250, 214); color: orange;" class="grade-btn d-flex align-items-center justify-content-center gap-1 px-2 py-1">
+  <!-- <span v-else-if="grade === 'amber'" style="background-color: rgb(255, 250, 214); color: orange;" class="grade-btn d-flex align-items-center justify-content-center gap-1 px-2 py-1">
     <i class="dot" style="background: orange;"></i>
     Amber
   </span>
   <span v-else-if="grade === 'blue'" style="background-color: aliceblue; color:blue" class="grade-btn d-flex align-items-center justify-content-center gap-1 px-2 py-1">
     <i class="dot" style="background: blue;"></i>
     Blue
-  </span></template>
+  </span> -->
+</template>
 
 <style scoped>
 .grade-btn {
