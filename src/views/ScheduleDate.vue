@@ -157,7 +157,7 @@
           </div>
           <div class="create">
             <button class="createBtn" @click="$router.push('invitation')">
-              <caption>Procced</caption>
+              <caption>Proceed</caption>
             </button>
           </div>
         </form>

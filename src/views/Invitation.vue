@@ -205,7 +205,7 @@
           </div>
 
           <div class="create">
-            <button class="createBtn">
+            <button class="createBtn" @click="$router.push('investordecision')">
               <caption>Proceed</caption>
             </button>
           </div>
