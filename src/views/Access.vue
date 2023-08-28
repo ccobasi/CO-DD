@@ -32,7 +32,7 @@
       </div>
       <hr style="width: 600px;height: 2px;background: #808080;">
       <div class="btn">
-        <button>Notify L&D</button>
+        <button @click="$router.push('agenda')">Notify L&D</button>
       </div>
     </div>
   </body>

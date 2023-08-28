@@ -29,7 +29,7 @@
       </div>
       <hr style="width: 600px;height: 2px;background: #808080;">
       <div class="create">
-        <button class="createBtn">
+        <button class="createBtn" @click="$router.push('feedback')">
           <caption>Proceed</caption>
         </button>
 

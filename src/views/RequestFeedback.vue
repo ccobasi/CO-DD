@@ -26,7 +26,7 @@
         <h3>Feedback response</h3>
         <TableTwo />
         <div class="complete">
-          <button class="back">Back</button>
+          <button class="back" @click="$router.push('agenda')">Back</button>
           <button class="done">Complete</button>
         </div>
       </div>

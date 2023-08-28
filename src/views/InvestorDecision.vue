@@ -10,8 +10,9 @@
       <h1>Investors Response</h1>
       <TableTwo />
       <div class="btn">
-        <button>Notify IT to grant access to interested investors</button>
+        <button @click="$router.push('access')">Notify IT to grant access to interested investors</button>
       </div>
+
     </div>
   </body>
 </template>
