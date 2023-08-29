@@ -1,9 +1,18 @@
-<script setup>
+<script>
     import NavBar from '../components/NavBar.vue'
   //   import {ref} from "vue";
 
   // const showModal = ref(false)
   // const errorMessage = ref("")
+ export default{
+  components: NavBar,
+   methods: {
+  changeRoute(e) {
+    this.$router.push("/" + e.target.value);
+  },
+},
+ }
+
 </script>
 
 <template>
@@ -95,14 +104,16 @@
           <div class="address mt-3">
             <div class="one">
               <h6>Date</h6>
-              <input class="d-t" type="date" id="date" name="date">
+              <!-- <input class="d-t" type="date" id="date" name="date"> -->
+              <input type="text" placeholder="20/06/2023">
             </div>
             <div class="one">
               <h6>Time</h6>
-              <input class="d-t" type="time" id="appt" name="appt">
+              <!-- <input class="d-t" type="time" id="appt" name="appt"> -->
+              <input type="text" placeholder="8:00 AM">
             </div>
           </div>
-          <div class="trans mt-1">
+          <div class="trans mt-3">
             <h6>Time Zone</h6>
             <select class="form-select" aria-label="Default select example">
               <option selected>(GMT +01:00)Africa West Central</option>
@@ -169,11 +180,14 @@
               <h4>Availability of Facilitators</h4>
 
             </div>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example" v-on:change="changeRoute($event)">
               <option selected>All facilitators will be available</option>
               <option value="1">All facilitators will be available</option>
-              <option value="2">Some facilitators will be available</option>
-              <option value="3">None facilitators will be available</option>
+              <option value="invitationtwo">
+                Some facilitators will be available
+              </option>
+
+              <option value="invitationthree">None facilitators will be available</option>
 
             </select>
           </div>
@@ -218,7 +232,7 @@
 <style scoped>
 body {
   background: #eee;
-  height: 1040px;
+  height: 1120px;
   display: flex;
 
   padding: 20px 50px;

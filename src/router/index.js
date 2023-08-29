@@ -9,6 +9,7 @@ import ConfirmEventDocument from '../views/ConfirmEventDocument.vue'
 import ScheduleDate from '../views/ScheduleDate.vue'
 import Invitation from '../views/Invitation.vue'
 import InvitationTwo from '../views/InvitationTwo.vue'
+import InvitationThree from '../views/InvitationThree.vue'
 import InvestorDecision from '../views/InvestorDecision.vue'
 import Access from '../views/Access.vue'
 import Agenda from '../views/Agenda.vue'
@@ -82,6 +83,12 @@ const router = createRouter({
       path: '/invitationtwo',
       name: 'event details invitation two',
       component: InvitationTwo,
+     
+    },
+    {
+      path: '/invitationthree',
+      name: 'event details invitation three',
+      component: InvitationThree,
      
     },
     {

@@ -80,11 +80,13 @@
           <div class="address mt-3">
             <div class="one">
               <caption>Date</caption>
-              <input class="d-t" type="date" id="date" name="date">
+              <!-- <input type="date" id="date" name="date"> -->
+              <input id="date" name="date" placeholder="20/06/2023">
             </div>
             <div class="one">
               <caption>Time</caption>
-              <input class="d-t" type="time" id="appt" name="appt">
+              <!-- <input type="time" id="appt" name="appt"> -->
+              <input id="appt" name="appt" placeholder="8:00 AM">
             </div>
           </div>
           <div class="trans">
@@ -119,11 +121,13 @@
             <div class="address">
               <div class="one">
                 <caption>Date</caption>
-                <input type="date" id="date" name="date">
+                <!-- <input type="date" id="date" name="date"> -->
+                <input id="date" name="date" placeholder="20/06/2023">
               </div>
               <div class="one">
                 <caption>Time</caption>
-                <input type="time" id="appt" name="appt">
+                <!-- <input type="time" id="appt" name="appt"> -->
+                <input id="appt" name="appt" placeholder="8:00 AM">
               </div>
             </div>
             <div class="trans">
