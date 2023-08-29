@@ -7,6 +7,48 @@
   <NavBar />
 
   <body>
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header" style="width:500px">
+            <h4 class="modal-title">Feedback email</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal">X</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <input type="text" placeholder="Email">
+            <input type="text" placeholder="Subject">
+            <div contenteditable>
+              <p>Hello,</p>
+              Kindly click on the link to give feedback about the event.
+              <p><i style="color:#bad6eb">http://www.getfeedback.com.Co-DD_event</i></p>
+              <p>Looking forward to get your feedback.</p>
+
+              <p>
+                Thanks.<br>
+                InfraCredit Team.
+              </p>
+            </div>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <div class="icon">
+              <img src="../assets/attach.png" alt="attach">
+              <img src="../assets/link.png" alt="link">
+              <img src="../assets/emoji.png" alt="emoji">
+              <img src="../assets/img.png" alt="image">
+            </div>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Send Invitation</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
     <div class="feedback">
       <h3>Feedback</h3>
       <div class="request">
@@ -18,7 +60,7 @@
           <p>Get feedback from participants on the Co-DD day</p>
         </div>
         <div class="btn">
-          <button>Request Feedback</button>
+          <button data-bs-toggle="modal" data-bs-target="#myModal" type="button">Request Feedback</button>
         </div>
       </div>
       <hr style="width: 600px;height: 2px;background: #808080;">
@@ -145,5 +187,68 @@ button {
   gap: 10px;
   border-radius: 5px;
   background: var(--gradient, linear-gradient(90deg, #227cbf 0%, #47b65c 100%));
+}
+.modal-header {
+  width: 549px;
+  height: 36px;
+  border-radius: 6.077px 6.077px 0px 0px;
+  background: var(--black, #000);
+}
+.modal-title {
+  color: var(--white, #fff);
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19.2px;
+}
+.btn-close {
+  color: #fff;
+}
+.modal-body {
+  width: 549px;
+  height: 450px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9.116px;
+  border-bottom: none;
+}
+.modal-body input {
+  height: 24px;
+  width: 450px;
+  align-self: stretch;
+  background: #fff;
+  border: 1px solid #eee;
+}
+.modal-body textarea {
+  width: 450px;
+  height: 350px;
+  border: 1px solid #eee;
+}
+.modal-footer {
+  display: flex;
+  width: 517.765px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+.modal-footer button {
+  display: flex;
+  padding: 9.723px 18.231px;
+  justify-content: center;
+  align-items: center;
+  gap: 9.116px;
+  border-radius: 5px;
+  background: var(--secondary, #47b65c);
+  color: var(--white, #fff);
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19.2px;
+}
+.icon {
+  display: flex;
 }
 </style>
