@@ -29,7 +29,7 @@
     },
     redirectToNewPage() {
       // Replace '/target-page' with the actual route you want to redirect to
-      this.$router.push('/eventdetails');
+      this.$router.push('/events');
     },
   },
 };

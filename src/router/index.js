@@ -13,6 +13,7 @@ import InvestorDecision from '../views/InvestorDecision.vue'
 import Access from '../views/Access.vue'
 import Agenda from '../views/Agenda.vue'
 import RequestFeedback from '../views/RequestFeedback.vue'
+import Events from '../views/Events.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,6 +22,12 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: Home,
+    
+    },
+     {
+      path: '/events',
+      name: 'events',
+      component: Events,
     
     },
     {
