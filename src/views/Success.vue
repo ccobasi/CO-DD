@@ -43,6 +43,7 @@
       <h2>Great Job!</h2>
       <p>You have successfully created an event. Sit tight while it finishes loading</p>
       <p>Loading....</p>
+      <v-progress-linear v-model="value" :buffer-value="bufferValue" color="" class="bar"></v-progress-linear>
       <p>Redirecting in {{ countdown }} seconds...</p>
     </div>
   </body>
@@ -79,5 +80,8 @@ body {
   font-style: normal;
   font-weight: 400;
   line-height: 19.2px;
+}
+bar {
+  background: var(--gradient, linear-gradient(90deg, #227cbf 0%, #47b65c 100%));
 }
 </style>

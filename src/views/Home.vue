@@ -100,8 +100,8 @@ export default {
       <div class="container-fluid" style="display: flex;">
         <img src="../components/icons/InfraCredit.png" alt="Image" style="margin: 10px 0 0 30px; width: 100px; height: 30px;">
         <v-tabs v-model="tab" style="border-bottom:none; margin-left: 34%;">
-          <v-tab value="one" style="color:#227CBF;font-family: Roboto;font-size: 16px;font-style: normal;font-weight: 400;line-height: 19.2px;">Home</v-tab>
-          <v-tab value="two" style="color:#808080;font-family: Roboto;font-size: 16px;font-style: normal;font-weight: 400;line-height: 19.2px;">Events</v-tab>
+          <v-tab value="two" style="color:#227CBF;font-family: Roboto;font-size: 16px;font-style: normal;font-weight: 400;line-height: 19.2px;">Home</v-tab>
+          <v-tab value="one" style="color:#808080;font-family: Roboto;font-size: 16px;font-style: normal;font-weight: 400;line-height: 19.2px;">Events</v-tab>
         </v-tabs>
         <v-spacer></v-spacer>
         <v-badge content=2 color="#227cbf" style="margin:10px 20px; ">
@@ -115,7 +115,7 @@ export default {
 
     <v-card-text style="background-color: rgba(235, 235, 235, 0.64); padding: 0; box-shadow: none;">
       <v-window v-model="tab">
-        <v-window-item value="one">
+        <v-window-item value="two">
           <div>
             <h3 class="greet">
               Good afternoon, Mubarak Abubakar
@@ -228,7 +228,7 @@ export default {
           </div>
         </v-window-item>
 
-        <v-window-item value="two" style="padding: 1rem; border-radius: none;">
+        <v-window-item value="one" style="padding: 1rem; border-radius: none;">
           <div class="tab-two" style="display: flex; margin: 10px 30px 20px 30px;">
             <h2>
               <b>Events</b>
@@ -241,7 +241,7 @@ export default {
             </router-link>
           </div>
 
-          <div class="eve" style="border-radius: 15px;">
+          <div class="eve">
             <div class="top" style="display: flex; margin-bottom: 0;padding-bottom: 0;">
               <v-combobox label="Filter by: All" density="compact" :items="['All', 'Pending storage creation', 'Pending document upload', 'Pending L&D verification', 'Done']" variant="solo"></v-combobox>
               <v-spacer></v-spacer>

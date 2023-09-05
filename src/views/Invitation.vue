@@ -6,10 +6,67 @@
   // const errorMessage = ref("")
  export default{
   components: NavBar,
+  data() {
+    return {
+      user: {
+        // transaction: '',
+        // venue: '',
+        // address: '',
+        // address2: '',
+        // state: '',
+        // country: '',
+        // date: '',
+        // time: '',
+        // timezone: '',
+        flyer: '',
+        availability: '',
+        invitattion: '',
+
+      },
+    };
+  },
+  computed: {
+    isFormValid() {
+      return (
+        // this.user.transaction.trim() !== '' &&
+        // this.user.venue.trim() !== '' &&
+        // this.user.address.trim() !== '' &&
+        // this.user.address2.trim() !== '' &&
+        // this.user.state.trim() !== '' &&
+        // this.user.country.trim() !== '' &&
+        // this.user.date.trim() !== '' &&
+        // this.user.time.trim() !== '' &&
+        // this.user.timezone.trim() !== '' &&
+        this.user.flyer !== '' &&
+        this.user.availability !== '' &&
+        this.user.invitattion !== ''
+      );
+    },
+  },
    methods: {
   changeRoute(e) {
     this.$router.push("/" + e.target.value);
   },
+  save() {
+      // Perform validation here if needed
+      if (this.isFormValid) {
+        // Here, you can perform any necessary actions to save the user's data.
+        // For example, you can make an API request or save the data to the local storage.
+        console.log('User Data Saved:', this.user);
+      }
+    },
+    proceed() {
+      // Navigate to the next step or route.
+      // You can use Vue Router for navigation if you're using it in your project.
+      // Example:
+      // this.$router.push('/next-step');
+
+      // For this example, let's assume a simple alert.
+      // alert('Proceeding to the next step');
+      // @click="$router.push('investordecision')"
+      
+      $router.push('investordecision')
+    },
 },
  }
 
@@ -58,7 +115,7 @@
       <div class="form">
         <h1>Event Information</h1>
 
-        <form action="">
+        <form action="" @submit.prevent="save">
           <div class="trans">
             <h6>Transactions</h6>
             <select class="form-select" aria-label="Default select example">
@@ -84,33 +141,33 @@
           <div class="address mt-1">
             <div class="one">
               <h6>Address</h6>
-              <input type="text" placeholder="Eko Hotels & Suites">
+              <input type="text" placeholder="Eko Hotels & Suites" v-model="user.address" required>
             </div>
             <div class="one">
               <h6>Address2</h6>
-              <input type="text" placeholder="Plot 1415 Adetokunbo Ademola Street, VI">
+              <input type="text" placeholder="Plot 1415 Adetokunbo Ademola Street, VI" v-model="user.address2" required>
             </div>
           </div>
           <div class="address mt-3">
             <div class="one">
               <h6>State</h6>
-              <input type="text" placeholder="Lagos">
+              <input type="text" placeholder="Lagos" v-model="user.state" required>
             </div>
             <div class="one">
               <h6>Country</h6>
-              <input type="text" placeholder="Nigeria">
+              <input type="text" placeholder="Nigeria" v-model="user.country" required>
             </div>
           </div>
           <div class="address mt-3">
             <div class="one">
               <h6>Date</h6>
               <!-- <input class="d-t" type="date" id="date" name="date"> -->
-              <input type="text" placeholder="20/06/2023">
+              <input type="text" placeholder="20/06/2023" v-model="user.date" required>
             </div>
             <div class="one">
               <h6>Time</h6>
               <!-- <input class="d-t" type="time" id="appt" name="appt"> -->
-              <input type="text" placeholder="8:00 AM">
+              <input type="text" placeholder="8:00 AM" v-model="user.time" required>
             </div>
           </div>
           <div class="trans mt-3">
@@ -166,7 +223,7 @@
             <div class="check" style="width:180px;padding-left:60px">
               <h6>NO</h6>
               <label class="switch">
-                <input type="checkbox" checked>
+                <input type="checkbox" unchecked v-model="user.flyer" required>
                 <span class="slider round"></span>
               </label>
               <h6>YES</h6>
@@ -180,9 +237,9 @@
               <h4>Availability of Facilitators</h4>
 
             </div>
-            <select class="form-select" aria-label="Default select example" v-on:change="changeRoute($event)">
+            <select class="form-select" aria-label="Default select example" v-on:change="changeRoute($event)" v-model="user.availability" required>
               <option selected>All facilitators will be available</option>
-              <option value="1">All facilitators will be available</option>
+              <option value="invitation">All facilitators will be available</option>
               <option value="invitationtwo">
                 Some facilitators will be available
               </option>
@@ -210,7 +267,7 @@
             <div class="check">
               <h6>NO</h6>
               <label class="switch">
-                <input type="checkbox" checked>
+                <input type="checkbox" unchecked v-model="user.invitation" required>
                 <span class="slider round"></span>
               </label>
               <h6>YES</h6>
@@ -219,7 +276,10 @@
           </div>
 
           <div class="create">
-            <button class="createBtn" @click="$router.push('investordecision')">
+            <button class="createBtn">
+              <caption>Save</caption>
+            </button>
+            <button class="createBtn" :disabled="!isFormValid">
               <caption>Proceed</caption>
             </button>
           </div>
@@ -526,7 +586,7 @@ hr {
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 16px;
   width: 16px;
   left: 4px;
@@ -620,5 +680,9 @@ input:checked + .slider:before {
 }
 .icon {
   display: flex;
+}
+.createBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
 }
 </style>

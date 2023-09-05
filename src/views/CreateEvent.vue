@@ -35,6 +35,16 @@
           </select>
           <p class="cap">Please provide address below if the venue is external</p>
         </div>
+        <div class="trans">
+          <caption>Co-Transactor</caption>
+          <select class="form-select" aria-label="Default select example">
+            <option selected>Select Co-Transactor</option>
+            <option value="1">Daniel Mueller</option>
+            <option value="2">John Doe</option>
+            <option value="3">Chido</option>
+          </select>
+
+        </div>
         <div class="address">
           <div class="one">
             <caption>Address</caption>
@@ -77,7 +87,7 @@
           </select>
         </div>
         <div class="create">
-          <button class="cancel">
+          <button class="cancel" @click="$router.push('/')">
             <caption>Cancel</caption>
           </button>
           <button class="createBtn" @click="$router.push('/success')">
@@ -92,7 +102,7 @@
 <style scoped>
 body {
   background: #eeeeee;
-  height: 980px;
+  height: 1000px;
 }
 .next {
   color: white;
@@ -216,6 +226,9 @@ input {
   gap: 10px;
   border-radius: 5px;
   background: var(--gradient, linear-gradient(90deg, #227cbf 0%, #47b65c 100%));
+  color: #fff;
+}
+.createBtn caption {
   color: #fff;
 }
 </style>

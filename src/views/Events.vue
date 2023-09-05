@@ -1,5 +1,25 @@
 <script>
 
+// const filters = [
+//   'All',
+//   'Pending storage creation',
+//   'Overhead Doors'
+// ]
+
+// export default {
+//   props: [
+//     'filterPosts',
+//     'search',
+//     'filteredPosts'
+//   ],
+//   data () {
+//     return {
+//       filters,
+//       term: ''
+//     }
+//   }
+// }
+
 export default {
     data: () => ({
         tab: null,
@@ -68,6 +88,23 @@ export default {
                 //     return 'background-color: rgb(254, 249, 195); border-radius: 10px;  width: 60%; padding: 10px;';
             }
         },
+        getStatusIcon(status) {
+            switch (status) {
+                
+                case 'Pending storage creation':
+                    return 'background-color: #ffbf1a; display: inline-block; border-radius: 50%; padding: 5px;';
+                case 'Pending document upload':
+                    return 'background-color: #ffbf1a; display: inline-block; border-radius: 50%; padding: 5px;';
+                case 'Pending L&D verification':
+                    return 'background-color: #ffbf1a; display: inline-block; border-radius: 50%; padding: 5px;';
+                case 'Pending schedule':
+                    return 'background-color: #ffbf1a; display: inline-block; border-radius: 50%; padding: 5px;';
+                case 'Pending access to dataroom':
+                    return 'background-color: #ffbf1a; display: inline-block; border-radius: 50%; padding: 5px;';
+                case 'Done':
+                    return 'background-color: #47b65c; display: inline-block; border-radius: 50%; padding: 5px;';
+            }
+        },
     },
 
     return: {
@@ -77,6 +114,22 @@ export default {
 };
 </script>
 <template>
+  <!-- <label for="search">
+    Search
+    <input
+      id="search"
+      v-model="term"
+      @keypress.enter="search(term)"
+    />
+  </label>
+
+  <p
+    v-for="filter in filters"
+    :key="filter"
+    @click="() => filterPosts(filter)"
+  >
+    {{ filter }}
+  </p> -->
   <v-card>
     <nav class="navbar navbar-expand-lg bg-light ">
       <div class="container-fluid" style="display: flex;">
@@ -287,7 +340,10 @@ export default {
                   <td>{{ item.venue }}</td>
                   <td>{{ item.datetime }}</td>
                   <td>
-                    <p class="status" :style="getStatusColor(item.status)">{{ item.status }}</p>
+                    <p class="status" :style="getStatusColor(item.status)">
+                      <i class="dot" :style="getStatusIcon(item.status)"></i>
+                      {{ item.status }}
+                    </p>
                   </td>
                 </tr>
               </tbody>

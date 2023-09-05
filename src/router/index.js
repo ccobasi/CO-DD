@@ -15,6 +15,7 @@ import Access from '../views/Access.vue'
 import Agenda from '../views/Agenda.vue'
 import RequestFeedback from '../views/RequestFeedback.vue'
 import Events from '../views/Events.vue'
+import Demo from '../views/Demo.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -113,6 +114,12 @@ const router = createRouter({
       path: '/feedback',
       name: 'event details request feedback',
       component: RequestFeedback,
+     
+    },
+    {
+      path: '/demo',
+      name: 'demo',
+      component: Demo,
      
     },
   ]
