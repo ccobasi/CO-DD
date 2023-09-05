@@ -9,44 +9,24 @@
   data() {
     return {
       user: {
-        // transaction: '',
-        // venue: '',
-        // address: '',
-        // address2: '',
-        // state: '',
-        // country: '',
-        // date: '',
-        // time: '',
-        // timezone: '',
-        flyer: false,
-        availability: '',
-        invitattion: false,
-      
-
+        checkbox: false,
       },
     };
   },
   computed: {
     isFormValid() {
       return (
-        // this.user.transaction.trim() !== '' &&
-        // this.user.venue.trim() !== '' &&
-        // this.user.address.trim() !== '' &&
-        // this.user.address2.trim() !== '' &&
-        // this.user.state.trim() !== '' &&
-        // this.user.country.trim() !== '' &&
-        // this.user.date.trim() !== '' &&
-        // this.user.time.trim() !== '' &&
-        // this.user.timezone.trim() !== '' &&
-        this.user.flyer !== false &&
-        // this.user.availability !== '' &&
-        this.user.invitattion !== false
+        this.user.checkbox !== false 
       );
     },
   },
    methods: {
   changeRoute(e) {
     this.$router.push("/" + e.target.value);
+  },
+  toggleCheckbox() {
+      this.checkbox = !this.checkbox
+      this.$emit('setCheckboxVal', this.checkbox)
   },
   save() {
       // Perform validation here if needed
@@ -57,6 +37,11 @@
       }
     },
     proceed() {
+      if (this.isFormValid) {
+        // Here, you can perform any necessary actions to save the user's data.
+        // For example, you can make an API request or save the data to the local storage.
+        console.log('User Data Saved:', this.user.checkbox);
+      }
       // Navigate to the next step or route.
       // You can use Vue Router for navigation if you're using it in your project.
       // Example:
@@ -66,7 +51,7 @@
       // alert('Proceeding to the next step');
       // @click="$router.push('investordecision')"
       
-      $router.push('investordecision')
+      // $router.push('investordecision')
     },
 },
  }
@@ -142,33 +127,33 @@
           <div class="address mt-1">
             <div class="one">
               <h6>Address</h6>
-              <input type="text" placeholder="Eko Hotels & Suites" v-model="user.address" required>
+              <input type="text" placeholder="Eko Hotels & Suites">
             </div>
             <div class="one">
               <h6>Address2</h6>
-              <input type="text" placeholder="Plot 1415 Adetokunbo Ademola Street, VI" v-model="user.address2" required>
+              <input type="text" placeholder="Plot 1415 Adetokunbo Ademola Street, VI">
             </div>
           </div>
           <div class="address mt-3">
             <div class="one">
               <h6>State</h6>
-              <input type="text" placeholder="Lagos" v-model="user.state" required>
+              <input type="text" placeholder="Lagos">
             </div>
             <div class="one">
               <h6>Country</h6>
-              <input type="text" placeholder="Nigeria" v-model="user.country" required>
+              <input type="text" placeholder="Nigeria">
             </div>
           </div>
           <div class="address mt-3">
             <div class="one">
               <h6>Date</h6>
               <!-- <input class="d-t" type="date" id="date" name="date"> -->
-              <input type="text" placeholder="20/06/2023" v-model="user.date" required>
+              <input type="text" placeholder="20/06/2023">
             </div>
             <div class="one">
               <h6>Time</h6>
               <!-- <input class="d-t" type="time" id="appt" name="appt"> -->
-              <input type="text" placeholder="8:00 AM" v-model="user.time" required>
+              <input type="text" placeholder="8:00 AM">
             </div>
           </div>
           <div class="trans mt-3">
@@ -223,7 +208,7 @@
               <h4>Availability of Facilitators</h4>
 
             </div>
-            <select class="form-select" aria-label="Default select example" v-on:change="changeRoute($event)" v-model="user.availability" required>
+            <select class="form-select" aria-label="Default select example" v-on:change="changeRoute($event)">
               <option selected>All facilitators will be available</option>
               <option value="invitation">All facilitators will be available</option>
               <option value="invitationtwo">
@@ -253,20 +238,21 @@
             <div class="check">
               <h6>NO</h6>
               <label class="switch">
-                <input type="checkbox" value="ckeckedInvite" id="checkedInvite" unchecked v-model="user.invitation" required>
+                <input type="checkbox" value="ckeckedInvite" id="checkedInvite" unchecked v-model="user.checkbox" required @click="toggleCheckbox">
                 <span class="slider round"></span>
               </label>
               <h6>YES</h6>
 
             </div>
+            <!-- <p>{{checkbox}}</p> -->
 
           </div>
 
           <div class="create">
-            <button class="createBtn">
+            <!-- <button class="createBtn">
               <caption>Save</caption>
-            </button>
-            <button class="createBtn" :disabled="isFormValid">
+            </button> -->
+            <button class="createBtn" :disabled="!isFormValid" @click="$router.push('investordecision')">
               <caption>Proceed</caption>
             </button>
           </div>

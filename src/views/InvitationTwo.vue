@@ -1,5 +1,72 @@
-<script setup>
+<script>
     import NavBar from '../components/NavBar.vue'
+  
+  export default{
+  components: NavBar,
+  data() {
+    return {
+      user: {
+        // transaction: '',
+        // venue: '',
+        // address: '',
+        // address2: '',
+        // state: '',
+        // country: '',
+        // date: '',
+        // time: '',
+        // timezone: '',
+        flyer: false,
+        availability: '',
+        invitattion: false,
+      
+
+      },
+    };
+  },
+  computed: {
+    isFormValid() {
+      return (
+        // this.user.transaction.trim() !== '' &&
+        // this.user.venue.trim() !== '' &&
+        // this.user.address.trim() !== '' &&
+        // this.user.address2.trim() !== '' &&
+        // this.user.state.trim() !== '' &&
+        // this.user.country.trim() !== '' &&
+        // this.user.date.trim() !== '' &&
+        // this.user.time.trim() !== '' &&
+        // this.user.timezone.trim() !== '' &&
+        this.user.flyer !== false &&
+        // this.user.availability !== '' &&
+        this.user.invitattion !== false
+      );
+    },
+  },
+   methods: {
+  changeRoute(e) {
+    this.$router.push("/" + e.target.value);
+  },
+  save() {
+      // Perform validation here if needed
+      if (this.isFormValid) {
+        // Here, you can perform any necessary actions to save the user's data.
+        // For example, you can make an API request or save the data to the local storage.
+        console.log('User Data Saved:', this.user);
+      }
+    },
+    proceed() {
+      // Navigate to the next step or route.
+      // You can use Vue Router for navigation if you're using it in your project.
+      // Example:
+      // this.$router.push('/next-step');
+
+      // For this example, let's assume a simple alert.
+      // alert('Proceeding to the next step');
+      // @click="$router.push('investordecision')"
+      
+      $router.push('investordecision')
+    },
+},
+ }
 </script>
 
 <template>
@@ -132,10 +199,10 @@
               <h4>Availability of Facilitators</h4>
 
             </div>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example" v-on:change="changeRoute($event)">
               <option selected>Some facilitators will be available</option>
-              <option value="1">All facilitators will be available</option>
-              <option value="2">Some facilitators will be available</option>
+              <option value="invitation">All facilitators will be available</option>
+              <option value="invitationtwo">Some facilitators will be available</option>
               <option value="3">None facilitators will be available</option>
 
             </select>
@@ -480,7 +547,7 @@ hr {
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 16px;
   width: 16px;
   left: 4px;
