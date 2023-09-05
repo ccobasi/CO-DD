@@ -50,7 +50,7 @@
           <div class="trans">
             <caption>Venue</caption>
             <select class="form-select" aria-label="Default select example">
-              <option selected>Select Venue</option>
+              <option selected>Physical(Internal)</option>
               <option value="1">Physical(Internal)</option>
               <option value="2">Physical(External)</option>
               <option value="3">Virtual</option>
@@ -89,7 +89,7 @@
               <input id="appt" name="appt" placeholder="8:00 AM">
             </div>
           </div>
-          <div class="trans">
+          <div class="trans mt-2">
             <caption>Time Zone</caption>
             <select class="form-select" aria-label="Default select example">
               <option selected>(GMT +01:00)Africa West Central</option>
@@ -121,16 +121,16 @@
             <div class="address">
               <div class="one">
                 <caption>Date</caption>
-                <!-- <input type="date" id="date" name="date"> -->
-                <input id="date" name="date" placeholder="20/06/2023">
+                <input type="date" id="date" name="date">
+                <!-- <input id="date" name="date" placeholder="20/06/2023"> -->
               </div>
               <div class="one">
                 <caption>Time</caption>
-                <!-- <input type="time" id="appt" name="appt"> -->
-                <input id="appt" name="appt" placeholder="8:00 AM">
+                <input type="time" id="appt" name="appt">
+                <!-- <input id="appt" name="appt" placeholder="8:00 AM"> -->
               </div>
             </div>
-            <div class="trans">
+            <div class="trans mt-2">
               <caption>Time Zone</caption>
               <select class="form-select" aria-label="Default select example">
                 <option selected>(GMT +01:00)Africa West Central</option>
@@ -148,7 +148,7 @@
             <div class="check">
               <h6>NO</h6>
               <label class="switch">
-                <input type="checkbox" checked>
+                <input type="checkbox" unchecked>
                 <span class="slider round"></span>
               </label>
               <h6>YES</h6>
@@ -173,7 +173,7 @@
 <style scoped>
 body {
   background: #eee;
-  height: 1040px;
+  height: 1080px;
   display: flex;
 
   padding: 20px 50px;
@@ -472,7 +472,7 @@ hr {
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 16px;
   width: 16px;
   left: 4px;

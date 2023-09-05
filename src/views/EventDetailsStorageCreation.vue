@@ -25,7 +25,7 @@
           <div class="trans">
             <caption>Venue</caption>
             <select class="form-select" aria-label="Default select example">
-              <option selected>Select Venue</option>
+              <option selected>Physical(Internal)</option>
               <option value="1">Physical(Internal)</option>
               <option value="2">Physical(External)</option>
               <option value="3">Virtual</option>
@@ -90,7 +90,7 @@
             <div class="check">
               <h6>NO</h6>
               <label class="switch">
-                <input type="checkbox" checked>
+                <input type="checkbox" unchecked>
                 <span class="slider round"></span>
               </label>
               <h6>YES</h6>
@@ -311,7 +311,7 @@ hr {
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 16px;
   width: 16px;
   left: 4px;

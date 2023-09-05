@@ -1,6 +1,6 @@
 <script setup>
     import NavBar from '../components/NavBar.vue'
-    import TableTwo from '../components/Tables/TableTwo.vue'
+    import TableThree from '../components/Tables/TableThree.vue'
 </script>
 
 <template>
@@ -66,7 +66,7 @@
       <hr style="width: 600px;height: 2px;background: #808080;">
       <div class="table">
         <h3>Feedback response</h3>
-        <TableTwo />
+        <TableThree />
         <div class="complete">
           <button class="back" @click="$router.push('agenda')">Back</button>
           <button class="done">Complete</button>

@@ -18,9 +18,10 @@
         // date: '',
         // time: '',
         // timezone: '',
-        flyer: '',
+        flyer: false,
         availability: '',
-        invitattion: '',
+        invitattion: false,
+      
 
       },
     };
@@ -37,9 +38,9 @@
         // this.user.date.trim() !== '' &&
         // this.user.time.trim() !== '' &&
         // this.user.timezone.trim() !== '' &&
-        this.user.flyer !== '' &&
-        this.user.availability !== '' &&
-        this.user.invitattion !== ''
+        this.user.flyer !== false &&
+        // this.user.availability !== '' &&
+        this.user.invitattion !== false
       );
     },
   },
@@ -197,22 +198,7 @@
             <h3>Invitation</h3>
             <h6>Timeline: <br>3 weeks before due date </h6>
           </div>
-          <div class="agenda">
-            <img src="../assets/agenda.png" alt="agenda">
-            <div class="text">
-              <h4>Agenda</h4>
-              <h6>Send agenda to interested investors.</h6>
-            </div>
-            <div class="check" style="width:260px;padding-left:140px">
-              <h6>NO</h6>
-              <label class="switch">
-                <input type="checkbox" checked>
-                <span class="slider round"></span>
-              </label>
-              <h6>YES</h6>
-            </div>
-          </div>
-          <hr style="width: 600px;height: 2px;background: #808080;">
+
           <div class="agenda">
             <img src="../assets/flyer.png" alt="agenda">
 
@@ -267,10 +253,11 @@
             <div class="check">
               <h6>NO</h6>
               <label class="switch">
-                <input type="checkbox" unchecked v-model="user.invitation" required>
+                <input type="checkbox" value="ckeckedInvite" id="checkedInvite" unchecked v-model="user.invitation" required>
                 <span class="slider round"></span>
               </label>
               <h6>YES</h6>
+
             </div>
 
           </div>
@@ -279,7 +266,7 @@
             <button class="createBtn">
               <caption>Save</caption>
             </button>
-            <button class="createBtn" :disabled="!isFormValid">
+            <button class="createBtn" :disabled="isFormValid">
               <caption>Proceed</caption>
             </button>
           </div>
