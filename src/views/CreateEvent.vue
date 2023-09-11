@@ -19,6 +19,12 @@
 	return a.createdAt - b.createdAt
 }))
 
+watch(events, (newVal) => {
+	localStorage.setItem('events', JSON.stringify(newVal))
+}, {
+	deep: true
+})
+
   const addEvent = () => {
 	if (transaction.value === '' || venue.value === '' || coTransactor.value === ''
       || address.value === ''  || addressTwo.value === '' || state.value === ''
@@ -46,6 +52,10 @@
  const onSelectChange = () => {
   selectedValue.value = selectedValue.value
 }
+
+onMounted(() => {
+	events.value = JSON.parse(localStorage.getItem('events')) || []
+})
 </script>
 <template>
 
@@ -141,7 +151,25 @@
             <caption>Create Event</caption>
           </button>
         </div>
+
       </form>
+      <!-- <section class="todo-list">
+        <h3>EVENT LIST</h3>
+        <div class="list" id="todo-list">
+
+          <div v-for="event in events_asc" :class="`todo-item ${event.done && 'done'}`">
+            <label>
+              <input type="checkbox" v-model="event.done" />
+            </label>
+
+            <div class="todo-content">
+              <h5>Co-transactor: {{event.coTransactor}}</h5>
+            </div>
+
+          </div>
+
+        </div>
+      </section> -->
     </div>
   </body>
 </template>
@@ -149,7 +177,7 @@
 <style scoped>
 body {
   background: #eeeeee;
-  height: 1000px;
+  height: 1080px;
 }
 .next {
   color: white;

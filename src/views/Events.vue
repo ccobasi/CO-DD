@@ -106,7 +106,6 @@ export default {
             }
         },
     },
-
     return: {
         page: 1,
         search: '',
@@ -270,6 +269,7 @@ export default {
           <div class="eve" style="border-radius: 15px;">
             <div style="display: flex; margin-bottom: 0;padding-bottom: 0;">
               <v-combobox label="Filter by: All" density="compact" :items="['All', 'Pending storage creation', 'Pending document upload', 'Pending L&D verification', 'Done']" variant="solo"></v-combobox>
+              <p><strong>Name:</strong> {{ storedFormData.coTransactor }}</p>
               <v-spacer></v-spacer>
               <v-text-field v-model="search" append-icon="mdi-magnify" density="compact" label="Search" style="" variant="solo" single-line hide-details width="30"></v-text-field>
             </div>
@@ -368,8 +368,7 @@ export default {
 }
 .navbar {
   height: 50px;
-  border-image: linear-gradient(to right, rgb(40, 126, 193), rgb(85, 187, 105))
-    1;
+  border-image: linear-gradient(to right, rgb(40, 126, 193), rgb(85, 187, 105)) 1;
   border-bottom: 4px solid;
   padding-bottom: 5px;
   width: 100%;
@@ -395,11 +394,7 @@ export default {
 .next {
   display: flex;
   color: white;
-  background-image: linear-gradient(
-    to right,
-    rgb(40, 126, 193),
-    rgb(85, 187, 105)
-  );
+  background-image: linear-gradient(to right, rgb(40, 126, 193), rgb(85, 187, 105));
   margin: 15px 30px 20px 30px;
   padding: 45px 15px;
   border-radius: 10px;
