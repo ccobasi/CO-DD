@@ -21,7 +21,23 @@
         <div class="check">
           <h6>NO</h6>
           <label class="switch">
-            <input type="checkbox" checked>
+            <input type="checkbox" unchecked>
+            <span class="slider round"></span>
+          </label>
+          <h6>YES</h6>
+        </div>
+      </div>
+      <hr style="width: 600px;height: 2px;background: #808080;">
+      <div class="agenda">
+        <img src="../assets/agenda.png" alt="agenda">
+        <div class="text">
+          <h4>Agenda</h4>
+          <h6>Send agenda to interested investors.</h6>
+        </div>
+        <div class="check" style="width:260px;padding-left:140px">
+          <h6>NO</h6>
+          <label class="switch">
+            <input type="checkbox" unchecked>
             <span class="slider round"></span>
           </label>
           <h6>YES</h6>
@@ -140,7 +156,7 @@ h3 {
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 16px;
   width: 16px;
   left: 4px;
@@ -200,5 +216,12 @@ input:checked + .slider:before {
 }
 .tab {
   visibility: hidden;
+}
+.agenda {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  height: 40px;
 }
 </style>

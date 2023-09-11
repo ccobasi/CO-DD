@@ -1,5 +1,51 @@
 <script setup>
   import NavBar from '../components/NavBar.vue'
+  import { ref, onMounted, computed, watch } from 'vue'
+
+  const events = ref([])
+  const transaction = ref('')
+  const venue = ref('')
+  const coTransactor = ref('')
+  const address = ref('')
+  const addressTwo  = ref('')
+  const state = ref('')
+  const country = ref('')
+  const date = ref('')
+  const time = ref('')
+  const timeZone = ref('')
+  const selectedValue = ref('')
+
+  const events_asc = computed(() => events.value.sort((a,b) =>{
+	return a.createdAt - b.createdAt
+}))
+
+  const addEvent = () => {
+	if (transaction.value === '' || venue.value === '' || coTransactor.value === ''
+      || address.value === ''  || addressTwo.value === '' || state.value === ''
+      || country.value === '' || date.value === '' || time.value === '' || timeZone.value === '') {
+		return
+	}
+
+	events.value.push({
+		transaction: transaction.value,
+		venue: venue.value,
+    coTransactor: coTransactor.value,
+    address: address.value,
+    addressTwo: addressTwo.value,
+    state: state.value,
+    country: country.value,
+    date: date.value,
+    time: time.value,
+    timeZone: timeZone.value,
+		createdAt: new Date().getTime()
+	})
+
+  console.log(events)
+}
+
+ const onSelectChange = () => {
+  selectedValue.value = selectedValue.value
+}
 </script>
 <template>
 
@@ -12,72 +58,72 @@
 
     </div>
     <div class="form">
-      <form action="">
+      <form action="" @submit.prevent="addEvent">
         <div class="trans">
           <caption>Transactions</caption>
-          <select class="form-select" aria-label="Default select example">
+          <select class="form-select" aria-label="Default select example" v-on:change="onSelectChange(e)" v-model="transaction">
             <option selected>Select Transactions</option>
-            <option value="1">#CP4526-Lagos Free Zone Company</option>
-            <option value="2">#CP4526-konexa</option>
-            <option value="3">#CP4526-Banner Energy Limited</option>
-            <option value="4">#CP4526-Seplat</option>
-            <option value="5">#CP4526-9mobile</option>
-            <option value="6">#CP4526-Total</option>
+            <option value="#CP4526-Lagos Free Zone Company">#CP4526-Lagos Free Zone Company</option>
+            <option value="#CP4526-konexa">#CP4526-konexa</option>
+            <option value="#CP4526-Banner Energy Limited">#CP4526-Banner Energy Limited</option>
+            <option value="#CP4526-Seplat">#CP4526-Seplat</option>
+            <option value="#CP4526-9mobile">#CP4526-9mobile</option>
+            <option value="#CP4526-Total">#CP4526-Total</option>
           </select>
         </div>
         <div class="trans">
           <caption>Venue</caption>
-          <select class="form-select" aria-label="Default select example">
+          <select class="form-select" aria-label="Default select example" @change="onSelectChange(e)" v-model="venue">
             <option selected>Select Venue</option>
-            <option value="1">Physical(Internal)</option>
-            <option value="2">Physical(External)</option>
-            <option value="3">Virtual</option>
+            <option value="Physical(Internal)">Physical(Internal)</option>
+            <option value="Physical(External)">Physical(External)</option>
+            <option value="Virtual">Virtual</option>
           </select>
           <p class="cap">Please provide address below if the venue is external</p>
         </div>
         <div class="trans">
           <caption>Co-Transactor</caption>
-          <select class="form-select" aria-label="Default select example">
+          <select class="form-select" aria-label="Default select example" @change="onSelectChange(e)" v-model="coTransactor">
             <option selected>Select Co-Transactor</option>
-            <option value="1">Daniel Mueller</option>
-            <option value="2">John Doe</option>
-            <option value="3">Chido</option>
+            <option value="Daniel Mueller">Daniel Mueller</option>
+            <option value="John Doe">John Doe</option>
+            <option value="Chido">Chido</option>
           </select>
 
         </div>
         <div class="address">
           <div class="one">
             <caption>Address</caption>
-            <input type="text">
+            <input type="text" v-model="address">
           </div>
           <div class="one">
             <caption>Address2</caption>
-            <input type="text">
+            <input type="text" v-model="addressTwo">
           </div>
         </div>
         <div class="address">
           <div class="one">
             <caption>State</caption>
-            <input type="text">
+            <input type="text" v-model="state">
           </div>
           <div class="one">
             <caption>Country</caption>
-            <input type="text">
+            <input type="text" v-model="country">
           </div>
         </div>
         <div class="address">
           <div class="one">
             <caption>Date</caption>
-            <input type="date" id="date" name="date">
+            <input type="date" id="date" name="date" v-model="date">
           </div>
           <div class="one">
             <caption>Time</caption>
-            <input type="time" id="appt" name="appt">
+            <input type="time" id="appt" name="appt" v-model="time">
           </div>
         </div>
         <div class="trans">
           <caption>Time Zone</caption>
-          <select class="form-select" aria-label="Default select example">
+          <select class="form-select" aria-label="Default select example" @change="onSelectChange(e)" v-model="timeZone">
             <option selected>(GMT +01:00)Africa West Central</option>
             <option value="1">(GMT +00:00)Greenwich(London)</option>
             <option value="2">(GMT +01:00)Africa West Central</option>
@@ -90,7 +136,8 @@
           <button class="cancel" @click="$router.push('/')">
             <caption>Cancel</caption>
           </button>
-          <button class="createBtn" @click="$router.push('/success')">
+          <!-- <button type="submit" value="Add event" class="createBtn" @click="$router.push('/success')"> -->
+          <button type="submit" value="Add event" class="createBtn">
             <caption>Create Event</caption>
           </button>
         </div>
@@ -106,11 +153,7 @@ body {
 }
 .next {
   color: white;
-  background-image: linear-gradient(
-    to right,
-    rgb(40, 126, 193),
-    rgb(85, 187, 105)
-  );
+  background-image: linear-gradient(to right, rgb(40, 126, 193), rgb(85, 187, 105));
   margin: 15px 30px 20px 30px;
   padding: 45px 15px;
   border-radius: 10px;

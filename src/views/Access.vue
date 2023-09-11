@@ -31,22 +31,7 @@
         </div>
       </div>
       <hr style="width: 600px;height: 2px;background: #808080;">
-      <div class="agenda">
-        <img src="../assets/agenda.png" alt="agenda">
-        <div class="text">
-          <h4>Agenda</h4>
-          <h6>Send agenda to interested investors.</h6>
-        </div>
-        <div class="check" style="width:260px;padding-left:140px">
-          <h6>NO</h6>
-          <label class="switch">
-            <input type="checkbox" unchecked>
-            <span class="slider round"></span>
-          </label>
-          <h6>YES</h6>
-        </div>
-      </div>
-      <hr style="width: 600px;height: 2px;background: #808080;">
+
       <div class="btn">
         <button @click="$router.push('agenda')">Notify L&D</button>
       </div>
