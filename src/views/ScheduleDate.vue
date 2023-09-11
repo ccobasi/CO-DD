@@ -184,13 +184,13 @@ body {
 .event-info {
   padding: 20px;
   background: #eee;
-  height: 1040px;
+  height: 1080px;
 }
 .form {
   display: flex;
   flex-direction: column;
   width: 660px;
-  height: 1000px;
+  height: 1020px;
   padding: 30px;
   flex-direction: column;
   align-items: flex-start;

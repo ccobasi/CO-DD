@@ -117,7 +117,7 @@
           <div class="trans mt-1">
             <h6>Venue</h6>
             <select class="form-select" aria-label="Default select example">
-              <option selected>Select Venue</option>
+              <option selected>Physical(Internal)</option>
               <option value="1">Physical(Internal)</option>
               <option value="2">Physical(External)</option>
               <option value="3">Virtual</option>

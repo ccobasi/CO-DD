@@ -69,7 +69,7 @@
         <TableThree />
         <div class="complete">
           <button class="back" @click="$router.push('agenda')">Back</button>
-          <button class="done">Complete</button>
+          <button class="done" @click="$router.push('/')">Complete</button>
         </div>
       </div>
     </div>

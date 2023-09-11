@@ -143,7 +143,7 @@
 <style scoped>
 body {
   background: #eee;
-  height: 980px;
+  height: 1020px;
   display: flex;
 
   padding: 20px 50px;

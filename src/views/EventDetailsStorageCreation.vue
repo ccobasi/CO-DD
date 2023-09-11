@@ -111,7 +111,7 @@
 <style scoped>
 body {
   background: #eee;
-  height: 980px;
+  height: 1080px;
   display: flex;
 
   padding: 20px 50px;

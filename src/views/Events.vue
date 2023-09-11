@@ -1,24 +1,7 @@
 <script>
+// import {useEventsStore} from "../store/events"
 
-// const filters = [
-//   'All',
-//   'Pending storage creation',
-//   'Overhead Doors'
-// ]
-
-// export default {
-//   props: [
-//     'filterPosts',
-//     'search',
-//     'filteredPosts'
-//   ],
-//   data () {
-//     return {
-//       filters,
-//       term: ''
-//     }
-//   }
-// }
+// const {events} = useEventsStore();
 
 export default {
     data: () => ({
@@ -269,7 +252,7 @@ export default {
           <div class="eve" style="border-radius: 15px;">
             <div style="display: flex; margin-bottom: 0;padding-bottom: 0;">
               <v-combobox label="Filter by: All" density="compact" :items="['All', 'Pending storage creation', 'Pending document upload', 'Pending L&D verification', 'Done']" variant="solo"></v-combobox>
-              <p><strong>Name:</strong> {{ storedFormData.coTransactor }}</p>
+
               <v-spacer></v-spacer>
               <v-text-field v-model="search" append-icon="mdi-magnify" density="compact" label="Search" style="" variant="solo" single-line hide-details width="30"></v-text-field>
             </div>
