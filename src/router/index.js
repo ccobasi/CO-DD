@@ -15,6 +15,8 @@ import Access from '../views/Access.vue'
 import Agenda from '../views/Agenda.vue'
 import RequestFeedback from '../views/RequestFeedback.vue'
 import Events from '../views/Events.vue'
+import FormInvite from '../views/FormInvite.vue'
+import FormResponse from '../views/FormResponse.vue'
 import Demo from '../views/Demo.vue'
 
 const router = createRouter({
@@ -114,6 +116,18 @@ const router = createRouter({
       path: '/feedback',
       name: 'event details request feedback',
       component: RequestFeedback,
+     
+    },
+    {
+      path: '/forminvite',
+      name: 'event form',
+      component: FormInvite,
+     
+    },
+    {
+      path: '/formresponse',
+      name: 'event form response',
+      component: FormResponse,
      
     },
     {

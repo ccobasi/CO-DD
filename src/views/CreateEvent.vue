@@ -2,6 +2,7 @@
   import NavBar from '../components/NavBar.vue'
   import { ref, onMounted, computed, watch } from 'vue'
 
+
   const events = ref([])
   const transaction = ref('')
   const venue = ref('')
