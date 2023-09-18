@@ -15,6 +15,7 @@
   const time = ref('')
   const timeZone = ref('')
   const selectedValue = ref('')
+  const addInput = ref('')
 
   const events_asc = computed(() => events.value.sort((a,b) =>{
 	return a.createdAt - b.createdAt
@@ -78,28 +79,41 @@ onMounted(() => {
           </div>
         </div>
         <div class="trans mt-3">
+          <caption>Company</caption>
+          <select class="form-select" aria-label="Default select example">
+            <option selected>Select Company</option>
+            <option value="Lagos Free Zone Company">Lagos Free Zone Company</option>
+            <option value="konexa">konexa</option>
+            <option value="Banner Energy Limited">Banner Energy Limited</option>
+            <option value="Seplat">Seplat</option>
+            <option value="9mobile">9mobile</option>
+            <option value="Total">Total</option>
+          </select>
+
+        </div>
+        <div class="trans mt-3">
           <caption>Feedback</caption>
           <select class="form-select" aria-label="Default select example">
             <option selected>Select Feedback</option>
-            <option value="Impressive">Impressive</option>
-            <option value="Interesting">Interesting</option>
-            <option value="Superb">Superb</option>
-            <option value="Wonderful">Wonderful</option>
-
+            <option value="Poor">Poor</option>
+            <option value="Below Average">Below Average</option>
+            <option value="Averge">Averge</option>
+            <option value="Above Average">Above Average</option>
+            <option value="Excellent">Excellent</option>
           </select>
 
         </div>
         <div class="trans mt-3">
           <caption>Are you open to visit our site?</caption>
-          <select class="form-select" aria-label="Default select example">
+          <select class="form-select" aria-label="Default select example" v-model="selectedValue">
             <option selected>Select</option>
             <option value="Yes">Yes</option>
-            <option value="No">No</option>
+            <option value="addInput">No</option>
 
           </select>
 
         </div>
-        <div class="address mt-3">
+        <div class="address mt-3" v-if="selectedValue === 'addInput'">
           <div class="one">
             <caption>Reason</caption>
             <input type="text" style="width:600px">
