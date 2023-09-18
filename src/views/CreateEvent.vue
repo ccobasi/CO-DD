@@ -1,6 +1,10 @@
 <script setup>
   import NavBar from '../components/NavBar.vue'
   import { ref, onMounted, computed, watch } from 'vue'
+  import {useEventsStore} from "@/store/events"
+      
+const store = useEventsStore();
+console.log(store.events);
 
 
   const events = ref([])

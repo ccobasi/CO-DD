@@ -15,6 +15,8 @@
   const time = ref('')
   const timeZone = ref('')
   const selectedValue = ref('')
+  const additionalInput = ref('')
+  const attend = ref('')
 
   const events_asc = computed(() => events.value.sort((a,b) =>{
 	return a.createdAt - b.createdAt
@@ -78,19 +80,32 @@ onMounted(() => {
           </div>
         </div>
         <div class="trans mt-3">
-          <caption>Response</caption>
+          <caption>Company</caption>
           <select class="form-select" aria-label="Default select example">
+            <option selected>Select Company</option>
+            <option value="Lagos Free Zone Company">Lagos Free Zone Company</option>
+            <option value="konexa">konexa</option>
+            <option value="Banner Energy Limited">Banner Energy Limited</option>
+            <option value="Seplat">Seplat</option>
+            <option value="9mobile">9mobile</option>
+            <option value="Total">Total</option>
+          </select>
+
+        </div>
+        <div class="trans mt-3">
+          <caption>Response</caption>
+          <select class="form-select" aria-label="Default select example" @change="onSelectChange(e)" v-model="attend">
             <option selected>Select Response</option>
-            <option value="Interested">Interested</option>
-            <option value="Not interested">Not interested</option>
+            <option value="I will attend">I will attend</option>
+            <option value="addInput">I will not attend</option>
 
           </select>
 
         </div>
-        <div class="address mt-3">
+        <div class="address mt-3" v-if="attend === 'addInput'">
           <div class="one">
             <caption>Reason</caption>
-            <input type="text" style="width:600px">
+            <input type="text" style="width:600px" id="dynamicInput" v-model="additionalInput">
           </div>
 
         </div>

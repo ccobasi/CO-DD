@@ -10,6 +10,19 @@ export const useEventsStore = defineStore("events", {
                 datetime: 'Thursday July 20, 2023 8:00 AM',
                 status: 'Pending storage creation',
             },
-        ]
-    })
+        ],
+        }),
 })
+// store.js
+// import {defineStore} from "pinia"
+
+// export const useMyStore = defineStore('events', {
+//   state: () => ({
+//     count: 0,
+//   }),
+//   actions: {
+//     increment() {
+//       this.count++;
+//     },
+//   },
+// });

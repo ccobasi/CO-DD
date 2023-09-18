@@ -69,7 +69,7 @@ export default {
   margin-bottom: 20px;
 }
 </style> -->
-<!-- <template>
+<template>
   <div>
     <h1>Form Data</h1>
     <form @submit.prevent="submitForm">
@@ -118,33 +118,36 @@ export default {
 
 <style scoped>
 /* Add your CSS styles here */
-</style> -->
-<template>
+</style>
+<!-- MyComponent.vue -->
+<!-- <template>
   <div>
-    <button @click="saveFormData">Save</button>
+    <h1>My Component</h1>
+    <p>Count: {{ count }}</p>
+    <button @click="increment">Increment</button>
   </div>
 </template>
 
 <script>
-export default {
-  methods: {
-    saveFormData() {
-      // Assuming your form data is stored in a variable named formData
-      const formData = {
-        name: 'John Doe',
-        email: 'john@example.com',
-        // Add other form fields here
-      };
+import { defineComponent, computed } from 'vue';
+import { useMyStore } from '@/store/events'; // Replace with your actual store path
 
-      // Convert the form data to JSON and store it in local storage
-      localStorage.setItem('formData', JSON.stringify(formData));
-      alert('Form data has been saved to local storage.');
-    },
+export default defineComponent({
+  setup() {
+    const store = useMyStore();
+
+    // Use computed property for reactive data binding
+    const count = computed(() => store.count);
+
+    // Define a method that calls the store's action
+    const increment = () => {
+      store.increment();
+    };
+
+    return {
+      count,
+      increment,
+    };
   },
-};
-</script>
-
-<style scoped>
-/* Add your CSS styles here */
-</style>
-
+});
+</script> -->

@@ -17,7 +17,9 @@ import RequestFeedback from '../views/RequestFeedback.vue'
 import Events from '../views/Events.vue'
 import FormInvite from '../views/FormInvite.vue'
 import FormResponse from '../views/FormResponse.vue'
+import Login from '../views/Login.vue'
 import Demo from '../views/Demo.vue'
+import Event from '../views/Event.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,7 +28,7 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: Home,
-    
+      
     },
      {
       path: '/events',
@@ -131,9 +133,21 @@ const router = createRouter({
      
     },
     {
+      path: '/login',
+      name: 'login',
+      component: Login,
+     
+    },
+    {
       path: '/demo',
       name: 'demo',
       component: Demo,
+     
+    },
+    {
+      path: '/event',
+      name: 'event',
+      component: Event,
      
     },
   ]

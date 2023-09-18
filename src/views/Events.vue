@@ -1,10 +1,13 @@
 <script>
-// import {useEventsStore} from "../store/events"
+// import {useEventsStore} from "@/store/events"
 
-// const {events} = useEventsStore();
+
+// const store = useEventsStore()
+// console.log(store);
 
 export default {
     data: () => ({
+      
         tab: null,
         recent: [
             {
@@ -94,24 +97,9 @@ export default {
         search: '',
     }
 };
+
 </script>
 <template>
-  <!-- <label for="search">
-    Search
-    <input
-      id="search"
-      v-model="term"
-      @keypress.enter="search(term)"
-    />
-  </label>
-
-  <p
-    v-for="filter in filters"
-    :key="filter"
-    @click="() => filterPosts(filter)"
-  >
-    {{ filter }}
-  </p> -->
   <v-card>
     <nav class="navbar navbar-expand-lg bg-light ">
       <div class="container-fluid" style="display: flex;">
@@ -135,106 +123,6 @@ export default {
 
     <v-card-text style="background-color: rgba(235, 235, 235, 0.64); padding: 0; box-shadow: none;">
       <v-window v-model="tab">
-        <!-- <v-window-item value="two">
-          <div>
-            <h3 class="greet">
-              Good afternoon, Mubarak Abubakar
-            </h3>
-          </div>
-          <div class="next">
-            <h2><b>Ready to create your next event?</b></h2>
-            <v-spacer></v-spacer>
-            <router-link to="/createevent">
-              <v-btn class="cbtn" dark>
-                <h6>Create event</h6>
-              </v-btn>
-            </router-link>
-          </div>
-          <div class="prev">
-            <h3>Recent Co-DD Events &gt;</h3>
-            <v-spacer></v-spacer>
-            <router-link to="/event">
-              <v-btn class="vbtn" dark>
-                <h4 class="plus">View all</h4>
-              </v-btn>
-            </router-link>
-          </div>
-          <div class="admin">
-            <v-table>
-              <thead>
-                <tr>
-                  <th class="text-left">
-                    <div class="d-flex align-center gap-1">
-                      <span> Deal ID </span>
-
-                      <span class="d-flex flex-column align-center">
-                        <v-icon icon="mdi-chevron-up" size="x-small" class="mb-n1"></v-icon>
-                        <v-icon icon="mdi-chevron-down" size="x-small"></v-icon>
-                      </span>
-
-                    </div>
-                  </th>
-                  <th class="text-left">
-                    <div class="d-flex align-center gap-1">
-                      <span> Client Name </span>
-
-                      <span class="d-flex flex-column align-center">
-                        <v-icon icon="mdi-chevron-up" size="x-small" class="mb-n1"></v-icon>
-                        <v-icon icon="mdi-chevron-down" size="x-small"></v-icon>
-                      </span>
-
-                    </div>
-                  </th>
-                  <th class="text-left">
-                    <div class="d-flex align-center gap-1">
-                      <span> Venue </span>
-
-                      <span class="d-flex flex-column align-center">
-                        <v-icon icon="mdi-chevron-up" size="x-small" class="mb-n1"></v-icon>
-                        <v-icon icon="mdi-chevron-down" size="x-small"></v-icon>
-                      </span>
-
-                    </div>
-                  </th>
-                  <th class="text-left">
-                    <div class="d-flex align-center gap-1">
-                      <span> Date & Time </span>
-
-                      <span class="d-flex flex-column align-center">
-                        <v-icon icon="mdi-chevron-up" size="x-small" class="mb-n1"></v-icon>
-                        <v-icon icon="mdi-chevron-down" size="x-small"></v-icon>
-                      </span>
-
-                    </div>
-                  </th>
-                  <th class="text-left">
-                    <div class="d-flex align-center gap-1">
-                      <span> Status </span>
-
-                      <span class="d-flex flex-column align-center">
-                        <v-icon icon="mdi-chevron-up" size="x-small" class="mb-n1"></v-icon>
-                        <v-icon icon="mdi-chevron-down" size="x-small"></v-icon>
-                      </span>
-
-                    </div>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="item in recent" :key="item.name" @click="$router.push('eventdetails')">
-                  <td>{{ item.dealid }}</td>
-                  <td>{{ item.clientname }}</td>
-                  <td>{{ item.venue }}</td>
-                  <td>{{ item.datetime }}</td>
-                  <td>
-                    <p class="status" :style="getStatusColor(item.status)"><i class="dot" style="background: orange;"></i>{{ item.status }}</p>
-                  </td>
-                </tr>
-              </tbody>
-            </v-table>
-
-          </div>
-        </v-window-item> -->
 
         <v-window-item value="two" style="padding: 1rem; border-radius: none;">
           <div class="tab-two" style="display: flex; margin: 10px 30px 20px 30px;">
@@ -253,10 +141,11 @@ export default {
             <div style="display: flex; margin-bottom: 0;padding-bottom: 0;">
               <v-combobox label="Filter by: All" density="compact" :items="['All', 'Pending storage creation', 'Pending document upload', 'Pending L&D verification', 'Done']" variant="solo"></v-combobox>
 
-              <!-- <h5>Event:{{events.clientname}}</h5> -->
+              <h5>Event:{{}}</h5>
               <v-spacer></v-spacer>
               <v-text-field v-model="search" append-icon="mdi-magnify" density="compact" label="Search" style="" variant="solo" single-line hide-details width="30"></v-text-field>
             </div>
+            <Table />
             <v-table>
               <thead>
                 <tr>
