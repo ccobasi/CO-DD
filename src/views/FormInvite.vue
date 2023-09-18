@@ -3,53 +3,39 @@
   import { ref, onMounted, computed, watch } from 'vue'
 
 
-  const events = ref([])
-  const transaction = ref('')
-  const venue = ref('')
-  const coTransactor = ref('')
-  const address = ref('')
-  const addressTwo  = ref('')
-  const state = ref('')
-  const country = ref('')
-  const date = ref('')
-  const time = ref('')
-  const timeZone = ref('')
+  const invites = ref([])
+  const name = ref('')
+  const email = ref('')
   const selectedValue = ref('')
   const additionalInput = ref('')
   const attend = ref('')
+  const company = ref('')
 
-  const events_asc = computed(() => events.value.sort((a,b) =>{
+  const invites_asc = computed(() => invites.value.sort((a,b) =>{
 	return a.createdAt - b.createdAt
 }))
 
-watch(events, (newVal) => {
+watch(invites, (newVal) => {
 	localStorage.setItem('events', JSON.stringify(newVal))
 }, {
 	deep: true
 })
 
-  const addEvent = () => {
-	if (transaction.value === '' || venue.value === '' || coTransactor.value === ''
-      || address.value === ''  || addressTwo.value === '' || state.value === ''
-      || country.value === '' || date.value === '' || time.value === '' || timeZone.value === '') {
+  const addInvite = () => {
+	if (name.value === '' || email.value === '' || company.value === ''
+      || attend.value === ''  || additionalInput.value === '') {
 		return
 	}
 
-	events.value.push({
-		transaction: transaction.value,
-		venue: venue.value,
-    coTransactor: coTransactor.value,
-    address: address.value,
-    addressTwo: addressTwo.value,
-    state: state.value,
-    country: country.value,
-    date: date.value,
-    time: time.value,
-    timeZone: timeZone.value,
-		createdAt: new Date().getTime()
+	invites.value.push({
+		name: name.value,
+		email: email.value,
+    company: company.value,
+    attend: attend.value,
+    additionalInput: additionalInput.value,
 	})
 
-  console.log(events)
+  console.log(invites)
 }
 
  const onSelectChange = () => {
@@ -57,7 +43,7 @@ watch(events, (newVal) => {
 }
 
 onMounted(() => {
-	events.value = JSON.parse(localStorage.getItem('events')) || []
+	invites.value = JSON.parse(localStorage.getItem('invites')) || []
 })
 </script>
 <template>
@@ -66,22 +52,22 @@ onMounted(() => {
     <NavBar />
 
     <div class="form">
-      <form action="" @submit.prevent="addEvent">
+      <form action="" @submit.prevent="addInvite">
         <h1>Event Attendance</h1>
 
         <div class="address">
           <div class="one">
             <caption>Name</caption>
-            <input type="text" v-model="address">
+            <input type="text" v-model="name">
           </div>
           <div class="one">
             <caption>Email</caption>
-            <input type="text" v-model="addressTwo">
+            <input type="text" v-model="email">
           </div>
         </div>
         <div class="trans mt-3">
           <caption>Company</caption>
-          <select class="form-select" aria-label="Default select example">
+          <select class="form-select" aria-label="Default select example" v-model="company">
             <option selected>Select Company</option>
             <option value="Lagos Free Zone Company">Lagos Free Zone Company</option>
             <option value="konexa">konexa</option>

@@ -26,6 +26,7 @@ console.log(store.events);
         <div style="display: flex; margin-bottom: 0;padding-bottom: 0;">
           <v-combobox label="Filter by: All" density="compact" :items="['All', 'Pending storage creation', 'Pending document upload', 'Pending L&D verification', 'Done']" variant="solo"></v-combobox>
           <v-spacer></v-spacer>
+          <h5>{{store.events}}</h5>
           <v-text-field v-model="search" append-icon="mdi-magnify" density="compact" label="Search" style="" variant="solo" single-line hide-details width="30"></v-text-field>
         </div>
         <div class="tabulate">

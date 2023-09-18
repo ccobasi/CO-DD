@@ -99,7 +99,10 @@ export default {
 };
 
 </script>
+
+
 <template>
+
   <v-card>
     <nav class="navbar navbar-expand-lg bg-light ">
       <div class="container-fluid" style="display: flex;">
