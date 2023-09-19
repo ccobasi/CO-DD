@@ -1,6 +1,61 @@
-<script setup>
+<!-- <script setup>
   import NavBar from '../components/NavBar.vue'
   import TableTwo from '../components/Tables/TableTwo.vue'
+</script> -->
+<script>
+    import NavBar from '../components/NavBar.vue'
+    import TableTwo from '../components/Tables/TableTwo.vue'
+    export default {
+  components:{NavBar,TableTwo},
+  data() {
+    return {
+      textToCopy: 'https://www.infracredit_storage/app/public.link', // Replace with the text you want to copy
+      copiedMessage: '',
+      user: {
+        checkbox: false,
+      },
+    };
+  },
+  computed: {
+    isFormValid() {
+      return (
+        this.user.checkbox !== false 
+      );
+    },
+  },
+  methods: {
+    copyToClipboard() {
+      const textarea = document.createElement('textarea');
+      textarea.value = this.textToCopy;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+
+      this.copiedMessage = 'Copied!';
+      setTimeout(() => {
+        this.copiedMessage = '';
+      }, 2000); // Clear the copied message after 2 seconds
+    },
+     changeRoute(e) {
+    this.$router.push("/" + e.target.value);
+  },
+  toggleCheckbox() {
+      this.checkbox = !this.checkbox
+      this.$emit('setCheckboxVal', this.checkbox)
+  },
+  save() {
+      if (this.isFormValid) {
+        console.log('User Data Saved:', this.user);
+      }
+    },
+    proceed() {
+      if (this.isFormValid) {
+        console.log('User Data Saved:', this.user.checkbox);
+      }
+    },
+  },
+};
 </script>
 <template>
   <NavBar />
@@ -24,7 +79,7 @@
         <div class="check" style="width:180px;padding-left:60px">
           <h6>NO</h6>
           <label class="switch">
-            <input type="checkbox" unchecked>
+            <input type="checkbox" value="ckeckedInvite" unchecked v-model="user.checkbox" required @click="toggleCheckbox">
             <span class="slider round"></span>
           </label>
           <h6>YES</h6>
@@ -33,7 +88,7 @@
       <hr style="width: 600px;height: 2px;background: #808080;">
 
       <div class="btn">
-        <button @click="$router.push('agenda')">Notify L&D</button>
+        <button :disabled="!isFormValid" @click="$router.push('agenda')">Notify L&D</button>
       </div>
     </div>
   </body>
