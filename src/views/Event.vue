@@ -1,4 +1,4 @@
-<script setup>
+<!-- <script setup>
   import NavBar from '../components/NavBar.vue'
   import {useEventsStore} from "@/store/events"
 
@@ -9,6 +9,60 @@ console.log(store.events);
 
 
   
+</script> -->
+<script>
+import NavBar from '../components/NavBar.vue'
+import { useEventsStore } from "@/store/events";
+
+export default {
+  components: NavBar,
+  setup() {
+    const store = useEventsStore();
+    const events = store.events;
+
+    return {
+      events
+    };
+  },
+  methods: {
+        getStatusColor(status) {
+            switch (status) {
+                case 'Pending storage creation':
+                    return 'background-color: rgb(254, 249, 195); border-radius: 40px; width: 60%; padding: 10px;';
+                    
+                case 'Pending document upload':
+                    return 'background-color: rgb(254, 249, 195); border-radius: 40px;  width: 60%; padding: 10px;';
+                case 'Pending L&D verification':
+                    return 'background-color: rgb(254, 249, 195); border-radius: 40px;  width: 60%; padding: 10px;';
+                case 'Pending schedule':
+                    return 'background-color: rgb(254, 249, 195); border-radius: 40px;  width: 60%; padding: 10px;';
+                case 'Pending access to dataroom':
+                    return 'background-color: rgb(254, 249, 195); border-radius: 40px;  width: 60%; padding: 10px;';
+                case 'Done':
+                    return 'background-color: rgb(220, 252, 231); border-radius: 40px;  width: 60%; padding: 10px;';
+                //   default:
+                //     return 'background-color: rgb(254, 249, 195); border-radius: 10px;  width: 60%; padding: 10px;';
+            }
+        },
+        getStatusIcon(status) {
+            switch (status) {
+                
+                case 'Pending storage creation':
+                    return 'background-color: #ffbf1a; display: inline-block; border-radius: 50%; padding: 5px;';
+                case 'Pending document upload':
+                    return 'background-color: #ffbf1a; display: inline-block; border-radius: 50%; padding: 5px;';
+                case 'Pending L&D verification':
+                    return 'background-color: #ffbf1a; display: inline-block; border-radius: 50%; padding: 5px;';
+                case 'Pending schedule':
+                    return 'background-color: #ffbf1a; display: inline-block; border-radius: 50%; padding: 5px;';
+                case 'Pending access to dataroom':
+                    return 'background-color: #ffbf1a; display: inline-block; border-radius: 50%; padding: 5px;';
+                case 'Done':
+                    return 'background-color: #47b65c; display: inline-block; border-radius: 50%; padding: 5px;';
+            }
+        },
+    },
+};
 </script>
 <template>
 
@@ -26,7 +80,7 @@ console.log(store.events);
         <div style="display: flex; margin-bottom: 0;padding-bottom: 0;">
           <v-combobox label="Filter by: All" density="compact" :items="['All', 'Pending storage creation', 'Pending document upload', 'Pending L&D verification', 'Done']" variant="solo"></v-combobox>
           <v-spacer></v-spacer>
-          <h5>{{store.events}}</h5>
+          <!-- <h5>{{store.events}}</h5> -->
           <v-text-field v-model="search" append-icon="mdi-magnify" density="compact" label="Search" style="" variant="solo" single-line hide-details width="30"></v-text-field>
         </div>
         <div class="tabulate">
@@ -91,15 +145,15 @@ console.log(store.events);
               </tr>
             </thead>
             <tbody>
-              <tr v-for="item in recent" :key="item.name" @click="$router.push('eventdetails')">
-                <td>{{ item.dealid }}</td>
-                <td>{{ item.clientname }}</td>
-                <td>{{ item.venue }}</td>
-                <td>{{ item.datetime }}</td>
+              <tr v-for="event in events" :key="event.name" @click="$router.push('eventdetails')">
+                <td>{{ event.dealid }}</td>
+                <td>{{ event.clientname }}</td>
+                <td>{{ event.venue }}</td>
+                <td>{{ event.datetime }}</td>
                 <td>
-                  <p class="status" :style="getStatusColor(item.status)">
-                    <i class="dot" :style="getStatusIcon(item.status)"></i>
-                    {{ item.status }}
+                  <p class="status" :style="getStatusColor(event.status)">
+                    <i class="dot" :style="getStatusIcon(event.status)"></i>
+                    {{ event.status }}
                   </p>
                 </td>
               </tr>
