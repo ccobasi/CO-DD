@@ -7,7 +7,17 @@
     return {
       textToCopy: 'https://www.infracredit_storage/app/public.link', // Replace with the text you want to copy
       copiedMessage: '',
+      user: {
+        checkbox: false,
+      },
     };
+  },
+  computed: {
+    isFormValid() {
+      return (
+        this.user.checkbox !== false 
+      );
+    },
   },
   methods: {
     copyToClipboard() {
@@ -22,6 +32,23 @@
       setTimeout(() => {
         this.copiedMessage = '';
       }, 2000); // Clear the copied message after 2 seconds
+    },
+     changeRoute(e) {
+    this.$router.push("/" + e.target.value);
+  },
+  toggleCheckbox() {
+      this.checkbox = !this.checkbox
+      this.$emit('setCheckboxVal', this.checkbox)
+  },
+  save() {
+      if (this.isFormValid) {
+        console.log('User Data Saved:', this.user);
+      }
+    },
+    proceed() {
+      if (this.isFormValid) {
+        console.log('User Data Saved:', this.user.checkbox);
+      }
     },
   },
 };
@@ -148,7 +175,7 @@
             <div class="check">
               <h6>NO</h6>
               <label class="switch">
-                <input type="checkbox" unchecked>
+                <input type="checkbox" value="ckeckedInvite" unchecked v-model="user.checkbox" required @click="toggleCheckbox">
                 <span class="slider round"></span>
               </label>
               <h6>YES</h6>
@@ -160,7 +187,7 @@
             <input type="text" class="fb" placeholder="Optional">
           </div>
           <div class="create">
-            <button class="createBtn" @click="$router.push('invitation')">
+            <button class="createBtn" :disabled="!isFormValid" @click="$router.push('invitation')">
               <caption>Proceed</caption>
             </button>
           </div>
