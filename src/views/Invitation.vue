@@ -29,29 +29,14 @@
       this.$emit('setCheckboxVal', this.checkbox)
   },
   save() {
-      // Perform validation here if needed
       if (this.isFormValid) {
-        // Here, you can perform any necessary actions to save the user's data.
-        // For example, you can make an API request or save the data to the local storage.
         console.log('User Data Saved:', this.user);
       }
     },
     proceed() {
       if (this.isFormValid) {
-        // Here, you can perform any necessary actions to save the user's data.
-        // For example, you can make an API request or save the data to the local storage.
         console.log('User Data Saved:', this.user.checkbox);
       }
-      // Navigate to the next step or route.
-      // You can use Vue Router for navigation if you're using it in your project.
-      // Example:
-      // this.$router.push('/next-step');
-
-      // For this example, let's assume a simple alert.
-      // alert('Proceeding to the next step');
-      // @click="$router.push('investordecision')"
-      
-      // $router.push('investordecision')
     },
 },
  }

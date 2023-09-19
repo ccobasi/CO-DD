@@ -54,6 +54,14 @@ watch(events, (newVal) => {
   console.log(events)
 }
 
+// const submitForm = () => {
+//   useEventsStore.addEvent(event.value);
+//   event.value = {
+//     name: '',
+//     email: '',
+//   };
+// };
+
  const onSelectChange = () => {
   selectedValue.value = selectedValue.value
 }
