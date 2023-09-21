@@ -1,11 +1,16 @@
 <script>
     import NavBar from '../components/NavBar.vue'
-  //   import {ref} from "vue";
+    import {ref} from "vue";
 
   // const showModal = ref(false)
   // const errorMessage = ref("")
+
  export default{
   components: NavBar,
+  setup(){
+    const additionalInput = ref('')
+    const attend = ref('')
+  },
   data() {
     return {
       user: {
@@ -28,6 +33,9 @@
       this.checkbox = !this.checkbox
       this.$emit('setCheckboxVal', this.checkbox)
   },
+  onSelectChange() {
+  this.selectedValue.value = this.selectedValue.value
+},
   save() {
       if (this.isFormValid) {
         console.log('User Data Saved:', this.user);
@@ -193,16 +201,21 @@
               <h4>Availability of Facilitators</h4>
 
             </div>
-            <select class="form-select" aria-label="Default select example" v-on:change="changeRoute($event)">
+            <select class="form-select" aria-label="Default select example" @change="onSelectChange(e)" v-model="attend">
               <option selected>All facilitators will be available</option>
               <option value="invitation">All facilitators will be available</option>
-              <option value="invitationtwo">
+              <option value="addInput">
                 Some facilitators will be available
               </option>
 
               <option value="invitationthree">None facilitators will be available</option>
 
             </select>
+          </div>
+          <div class="comment" v-if="attend === 'addInput'">
+            <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
+            <!-- <input type="text" placeholder="Type your comment here" class="type" v-model="additionalInput"> -->
+            <textarea id="w3review" name="w3review" rows="4" cols="80" v-model="additionalInput"></textarea>
           </div>
           <hr style="width: 600px;height: 2px;background: #808080;">
           <div class="agenda">
@@ -642,5 +655,25 @@ input:checked + .slider:before {
 .createBtn:disabled {
   cursor: not-allowed;
   opacity: 0.8;
+}
+.comment input {
+  background: #fff;
+  width: 536px;
+  padding: 10px 14px;
+  margin-left: 59px;
+  margin-top: 10px;
+}
+.comment input::placeholder {
+  color: var(--grey-dark, #808080);
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14.4px;
+}
+textarea {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 5px;
 }
 </style>

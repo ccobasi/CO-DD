@@ -82,11 +82,11 @@ onMounted(() => {
           <caption>Feedback</caption>
           <select class="form-select" aria-label="Default select example" v-model="rating">
             <option selected>Select Feedback</option>
-            <option value="Poor">Poor</option>
-            <option value="Below Average">Below Average</option>
-            <option value="Average">Average</option>
-            <option value="Above Average">Above Average</option>
             <option value="Excellent">Excellent</option>
+            <option value="Very Good">Very Good</option>
+            <option value="Good">Good</option>
+            <option value="Average">Average</option>
+            <option value="Below Average">Below Average</option>
 
           </select>
 
@@ -95,8 +95,8 @@ onMounted(() => {
           <caption>Are you open to visit our site?</caption>
           <select class="form-select" aria-label="Default select example" @change="onSelectChange(e)" v-model="attend">
             <option selected>Select Response</option>
-            <option value="Yes">Yes</option>
-            <option value="addInput">I will not attend</option>
+            <option value="Yes">Yes, I will attend</option>
+            <option value="addInput">No, may not attend</option>
 
           </select>
 
@@ -104,7 +104,8 @@ onMounted(() => {
         <div class="address mt-3" v-if="attend === 'addInput'">
           <div class="one">
             <caption>Reason</caption>
-            <input type="text" style="width:600px" id="dynamicInput" v-model="additionalInput">
+            <!-- <input type="text" style="width:600px" id="dynamicInput" v-model="additionalInput"> -->
+            <textarea id="w3review" name="w3review" rows="4" cols="80" v-model="additionalInput"></textarea>
           </div>
 
         </div>
@@ -220,5 +221,10 @@ input {
 }
 .createBtn caption {
   color: #fff;
+}
+textarea {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 5px;
 }
 </style>

@@ -1,11 +1,11 @@
 <script setup>
   import NavBar from '../components/NavBar.vue'
-  import { ref, onMounted, computed, watch } from 'vue'
+  import { ref, onMounted, computed, watch, reactive } from 'vue'
   import {useEventsStore} from "@/store/events"
       
 const store = useEventsStore();
 console.log(store.events);
-
+const updateId = computed(() => store.$state.id);
 
   const events = ref([])
   const transaction = ref('')
@@ -20,39 +20,66 @@ console.log(store.events);
   const timeZone = ref('')
   const selectedValue = ref('')
 
-  const events_asc = computed(() => events.value.sort((a,b) =>{
-	return a.createdAt - b.createdAt
-}))
+  const form = ref({transaction: '', venue: '', coTransactor: '', address: '', addressTwo: '', state: '', country: '', date: '', time: '', timeZone: '', selectedValue: ''});
 
-watch(events, (newVal) => {
-	localStorage.setItem('events', JSON.stringify(newVal))
-}, {
-	deep: true
-})
-
-  const addEvent = () => {
-	if (transaction.value === '' || venue.value === '' || coTransactor.value === ''
+  const handleSubmit = () => {
+      	if (transaction.value === '' || venue.value === '' || coTransactor.value === ''
       || address.value === ''  || addressTwo.value === '' || state.value === ''
       || country.value === '' || date.value === '' || time.value === '' || timeZone.value === '') {
-		return
-	}
+        alert("Please enter the event missing details");
+        return;
+      }
 
-	events.value.push({
-		transaction: transaction.value,
-		venue: venue.value,
-    coTransactor: coTransactor.value,
-    address: address.value,
-    addressTwo: addressTwo.value,
-    state: state.value,
-    country: country.value,
-    date: date.value,
-    time: time.value,
-    timeZone: timeZone.value,
-		createdAt: new Date().getTime()
-	})
+      if(!updateId.value) {
+        store.create(form.transaction, form.venue, form.coTransactor, form.address, form.addressTwo, form.state, form.country, form.date, form.time, form.timeZone);
+      } else {
+        store.update(form.transaction, form.venue, form.coTransactor, form.address, form.addressTwo, form.state, form.country, form.date, form.time, form.timeZone);
+      }
 
-  console.log(events)
-}
+      store.$patch({
+        showForm: false
+      });
+    }
+
+  const data = {
+  updateId,
+  form,
+  handleSubmit
+};
+
+//   const events_asc = computed(() => events.value.sort((a,b) =>{
+// 	return a.createdAt - b.createdAt
+// }))
+
+// watch(events, (newVal) => {
+// 	localStorage.setItem('events', JSON.stringify(newVal))
+// }, {
+// 	deep: true
+// })
+
+//   const addEvent = () => {
+// 	if (transaction.value === '' || venue.value === '' || coTransactor.value === ''
+//       || address.value === ''  || addressTwo.value === '' || state.value === ''
+//       || country.value === '' || date.value === '' || time.value === '' || timeZone.value === '') {
+// 		return
+// 	}
+
+// 	events.value.push({
+// 		transaction: transaction.value,
+// 		venue: venue.value,
+//     coTransactor: coTransactor.value,
+//     address: address.value,
+//     addressTwo: addressTwo.value,
+//     state: state.value,
+//     country: country.value,
+//     date: date.value,
+//     time: time.value,
+//     timeZone: timeZone.value,
+// 		createdAt: new Date().getTime()
+// 	})
+
+//   console.log(events)
+// }
 
 // const submitForm = () => {
 //   useEventsStore.addEvent(event.value);
@@ -81,7 +108,7 @@ onMounted(() => {
 
     </div>
     <div class="form">
-      <form action="" @submit.prevent="addEvent">
+      <form method="post" action="" @submit.prevent="handleSubmit">
         <div class="trans">
           <caption>Transactions</caption>
           <select class="form-select" aria-label="Default select example" v-on:change="onSelectChange(e)" v-model="transaction">

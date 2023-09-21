@@ -91,7 +91,8 @@ onMounted(() => {
         <div class="address mt-3" v-if="attend === 'addInput'">
           <div class="one">
             <caption>Reason</caption>
-            <input type="text" style="width:600px" id="dynamicInput" v-model="additionalInput">
+            <!-- <input type="text" style="width:600px" id="dynamicInput" v-model="additionalInput"> -->
+            <textarea id="w3review" name="w3review" rows="4" cols="80" v-model="additionalInput"></textarea>
           </div>
 
         </div>
@@ -207,5 +208,10 @@ input {
 }
 .createBtn caption {
   color: #fff;
+}
+textarea {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 5px;
 }
 </style>

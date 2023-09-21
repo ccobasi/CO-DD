@@ -83,12 +83,12 @@
           <img src="../assets/agenda.png" alt="agenda">
           <div class="text">
             <h4>Dry run</h4>
-            <h6>Organize a dry run for Co-DD session.</h6>
+            <h6>Organize a dry run for CO-DD session.</h6>
           </div>
           <div class="check">
             <h6>NO</h6>
             <label class="switch">
-              <input type="checkbox" unchecked>
+              <input type="checkbox" value="ckeckedInvite" unchecked v-model="user.checkbox" required @click="toggleCheckbox">
               <span class="slider round"></span>
             </label>
             <h6>YES</h6>
@@ -124,7 +124,7 @@
         </div>
         <hr style="width: 600px;height: 2px;background: #808080;">
         <div class="create">
-          <button class="createBtn" @click="$router.push('feedback')">
+          <button class="createBtn" :disabled="!isFormValid" @click="$router.push('feedback')">
             <caption>Proceed</caption>
           </button>
 
