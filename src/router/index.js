@@ -20,6 +20,8 @@ import FormResponse from '../views/FormResponse.vue'
 import Login from '../views/Login.vue'
 import Demo from '../views/Demo.vue'
 import Event from '../views/Event.vue'
+import AdminLog from '../views/AdminLog.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -148,6 +150,12 @@ const router = createRouter({
       path: '/event',
       name: 'event',
       component: Event,
+     
+    },
+    {
+      path: '/adminlog',
+      name: 'admin log',
+      component: AdminLog,
      
     },
   ]

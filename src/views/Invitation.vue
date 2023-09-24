@@ -1,20 +1,22 @@
 <script>
     import NavBar from '../components/NavBar.vue'
-    import {ref} from "vue";
+    import {computed, ref} from "vue";
+    
+
 
   // const showModal = ref(false)
   // const errorMessage = ref("")
 
  export default{
   components: NavBar,
-  setup(){
-    const additionalInput = ref('')
-    const attend = ref('')
-  },
+ 
   data() {
     return {
+      additionalInput: '',
+      attend: '',
       user: {
         checkbox: false,
+        
       },
     };
   },
@@ -49,6 +51,32 @@
 },
  }
 
+// const additionalInput = ref('')
+// const attend = ref('')
+// const user = {checkbox:false}
+// const { setCheckboxVal } = defineEmits(['setCheckboxVal']);
+
+// const isFormValid = computed(() => user.checkbox !== false);
+
+// const changeRoute = (e) => {
+//     this.$router.push("/" + e.target.value);
+//   }
+
+//  const onSelectChange = () => {
+//   selectedValue.value = selectedValue.value
+// }
+
+//   const toggleCheckbox = () => {
+//   user.checkbox = !user.checkbox;
+//   setCheckboxVal(user.checkbox);
+//   // $emit('setCheckboxVal', user.checkbox);
+// };
+
+// function proceed() {
+//   if(isFormValid) {
+//     console.log('User Data Saved:', user.checkbox);
+//   }
+// }
 </script>
 
 <template>
@@ -213,8 +241,6 @@
             </select>
           </div>
           <div class="comment" v-if="attend === 'addInput'">
-            <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
-            <!-- <input type="text" placeholder="Type your comment here" class="type" v-model="additionalInput"> -->
             <textarea id="w3review" name="w3review" rows="4" cols="80" v-model="additionalInput"></textarea>
           </div>
           <hr style="width: 600px;height: 2px;background: #808080;">
@@ -263,7 +289,7 @@
 <style scoped>
 body {
   background: #eee;
-  height: 1120px;
+  height: 1170px;
   display: flex;
 
   padding: 20px 50px;
@@ -280,7 +306,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 660px;
-  height: 1030px;
+  height: 1090px;
   padding: 10px 30px;
   flex-direction: column;
   align-items: flex-start;
