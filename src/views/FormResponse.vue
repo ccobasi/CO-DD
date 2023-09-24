@@ -82,7 +82,13 @@ onMounted(() => {
           <caption>Feedback</caption>
           <select class="form-select" aria-label="Default select example" v-model="rating">
             <option selected>Select Feedback</option>
-            <option value="Excellent">Excellent</option>
+            <option value="Excellent">Excellent
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+            </option>
             <option value="Very Good">Very Good</option>
             <option value="Good">Good</option>
             <option value="Average">Average</option>
@@ -95,8 +101,8 @@ onMounted(() => {
           <caption>Are you open to visit our site?</caption>
           <select class="form-select" aria-label="Default select example" @change="onSelectChange(e)" v-model="attend">
             <option selected>Select Response</option>
-            <option value="Yes">Yes, I will attend</option>
-            <option value="addInput">No, may not attend</option>
+            <option value="Yes">Yes, I will be open to visit</option>
+            <option value="addInput">No, may not be able visit</option>
 
           </select>
 
@@ -226,5 +232,8 @@ textarea {
   border: 1px solid #ddd;
   border-radius: 5px;
   margin-top: 5px;
+}
+.checked {
+  color: orange;
 }
 </style>

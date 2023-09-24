@@ -83,7 +83,7 @@ onMounted(() => {
           <select class="form-select" aria-label="Default select example" @change="onSelectChange(e)" v-model="attend">
             <option selected>Select Response</option>
             <option value="I will attend">I will attend</option>
-            <option value="addInput">I will not attend</option>
+            <option value="addInput">I may not be able to attend</option>
 
           </select>
 
