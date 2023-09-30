@@ -7,6 +7,14 @@
 
 export default {
     data: () => ({
+  
+         selectedFilter: 'All', 
+      items: [
+        { id: 1, name: 'Item 1', status: 'Pending storage creation' },
+        { id: 2, name: 'Item 2', status: 'Pending document upload' },
+        { id: 3, name: 'Item 3', status: 'Pending L&D verification' },
+        { id: 4, name: 'Item 4', status: 'Done' },
+      ],
       
         tab: null,
         recent: [
@@ -53,7 +61,19 @@ export default {
                 status: 'Done',
             },
         ],
+       
     }),
+    computed: {
+    filteredItems() {
+      if (this.selectedFilter === 'All') {
+        // Return all items when 'All' is selected
+        return this.items;
+      } else {
+        // Filter items based on the selected status
+        return this.items.filter(item => item.status === this.selectedFilter);
+      }
+    },
+  },
     methods: {
         getStatusColor(status) {
             switch (status) {
@@ -143,7 +163,9 @@ export default {
           <div class="eve" style="border-radius: 15px;">
             <div style="display: flex; margin-bottom: 0;padding-bottom: 0;">
               <v-combobox label="Filter by: All" density="compact" :items="['All', 'Pending storage creation', 'Pending document upload', 'Pending L&D verification', 'Done']" variant="solo"></v-combobox>
-
+              <ul>
+                <li v-for="item in filteredItems" :key="item.id">{{ item.name }}</li>
+              </ul>
               <!-- <h5>Event:{{}}</h5> -->
               <v-spacer></v-spacer>
               <v-text-field v-model="search" append-icon="mdi-magnify" density="compact" label="Search" style="" variant="solo" single-line hide-details width="30"></v-text-field>

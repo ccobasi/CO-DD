@@ -82,17 +82,11 @@ onMounted(() => {
           <caption>Feedback</caption>
           <select class="form-select" aria-label="Default select example" v-model="rating">
             <option selected>Select Feedback</option>
-            <option value="Excellent">Excellent
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-            </option>
-            <option value="Very Good">Very Good</option>
-            <option value="Good">Good</option>
-            <option value="Average">Average</option>
-            <option value="Below Average">Below Average</option>
+            <option value="Excellent">Excellent<i class="checked">&#9733;</i><i class="checked">&#9733;</i><i class="checked">&#9733;</i><i class="checked">&#9733;</i><i class="checked">&#9733;</i></option>
+            <option value="Very Good">Very Good<i class="checked">&#9733;</i><i class="checked">&#9733;</i><i class="checked">&#9733;</i><i class="checked">&#9733;</i></option>
+            <option value="Good">Good<i class="checked">&#9733;</i><i class="checked">&#9733;</i><i class="checked">&#9733;</i></option>
+            <option value="Average">Average<i class="checked">&#9733;</i><i class="checked">&#9733;</i></option>
+            <option value="Below Average">Below Average<span class="orange-star">&#9733;</span>cd </option>
 
           </select>
 
@@ -110,7 +104,6 @@ onMounted(() => {
         <div class="address mt-3" v-if="attend === 'addInput'">
           <div class="one">
             <caption>Reason</caption>
-            <!-- <input type="text" style="width:600px" id="dynamicInput" v-model="additionalInput"> -->
             <textarea id="w3review" name="w3review" rows="4" cols="80" v-model="additionalInput"></textarea>
           </div>
 
@@ -168,6 +161,9 @@ caption {
 .form-select {
   width: 600px;
   height: 40px;
+}
+.form-select i {
+  color: orange;
 }
 .cap {
   font-size: 10px;
@@ -235,5 +231,19 @@ textarea {
 }
 .checked {
   color: orange;
+}
+.orange-star {
+  color: #ffcc3d !important ;
+}
+select {
+  padding: 5px;
+  width: 200px;
+}
+
+/* Style the options with images */
+option {
+  padding-left: 30px; /* Add spacing for the image */
+  background-repeat: no-repeat;
+  background-position: left center;
 }
 </style>
