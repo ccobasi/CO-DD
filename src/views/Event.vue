@@ -146,10 +146,10 @@ export default {
             </thead>
             <tbody>
               <tr v-for="event in events" :key="event.name" @click="$router.push('eventdetails')">
-                <td>{{ event.dealid }}</td>
-                <td>{{ event.clientname }}</td>
+                <td>{{ event.id}}</td>
+                <td>{{ event.transaction }}</td>
                 <td>{{ event.venue }}</td>
-                <td>{{ event.datetime }}</td>
+                <td>{{ event.date }}</td>
                 <td>
                   <p class="status" :style="getStatusColor(event.status)">
                     <i class="dot" :style="getStatusIcon(event.status)"></i>

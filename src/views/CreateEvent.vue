@@ -2,12 +2,23 @@
   import NavBar from '../components/NavBar.vue'
   import { ref, onMounted, computed, watch, reactive } from 'vue'
   import {useEventsStore} from "@/store/events"
+  
       
 const store = useEventsStore();
 console.log(store.events);
-const updateId = computed(() => store.$state.id);
 
-  const events = ref([])
+const addEvent = () => {
+  if (transaction.value.trim() !== '' || venue.value.trim() !== '' || coTransactor.value.trim() !== ''
+      || address.value.trim() !== ''  || addressTwo.value.trim() !== '' || state.value.trim() !== ''
+      || country.value.trim() !== '' || date.value.trim() !== '' || time.value.trim() !== '' || timeZone.value.trim() !== '') {
+    store.addEvent(transaction.value.trim(), venue.value.trim(), coTransactor.value.trim(),
+      address.value.trim(), addressTwo.value.trim(), state.value.trim(), country.value.trim(), date.value.trim(), time.value.trim(), timeZone.value.trim());
+  
+  }
+};
+// const updateId = computed(() => store.$state.id);
+
+const event = ref([])
   const transaction = ref('')
   const venue = ref('')
   const coTransactor = ref('')
@@ -20,82 +31,23 @@ const updateId = computed(() => store.$state.id);
   const timeZone = ref('')
   const selectedValue = ref('')
 
-  const form = ref({transaction: '', venue: '', coTransactor: '', address: '', addressTwo: '', state: '', country: '', date: '', time: '', timeZone: '', selectedValue: ''});
-
-  const handleSubmit = () => {
-      	if (transaction.value === '' || venue.value === '' || coTransactor.value === ''
-      || address.value === ''  || addressTwo.value === '' || state.value === ''
-      || country.value === '' || date.value === '' || time.value === '' || timeZone.value === '') {
-        alert("Please enter the event missing details");
-        return;
-      }
-
-      if(!updateId.value) {
-        store.create(form.transaction, form.venue, form.coTransactor, form.address, form.addressTwo, form.state, form.country, form.date, form.time, form.timeZone);
-      } else {
-        store.update(form.transaction, form.venue, form.coTransactor, form.address, form.addressTwo, form.state, form.country, form.date, form.time, form.timeZone);
-      }
-
-      store.$patch({
-        showForm: false
-      });
-    }
-
-  const data = {
-  updateId,
-  form,
-  handleSubmit
+const handleSubmit = () => {
+  addEvent();
+  console.log("Event added")
+  console.log(store.events)
 };
 
-//   const events_asc = computed(() => events.value.sort((a,b) =>{
-// 	return a.createdAt - b.createdAt
-// }))
+onMounted(() => {
+  // Fetch todos when the component is mounted
+  store.fetchEvents();
+});
 
-// watch(events, (newVal) => {
-// 	localStorage.setItem('events', JSON.stringify(newVal))
-// }, {
-// 	deep: true
-// })
-
-//   const addEvent = () => {
-// 	if (transaction.value === '' || venue.value === '' || coTransactor.value === ''
-//       || address.value === ''  || addressTwo.value === '' || state.value === ''
-//       || country.value === '' || date.value === '' || time.value === '' || timeZone.value === '') {
-// 		return
-// 	}
-
-// 	events.value.push({
-// 		transaction: transaction.value,
-// 		venue: venue.value,
-//     coTransactor: coTransactor.value,
-//     address: address.value,
-//     addressTwo: addressTwo.value,
-//     state: state.value,
-//     country: country.value,
-//     date: date.value,
-//     time: time.value,
-//     timeZone: timeZone.value,
-// 		createdAt: new Date().getTime()
-// 	})
-
-//   console.log(events)
-// }
-
-// const submitForm = () => {
-//   useEventsStore.addEvent(event.value);
-//   event.value = {
-//     name: '',
-//     email: '',
-//   };
-// };
+ 
 
  const onSelectChange = () => {
   selectedValue.value = selectedValue.value
 }
 
-onMounted(() => {
-	events.value = JSON.parse(localStorage.getItem('events')) || []
-})
 </script>
 <template>
 
@@ -186,8 +138,9 @@ onMounted(() => {
           <button class="cancel" @click="$router.push('/')">
             <caption>Cancel</caption>
           </button>
-          <!-- <button type="submit" value="Add event" class="createBtn" @click="$router.push('/success')"> -->
+
           <button type="submit" value="Add event" class="createBtn" @click="$router.push('/success')">
+
             <caption>Create Event</caption>
           </button>
         </div>
