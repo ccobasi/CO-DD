@@ -28,7 +28,7 @@ export default {
         getStatusColor(status) {
             switch (status) {
                 case 'Pending storage creation':
-                    return 'background-color: rgb(254, 249, 195); border-radius: 40px; width: 60%; padding: 10px;';
+                    return 'background-color: rgb(254, 249, 195); border-radius: 40px; width: 80%; padding: 10px;';
                     
                 case 'Pending document upload':
                     return 'background-color: rgb(254, 249, 195); border-radius: 40px;  width: 60%; padding: 10px;';
@@ -77,10 +77,10 @@ export default {
 
       </div>
       <div class="eve" style="border-radius: 15px;">
-        <div style="display: flex; margin-bottom: 0;padding-bottom: 0;">
+        <div style="display: flex; margin-bottom: 0;padding-bottom: 0;background:white;padding-top:20px;border-radius:10px 10px 0px 0px">
           <v-combobox label="Filter by: All" density="compact" :items="['All', 'Pending storage creation', 'Pending document upload', 'Pending L&D verification', 'Done']" variant="solo"></v-combobox>
           <v-spacer></v-spacer>
-          <!-- <h5>{{store.events}}</h5> -->
+
           <v-text-field v-model="search" append-icon="mdi-magnify" density="compact" label="Search" style="" variant="solo" single-line hide-details width="30"></v-text-field>
         </div>
         <div class="tabulate">
@@ -160,6 +160,9 @@ export default {
             </tbody>
           </v-table>
         </div>
+        <div class="text-center">
+          <v-pagination v-model="page" :length="15" :total-visible="7"></v-pagination>
+        </div>
       </div>
     </div>
   </body>
@@ -211,5 +214,10 @@ thead tr th {
 }
 .createBtn caption {
   color: #fff;
+}
+.text-center {
+  border: 0px solid var(--gray-200, #eaecf0);
+  background: #fff;
+  box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.1);
 }
 </style>
