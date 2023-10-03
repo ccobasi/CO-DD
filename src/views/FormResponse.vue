@@ -86,7 +86,7 @@ onMounted(() => {
             <option value="Very Good">Very Good<i class="checked">&#9733;</i><i class="checked">&#9733;</i><i class="checked">&#9733;</i><i class="checked">&#9733;</i></option>
             <option value="Good">Good<i class="checked">&#9733;</i><i class="checked">&#9733;</i><i class="checked">&#9733;</i></option>
             <option value="Average">Average<i class="checked">&#9733;</i><i class="checked">&#9733;</i></option>
-            <option value="Below Average">Below Average<span class="orange-star">&#9733;</span>cd </option>
+            <option value="Below Average">Below Average<span>&#9733;</span></option>
 
           </select>
 
@@ -161,6 +161,7 @@ caption {
 .form-select {
   width: 600px;
   height: 40px;
+  color: #43b067;
 }
 .form-select i {
   color: orange;
@@ -230,7 +231,7 @@ textarea {
   margin-top: 5px;
 }
 .checked {
-  color: orange;
+  color: orange !important;
 }
 .orange-star {
   color: #ffcc3d !important ;
@@ -245,5 +246,8 @@ option {
   padding-left: 30px; /* Add spacing for the image */
   background-repeat: no-repeat;
   background-position: left center;
+}
+.rating {
+  color: #43b067;
 }
 </style>
