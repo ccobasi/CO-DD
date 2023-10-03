@@ -8,10 +8,8 @@
     <div class="centered">
 
       <div class="row" style="margin: 20px;">
-        <div class="col-8">
-          <img src="../assets/codd.png" class="pageheadertext" />
-        </div>
-        <div class="col">
+
+        <div class="col m-auto">
           <img src="../assets/InfraCredit.svg" alt="" width="145" height="50">
         </div>
       </div>

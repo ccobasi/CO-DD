@@ -124,9 +124,9 @@
 
         <form action="" @submit.prevent="save">
           <div class="trans">
-            <h6>Transactions</h6>
+            <caption>Transactions</caption>
             <select class="form-select" aria-label="Default select example">
-              <option selected>#CP4526-Lagos Free Zone Company</option>
+              <option selected>#CP4526-konexa</option>
               <option value="1">#CP4526-Lagos Free Zone Company</option>
               <option value="2">#CP4526-konexa</option>
               <option value="3">#CP4526-Banner Energy Limited</option>
@@ -135,46 +135,48 @@
               <option value="6">#CP4526-Total</option>
             </select>
           </div>
-          <div class="trans mt-1">
-            <h6>Venue</h6>
+          <div class="trans">
+            <caption>Venue</caption>
             <select class="form-select" aria-label="Default select example">
-              <option selected>Physical(Internal)</option>
+              <option selected>Physical(External)</option>
               <option value="1">Physical(Internal)</option>
               <option value="2">Physical(External)</option>
               <option value="3">Virtual</option>
             </select>
 
           </div>
-          <div class="address mt-1">
+          <div class="address">
             <div class="one">
-              <h6>Address</h6>
-              <input type="text" placeholder="Eko Hotels & Suites">
+              <caption>Address</caption>
+              <input type="text" placeholder="Allen Avenue">
             </div>
             <div class="one">
-              <h6>Address2</h6>
-              <input type="text" placeholder="Plot 1415 Adetokunbo Ademola Street, VI">
+              <caption>Address2</caption>
+              <input type="text" placeholder="Ikeja">
             </div>
           </div>
           <div class="address mt-3">
             <div class="one">
-              <h6>State</h6>
+              <caption>State</caption>
               <input type="text" placeholder="Lagos">
             </div>
             <div class="one">
-              <h6>Country</h6>
+              <caption>Country</caption>
               <input type="text" placeholder="Nigeria">
             </div>
           </div>
           <div class="address mt-3">
             <div class="one">
-              <h6>Date</h6>
-              <!-- <input class="d-t" type="date" id="date" name="date"> -->
-              <input type="text" placeholder="20/06/2023">
+              <caption>Date</caption>
+              <!-- <input type="date" id="date" name="date"> -->
+
+              <input id="date" name="date" placeholder="03/10/2023">
             </div>
             <div class="one">
-              <h6>Time</h6>
-              <!-- <input class="d-t" type="time" id="appt" name="appt"> -->
-              <input type="text" placeholder="8:00 AM">
+              <caption>Time</caption>
+              <!-- <input type="time" id="appt" name="appt"> -->
+
+              <input id="appt" name="appt" placeholder="4:54 PM">
             </div>
           </div>
           <div class="trans mt-3">

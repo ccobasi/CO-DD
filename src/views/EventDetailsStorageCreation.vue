@@ -1,7 +1,16 @@
 <script>
     import NavBar from '../components/NavBar.vue'
+    import { useEventsStore } from "@/store/events";
     export default{
   components: NavBar,
+  setup() {
+    const store = useEventsStore();
+    const events = store.events;
+
+    return {
+      events
+    };
+  },
   data() {
     return {
       user: {
@@ -50,7 +59,7 @@
           <div class="trans">
             <caption>Transactions</caption>
             <select class="form-select" aria-label="Default select example">
-              <option selected>#CP4526-Lagos Free Zone Company</option>
+              <option selected>#CP4526-konexa</option>
               <option value="1">#CP4526-Lagos Free Zone Company</option>
               <option value="2">#CP4526-konexa</option>
               <option value="3">#CP4526-Banner Energy Limited</option>
@@ -62,7 +71,7 @@
           <div class="trans">
             <caption>Venue</caption>
             <select class="form-select" aria-label="Default select example">
-              <option selected>Physical(Internal)</option>
+              <option selected>Physical(External)</option>
               <option value="1">Physical(Internal)</option>
               <option value="2">Physical(External)</option>
               <option value="3">Virtual</option>
@@ -72,11 +81,11 @@
           <div class="address">
             <div class="one">
               <caption>Address</caption>
-              <input type="text" placeholder="Eko Hotels & Suites">
+              <input type="text" placeholder="Allen Avenue">
             </div>
             <div class="one">
               <caption>Address2</caption>
-              <input type="text" placeholder="Plot 1415 Adetokunbo Ademola Street, VI">
+              <input type="text" placeholder="Ikeja">
             </div>
           </div>
           <div class="address">
@@ -94,13 +103,13 @@
               <caption>Date</caption>
               <!-- <input type="date" id="date" name="date"> -->
 
-              <input id="date" name="date" placeholder="20/06/2023">
+              <input id="date" name="date" placeholder="03/10/2023">
             </div>
             <div class="one">
               <caption>Time</caption>
               <!-- <input type="time" id="appt" name="appt"> -->
 
-              <input id="appt" name="appt" placeholder="8:00 AM">
+              <input id="appt" name="appt" placeholder="4:54 PM">
             </div>
           </div>
           <div class="trans">

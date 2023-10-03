@@ -145,7 +145,7 @@ export default {
               </tr>
             </thead>
             <tbody>
-              <tr v-for="event in events" :key="event.name" @click="$router.push('eventdetails')">
+              <tr v-for="event in events" :key="event.id" @click="$router.push('eventdetails')">
                 <td>{{ event.id}}</td>
                 <td>{{ event.transaction }}</td>
                 <td>{{ event.venue }}</td>
