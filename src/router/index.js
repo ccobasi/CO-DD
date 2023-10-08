@@ -57,8 +57,8 @@ const router = createRouter({
      
     },
     {
-      path: '/eventdetails',
-      name: 'event details storage creation',
+      path: '/eventdetails/:id',
+      name: 'details',
       component: EventDetailsStorageCreation,
      
     },

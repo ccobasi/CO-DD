@@ -35,7 +35,15 @@ const handleSubmit = () => {
   addEvent();
   console.log("Event added")
   console.log(store.events)
+  $router.push("/" + e.target.value);
 };
+
+// const changeRoute = (e) => {
+//     this.$router.push("/" + e.target.value);
+//   }
+const changeRoute = (e) => {
+  $router.push("/" + e.target.value);
+}
 
 onMounted(() => {
   // Fetch todos when the component is mounted
@@ -139,7 +147,7 @@ onMounted(() => {
             <caption>Cancel</caption>
           </button>
 
-          <button type="submit" value="Add event" class="createBtn" @click="$router.push('/success')">
+          <button type="submit" value="Add event" class="createBtn" @click="$router.push('success')">
 
             <caption>Create Event</caption>
           </button>

@@ -59,7 +59,7 @@
 body {
   background: #eeeeee;
   display: flex;
-  height: 980px;
+  height: 780px;
   padding: 150px 50px;
   flex-direction: column;
   align-items: center;

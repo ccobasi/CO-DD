@@ -19,9 +19,11 @@ export default {
   setup() {
     const store = useEventsStore();
     const events = store.events;
+    
 
     return {
-      events
+      events,
+  
     };
   },
   methods: {
@@ -145,7 +147,9 @@ export default {
               </tr>
             </thead>
             <tbody>
-              <tr v-for="event in events" :key="event.id" @click="$router.push('eventdetails')">
+              <!-- <tr v-for="event in events" :key="event.id" @click="$router.push('eventdetails/')"> -->
+              <tr v-for="event in events" :key="event.id" @click="$router.push({ name: 'details', params: { id: event.id } })">
+
                 <td>{{ event.id}}</td>
                 <td>{{ event.transaction }}</td>
                 <td>{{ event.venue }}</td>

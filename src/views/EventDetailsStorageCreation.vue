@@ -1,14 +1,17 @@
 <script>
     import NavBar from '../components/NavBar.vue'
     import { useEventsStore } from "@/store/events";
+    
     export default{
   components: NavBar,
   setup() {
     const store = useEventsStore();
     const events = store.events;
 
+    
     return {
-      events
+      events,
+    
     };
   },
   data() {
@@ -24,6 +27,12 @@
         this.user.checkbox !== false 
       );
     },
+    detailsId(){
+      return parseInt(this.$route.params.id)
+    },
+    detail(){
+      return this.events.find(event => event.id === this.detailsId)
+    }
   },
    methods: {
   changeRoute(e) {
@@ -57,45 +66,42 @@
         <h1>Event Information</h1>
         <form action="">
           <div class="trans">
-            <caption>Transactions</caption>
+            <caption>Transactions </caption>
             <select class="form-select" aria-label="Default select example">
-              <option selected>#CP4526-konexa</option>
-              <option value="1">#CP4526-Lagos Free Zone Company</option>
-              <option value="2">#CP4526-konexa</option>
-              <option value="3">#CP4526-Banner Energy Limited</option>
-              <option value="4">#CP4526-Seplat</option>
-              <option value="5">#CP4526-9mobile</option>
-              <option value="6">#CP4526-Total</option>
+              <option selected>{{detail.transaction}}</option>
+
             </select>
           </div>
           <div class="trans">
             <caption>Venue</caption>
             <select class="form-select" aria-label="Default select example">
-              <option selected>Physical(External)</option>
-              <option value="1">Physical(Internal)</option>
-              <option value="2">Physical(External)</option>
-              <option value="3">Virtual</option>
+              <option selected>{{detail.venue}}</option>
+
             </select>
 
           </div>
           <div class="address">
             <div class="one">
               <caption>Address</caption>
-              <input type="text" placeholder="Allen Avenue">
+              <!-- <input type="text" placeholder="Allen Avenue"> -->
+              <div class="dvalue">{{detail.address}}</div>
             </div>
             <div class="one">
               <caption>Address2</caption>
-              <input type="text" placeholder="Ikeja">
+              <!-- <input type="text" placeholder="Ikeja"> -->
+              <div class="dvalue">{{detail.addressTwo}}</div>
             </div>
           </div>
           <div class="address">
             <div class="one">
               <caption>State</caption>
-              <input type="text" placeholder="Lagos">
+              <!-- <input type="text" placeholder="Lagos"> -->
+              <div class="dvalue">{{detail.state}}</div>
             </div>
             <div class="one">
               <caption>Country</caption>
-              <input type="text" placeholder="Nigeria">
+              <!-- <input type="text" placeholder="Nigeria"> -->
+              <div class="dvalue">{{detail.country}}</div>
             </div>
           </div>
           <div class="address">
@@ -103,24 +109,26 @@
               <caption>Date</caption>
               <!-- <input type="date" id="date" name="date"> -->
 
-              <input id="date" name="date" placeholder="03/10/2023">
+              <!-- <input id="date" name="date" placeholder="03/10/2023"> -->
+              <div class="dvalue">{{detail.date}}</div>
             </div>
             <div class="one">
               <caption>Time</caption>
               <!-- <input type="time" id="appt" name="appt"> -->
 
-              <input id="appt" name="appt" placeholder="4:54 PM">
+              <!-- <input id="appt" name="appt" placeholder="4:54 PM"> -->
+              <div class="dvalue">{{detail.time}}</div>
             </div>
           </div>
           <div class="trans">
             <caption>Time Zone</caption>
             <select class="form-select" aria-label="Default select example">
-              <option selected>(GMT +01:00)Africa West Central</option>
-              <option value="1">(GMT +00:00)Greenwich(London)</option>
+              <option selected>{{detail.timeZone}}</option>
+              <!-- <option value="1">(GMT +00:00)Greenwich(London)</option>
               <option value="2">(GMT +01:00)Africa West Central</option>
               <option value="3">(GMT +01:00)Europe Central</option>
               <option value="4">(GMT +02:00)Europe Eastern</option>
-              <option value="5">(GMT +02:00)Egypt</option>
+              <option value="5">(GMT +02:00)Egypt</option> -->
             </select>
           </div>
           <hr>
@@ -220,7 +228,8 @@ caption {
   gap: 2px;
   align-self: stretch;
 }
-input {
+input,
+.dvalue {
   display: flex;
   padding: 12.5px 14px;
   align-items: center;
