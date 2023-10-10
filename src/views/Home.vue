@@ -1,6 +1,7 @@
 <script>
-
+import AdminLog from '../views/AdminLog.vue'
 export default {
+  components: AdminLog,
     data: () => ({
         tab: null,
     
@@ -115,6 +116,9 @@ export default {
 
     <v-card-text style="background-color: rgba(235, 235, 235, 0.64); padding: 0; box-shadow: none;">
       <v-window v-model="tab">
+        <!-- <v-window-item value="three">
+
+        </v-window-item> -->
         <v-window-item value="two">
           <div>
             <h3 class="greet">
@@ -351,8 +355,7 @@ export default {
 }
 .navbar {
   height: 50px;
-  border-image: linear-gradient(to right, rgb(40, 126, 193), rgb(85, 187, 105))
-    1;
+  border-image: linear-gradient(to right, rgb(40, 126, 193), rgb(85, 187, 105)) 1;
   border-bottom: 4px solid;
   padding-bottom: 5px;
   width: 100%;
@@ -378,11 +381,7 @@ export default {
 .next {
   display: flex;
   color: white;
-  background-image: linear-gradient(
-    to right,
-    rgb(40, 126, 193),
-    rgb(85, 187, 105)
-  );
+  background-image: linear-gradient(to right, rgb(40, 126, 193), rgb(85, 187, 105));
   margin: 15px 30px 20px 30px;
   padding: 45px 15px;
   border-radius: 10px;

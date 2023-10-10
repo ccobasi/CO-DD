@@ -39,10 +39,28 @@
 
   <body>
     <NavBar />
-
+    <div class="tab">
+      <h2>Audit Logs</h2>
+      <div class="btn">Export Log</div>
+    </div>
     <div class="form">
       <div class="title mb-3">
-        <h2>Admin</h2>
+        <label for="filter">Filter by:</label>
+        <select class="form-select" aria-label="Default select example">
+          <option selected>All</option>
+          <option value="1">This Week</option>
+          <option value="2">This Month</option>
+          <option value="3">60 Days Ago</option>
+          <option value="4">90 Days Ago</option>
+        </select>
+        <div class="from">
+          | <label for="from">From</label>
+          <input type="date">
+        </div>
+        <div class="to">
+          | <label for="to">to</label>
+          <input type="date">
+        </div>
       </div>
 
       <v-table>
@@ -114,6 +132,38 @@ body {
   background: #eeeeee;
   height: 100vh;
 }
+.tab {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  margin: 30px;
+}
+.tab h2 {
+  color: var(--Black, #000);
+  font-family: Roboto;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 43.2px;
+}
+.tab .btn {
+  display: flex;
+  width: 200px;
+  height: 50px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19.2px;
+  border-radius: 50px;
+  background: var(--Gradient, linear-gradient(90deg, #227cbf 0%, #47b65c 100%));
+}
 .form {
   display: flex;
   width: 95%;
@@ -128,6 +178,60 @@ body {
   /* Drop Shadow */
   box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.1);
   margin-top: 30px;
+}
+.title {
+  width: 486px;
+  height: 42px;
+  display: flex;
+  padding: 10px 20px;
+  align-items: flex-start;
+  gap: 20px;
+
+  border-radius: 5px;
+  border: 1px solid var(--Grey-Light, #eee);
+  background: var(--White, #fff);
+}
+.title label {
+  color: var(--Black, #000);
+  text-align: right;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19.2px;
+  position: relative;
+}
+.form-select {
+  width: 100px;
+  top: 193px;
+  left: 150px;
+  position: absolute;
+  border: none;
+}
+.from {
+  position: absolute;
+  top: 199px;
+  left: 260px;
+}
+.to {
+  position: absolute;
+  top: 201px;
+  left: 420px;
+}
+.from label,
+.to {
+  color: var(--Black, #000);
+  text-align: right;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19.2px;
+}
+.from input,
+.to input {
+  padding-left: 5px;
+  width: 100px;
 }
 th {
   color: var(--Black, #000);
