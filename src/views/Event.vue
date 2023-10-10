@@ -26,7 +26,19 @@ export default {
   
     };
   },
+  computed: {
+    filteredEvents() {
+      if (this.selectedValue === 'all') {
+        return this.events;
+      } else {
+        return this.events.filter(event => event.status === this.selectedValue);
+      }
+    },
+  },
   methods: {
+    onSelectChange() {
+  selectedValue.value = selectedValue.value
+},
         getStatusColor(status) {
             switch (status) {
                 case 'Pending storage creation':
@@ -80,7 +92,15 @@ export default {
       </div>
       <div class="eve" style="border-radius: 15px;">
         <div style="display: flex; margin-bottom: 0;padding-bottom: 0;background:white;padding-top:20px;border-radius:10px 10px 0px 0px">
-          <v-combobox label="Filter by: All" density="compact" :items="['All', 'Pending storage creation', 'Pending document upload', 'Pending L&D verification', 'Done']" variant="solo"></v-combobox>
+          <select class="form-select ml-4" @change="onSelectChange(e)" v-model="selectedValue">
+            <option value="All">All</option>
+            <option value="Pending storage creation">Pending storage creation</option>
+            <option value="Pending document upload">Pending document upload</option>
+            <option value="Pending L&D verification">Pending L&D verification</option>
+            <option value="Done">Done</option>
+            <!-- Add more options as needed -->
+          </select>
+          <!-- <v-combobox label="Filter by: All" density="compact" :items="['All', 'Pending storage creation', 'Pending document upload', 'Pending L&D verification', 'Done']" variant="solo"></v-combobox> -->
           <v-spacer></v-spacer>
 
           <v-text-field v-model="search" append-icon="mdi-magnify" density="compact" label="Search" style="" variant="solo" single-line hide-details width="30"></v-text-field>
@@ -223,5 +243,20 @@ thead tr th {
   border: 0px solid var(--gray-200, #eaecf0);
   background: #fff;
   box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.1);
+}
+.filter,
+.form-select {
+  display: flex;
+  width: 320px;
+  padding: 10px 20px;
+  align-items: flex-start;
+  gap: 20px;
+
+  border-radius: 5px;
+  border: 1px solid var(--Grey-Light, #eee);
+  background: var(--White, #fff);
+}
+.form-select::placeholder {
+  color: #808080;
 }
 </style>

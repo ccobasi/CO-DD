@@ -75,6 +75,9 @@ export default {
     },
   },
     methods: {
+       onSelectChange() {
+  selectedValue.value = selectedValue.value
+},
         getStatusColor(status) {
             switch (status) {
                 case 'Pending storage creation':
@@ -164,7 +167,7 @@ export default {
             <div style="display: flex; margin-bottom: 0;padding-bottom: 0;">
               <v-combobox label="Filter by: All" density="compact" :items="['All', 'Pending storage creation', 'Pending document upload', 'Pending L&D verification', 'Done']" variant="solo"></v-combobox>
               <ul>
-                <li v-for="item in filteredItems" :key="item.id">{{ item.name }}</li>
+                <li v-for="item in filteredItems" :key="item.id">{{ item.status }}</li>
               </ul>
               <!-- <h5>Event:{{}}</h5> -->
               <v-spacer></v-spacer>

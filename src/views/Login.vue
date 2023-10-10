@@ -10,14 +10,14 @@
       <div class="row" style="margin: 20px;">
 
         <div class="col m-auto">
-          <img src="../assets/InfraCredit.svg" alt="" width="145" height="50">
+          <img src="../assets/InfraCredit.svg" alt="" width="150" height="50">
         </div>
       </div>
 
       <div class="loginElements">
         <h1>Login</h1>
         <button class="loginBtn" @click="$router.push('/')">
-          Click here to Login
+          Login
         </button>
       </div>
 
@@ -97,28 +97,40 @@
 }
 
 .loginBtn {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-    Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  display: flex;
+  height: 50px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  border-radius: 10px;
+  background: var(--Gradient, linear-gradient(90deg, #227cbf 0%, #47b65c 100%));
+  margin-left: 30px;
+  margin-right: 30px;
+
+  color: #fff;
+  font-family: Roboto;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
-  color: #ffffff;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding: 12px 10px;
-  gap: 10px;
-  cursor: pointer;
-  width: 370px;
-  height: 50px;
-  background: linear-gradient(90deg, #227cbf 0%, #47b65c 100%);
-  border-radius: 10px;
+  line-height: 19.2px;
 }
 
 .loginBtn:hover {
   background: linear-gradient(90deg, #47b65c 0%, #227cbf 100%);
   transition: 0.7s;
+}
+.col {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  width: 640px;
+  height: 50px;
+}
+.col img {
+  margin-left: 40%;
 }
 
 @media (max-width: 1190px) {

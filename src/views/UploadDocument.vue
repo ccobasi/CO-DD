@@ -1,8 +1,19 @@
 <script>
     import NavBar from '../components/NavBar.vue'
+    import { useEventsStore } from "@/store/events";
 
  export default {
   components:NavBar,
+  setup() {
+    const store = useEventsStore();
+    const events = store.events;
+
+    
+    return {
+      events,
+    
+    };
+  },
   data() {
     return {
       textToCopy: 'https://www.infracredit_storage/app/public.link', // Replace with the text you want to copy
@@ -18,6 +29,12 @@
         this.user.checkbox !== false 
       );
     },
+    detailsId(){
+      return parseInt(this.$route.params.id)
+    },
+    detail(){
+      return this.events.find(event => event.id === this.detailsId)
+    }
   },
   methods: {
     copyToClipboard() {

@@ -8,13 +8,14 @@
     return {
       user: {
         checkbox: false,
+        checkbox1: false,
       },
     };
   },
   computed: {
     isFormValid() {
       return (
-        this.user.checkbox !== false 
+        this.user.checkbox !== false && this.user.checkbox1 !== false
       );
     },
   },
@@ -25,6 +26,10 @@
   toggleCheckbox() {
       this.checkbox = !this.checkbox
       this.$emit('setCheckboxVal', this.checkbox)
+  },
+  toggleCheckbox1() {
+      this.checkbox1 = !this.checkbox1
+      this.$emit('setCheckboxVal', this.checkbox1)
   },
     proceed() {
       if (this.isFormValid) {
@@ -88,7 +93,7 @@
           <div class="check">
             <h6>NO</h6>
             <label class="switch">
-              <input type="checkbox" value="ckeckedInvite" unchecked v-model="user.checkbox" required @click="toggleCheckbox">
+              <input type="checkbox" value="ckeckedInvite" unchecked v-model="user.checkbox1" required @click="toggleCheckbox1">
               <span class="slider round"></span>
             </label>
             <h6>YES</h6>

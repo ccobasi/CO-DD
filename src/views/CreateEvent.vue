@@ -35,15 +35,15 @@ const handleSubmit = () => {
   addEvent();
   console.log("Event added")
   console.log(store.events)
-  $router.push("/" + e.target.value);
+  // $router.push("/" + e.target.value);
 };
 
 // const changeRoute = (e) => {
 //     this.$router.push("/" + e.target.value);
 //   }
-const changeRoute = (e) => {
-  $router.push("/" + e.target.value);
-}
+// const changeRoute = (e) => {
+//   $router.push("/" + e.target.value);
+// }
 
 onMounted(() => {
   // Fetch todos when the component is mounted

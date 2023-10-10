@@ -124,11 +124,7 @@
             <caption>Time Zone</caption>
             <select class="form-select" aria-label="Default select example">
               <option selected>{{detail.timeZone}}</option>
-              <!-- <option value="1">(GMT +00:00)Greenwich(London)</option>
-              <option value="2">(GMT +01:00)Africa West Central</option>
-              <option value="3">(GMT +01:00)Europe Central</option>
-              <option value="4">(GMT +02:00)Europe Eastern</option>
-              <option value="5">(GMT +02:00)Egypt</option> -->
+
             </select>
           </div>
           <hr>
