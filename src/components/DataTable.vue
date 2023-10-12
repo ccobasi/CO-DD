@@ -11,6 +11,7 @@ import FilterRadios from '../components/FilterRadios.vue'
 import FilterDropdown from '../components/FilterDropdown.vue'
 
 const searchFilter = ref('')
+const radioFilter = ref('')
 
 const props = defineProps({
   items: {
@@ -20,26 +21,43 @@ const props = defineProps({
 });
 
 const filteredItems = computed(() => {
+    let items = props.items;
     // return props.items.filter(item => item.status === 'Done')
-
-    if(searchFilter.value !== ''){
-        return props.items.filter(item => item.clientname.toLowerCase().includes(searchFilter.value) || item.dealid.toLowerCase().includes(searchFilter.value) || item.status.toLowerCase().includes(searchFilter.value))
+    switch(radioFilter.value){
+        case 'today':
+            // show items due today
+            items = items.filter(item => new Date(item.datetime) === new Date().getDate());
+            break;
+        case 'past':
+            // show items past due
+            items = items.filter(item => new Date(item.datetime) < new Date())
+            break;
     }
 
-    return props.items
+    if(searchFilter.value !== ''){
+        // return props.items.filter(item => item.clientname.toLowerCase().includes(searchFilter.value) || item.dealid.toLowerCase().includes(searchFilter.value) || item.status.toLowerCase().includes(searchFilter.value))
+        items = items.filter(item => item.clientname.toLowerCase().includes(searchFilter.value) || item.dealid.toLowerCase().includes(searchFilter.value) || item.status.toLowerCase().includes(searchFilter.value))
+    }
+
+    // return props.items
+    return items
 })
 
 const handleSearch = (search) => {
     searchFilter.value = search
+}
+
+const handleRadioFilter = (filter) => {
+    radioFilter.value = filter
 }
     
 </script>
 
 <template>
   <div class="bg-white">
-    <div class="flex item-center justify-between">
+    <div class="d-flex item-center justify-between">
       <SearchForm @search="handleSearch" />
-      <FilterRadios />
+      <FilterRadios @filter="handleRadioFilter" />
       <FilterDropdown />
     </div>
     <v-table>
