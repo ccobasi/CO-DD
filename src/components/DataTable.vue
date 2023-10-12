@@ -5,7 +5,12 @@
 //         required: true
 //     }
 // });
-import { defineProps } from 'vue';
+import { defineProps, computed, ref } from 'vue';
+import SearchForm from '../components/SearchForm.vue'
+import FilterRadios from '../components/FilterRadios.vue'
+import FilterDropdown from '../components/FilterDropdown.vue'
+
+const searchFilter = ref('')
 
 const props = defineProps({
   items: {
@@ -13,12 +18,30 @@ const props = defineProps({
     required: true,
   },
 });
+
+const filteredItems = computed(() => {
+    // return props.items.filter(item => item.status === 'Done')
+
+    if(searchFilter.value !== ''){
+        return props.items.filter(item => item.clientname.toLowerCase().includes(searchFilter.value) || item.dealid.toLowerCase().includes(searchFilter.value) || item.status.toLowerCase().includes(searchFilter.value))
+    }
+
+    return props.items
+})
+
+const handleSearch = (search) => {
+    searchFilter.value = search
+}
     
 </script>
 
 <template>
   <div class="bg-white">
-    <div class="flex item-center justify-between"></div>
+    <div class="flex item-center justify-between">
+      <SearchForm @search="handleSearch" />
+      <FilterRadios />
+      <FilterDropdown />
+    </div>
     <v-table>
       <thead>
         <tr>
@@ -91,7 +114,7 @@ const props = defineProps({
         </tr>
       </thead>
       <tbody>
-        <tr class="border-b" v-for="item in items" :key="item.dealid">
+        <tr class="border-b" v-for="item in filteredItems" :key="item.dealid">
           <td>{{item.dealid}}</td>
           <td>{{item.clientname}}</td>
           <td>{{item.venue}}</td>
