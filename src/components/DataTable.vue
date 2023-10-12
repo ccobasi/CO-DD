@@ -12,6 +12,7 @@ import FilterDropdown from '../components/FilterDropdown.vue'
 
 const searchFilter = ref('')
 const radioFilter = ref('')
+const statusesFilter = ref([])
 
 const props = defineProps({
   items: {
@@ -34,6 +35,10 @@ const filteredItems = computed(() => {
             break;
     }
 
+    if(statusesFilter.value.length){
+        items = items.filter(item => statusesFilter.value.includes(item.status))
+    }
+
     if(searchFilter.value !== ''){
         // return props.items.filter(item => item.clientname.toLowerCase().includes(searchFilter.value) || item.dealid.toLowerCase().includes(searchFilter.value) || item.status.toLowerCase().includes(searchFilter.value))
         items = items.filter(item => item.clientname.toLowerCase().includes(searchFilter.value) || item.dealid.toLowerCase().includes(searchFilter.value) || item.status.toLowerCase().includes(searchFilter.value))
@@ -50,6 +55,13 @@ const handleSearch = (search) => {
 const handleRadioFilter = (filter) => {
     radioFilter.value = filter
 }
+
+const handleCheckboxFilter = (filter) => {
+    if(statusesFilter.value.includes(filter)){
+        return statusesFilter.value.splice(statusesFilter.value.indexOf(filter), 1)
+    }
+    return statusesFilter.value.push(filter)
+}
     
 </script>
 
@@ -58,7 +70,7 @@ const handleRadioFilter = (filter) => {
     <div class="d-flex item-center justify-between">
       <SearchForm @search="handleSearch" />
       <FilterRadios @filter="handleRadioFilter" />
-      <FilterDropdown />
+      <FilterDropdown :items="items" @filter="handleCheckboxFilter" />
     </div>
     <v-table>
       <thead>
