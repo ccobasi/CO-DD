@@ -13,9 +13,11 @@ console.log(store.events);
 <script>
 import NavBar from '../components/NavBar.vue'
 import { useEventsStore } from "@/store/events";
+import DataTable from '../components/DataTable.vue'
+import { ref } from 'vue';
 
 export default {
-  components: NavBar,
+  components: NavBar,DataTable,
   setup() {
     const store = useEventsStore();
     const events = store.events;
@@ -23,6 +25,16 @@ export default {
 
     return {
       events,
+      
+      // selected: ref('A'),
+      // options: ref([
+      //   { text: 'All', value: 'All' },
+      //   { text: 'Pending storage creation', value: 'Pending storage creation' },
+      //   { text: 'Pending document upload', value: 'Pending document upload' },
+      //   { text: 'Pending L&D verification', value: 'Pending L&D verification' },
+      //   { text: 'Done', value: 'Done' },
+  
+      // ])
   
     };
   },
@@ -85,9 +97,11 @@ export default {
     <div class="display">
       <div class="title">
         <h1><b>Events</b></h1>
-        <button>
-          Create event
-        </button>
+        <router-link to="/createevent">
+          <button>
+            Create event
+          </button>
+        </router-link>
 
       </div>
       <div class="eve" style="border-radius: 15px;">
@@ -100,6 +114,13 @@ export default {
             <option value="Done">Done</option>
             <!-- Add more options as needed -->
           </select>
+          <!-- <select v-model="selected">
+            <option v-for="option in options" :value="option.value">
+              {{ option.text }}
+            </option>
+          </select>
+
+          <div>Selected: {{ selected }}</div> -->
           <!-- <v-combobox label="Filter by: All" density="compact" :items="['All', 'Pending storage creation', 'Pending document upload', 'Pending L&D verification', 'Done']" variant="solo"></v-combobox> -->
           <v-spacer></v-spacer>
 
