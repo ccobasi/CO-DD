@@ -4,7 +4,7 @@ import { computed, ref, defineProps, defineEmits } from "vue";
     const show = ref(false)
 
     const props = defineProps({
-        items: {
+        events: {
             type: Array,
             required: true,
         }
@@ -13,7 +13,7 @@ import { computed, ref, defineProps, defineEmits } from "vue";
     const emit = defineEmits(['filter'])
 
     const statuses = computed(() => {
-        return [...new Set(props.items.map(item => item.status))]
+        return [...new Set(props.events.map(event => event.status))]
     })
 
     const filter = (e) => {
@@ -22,25 +22,44 @@ import { computed, ref, defineProps, defineEmits } from "vue";
 </script>
 
 <template>
-  <div class="flex">
-    <button @click="show = !show">Filter</button>
+  <div class="flex mt-3 mb-2">
+    <!-- <button @click="show = !show">Filter</button>
     <div v-if="show" class="status">
-      <h6>Status</h6>
-      <ul class="list">
-        <!-- <li v-for="(status, index) in statuses"> -->
-        <!-- <input :id="`filter_option_${index}`" type="checkbox" @change="filter" value="status">
-          <label :for="`filter_option_${index}`">{{status}}</label> -->
+      <h6>Status</h6> -->
+    <!-- <ul class="list">
         <li v-for="status in statuses" :key="status">
           <input :id="`filter_option_${status}`" type="checkbox" @change="filter" :value="status">
           <label :for="`filter_option_${status}`">{{ status }}</label>
         </li>
 
-      </ul>
-    </div>
+      </ul> -->
+    <select class="list ml-4" @change="filter">
+      <option value="All">All</option>
+      <option value="Pending storage creation">Pending storage creation</option>
+      <option value="Pending document upload">Pending document upload</option>
+      <option value="Pending L&D verification">Pending L&D verification</option>
+      <option value="Done">Done</option>
+
+    </select>
   </div>
+  <!-- </div> -->
 </template>
 <style scoped>
 .flex {
-  margin-left: 100px;
+  margin-left: 5px;
+}
+.list {
+  display: flex;
+  width: 320px;
+  padding: 10px 20px;
+  align-items: flex-start;
+  gap: 20px;
+
+  border-radius: 5px;
+  border: 1px solid var(--Grey-Light, #eee);
+  background: var(--White, #fff);
+}
+.list::placeholder {
+  color: #808080;
 }
 </style>

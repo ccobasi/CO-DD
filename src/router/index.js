@@ -15,6 +15,7 @@ import Access from '../views/Access.vue'
 import Agenda from '../views/Agenda.vue'
 import RequestFeedback from '../views/RequestFeedback.vue'
 import Events from '../views/Events.vue'
+import Eventss from '../views/Eventss.vue'
 import FormInvite from '../views/FormInvite.vue'
 import FormResponse from '../views/FormResponse.vue'
 import Login from '../views/Login.vue'
@@ -36,6 +37,12 @@ const router = createRouter({
       path: '/events',
       name: 'events',
       component: Events,
+    
+    },
+    {
+      path: '/eventss',
+      name: 'events',
+      component: Eventss,
     
     },
     {

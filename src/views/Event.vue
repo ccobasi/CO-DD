@@ -13,15 +13,13 @@ console.log(store.events);
 <script>
 import NavBar from '../components/NavBar.vue'
 import { useEventsStore } from "@/store/events";
-import DataTable from '../components/DataTable.vue'
-import { ref } from 'vue';
 
 export default {
-  components: NavBar,DataTable,
+  components: NavBar,
   setup() {
     const store = useEventsStore();
     const events = store.events;
-    
+   
 
     return {
       events,
@@ -112,20 +110,15 @@ export default {
             <option value="Pending document upload">Pending document upload</option>
             <option value="Pending L&D verification">Pending L&D verification</option>
             <option value="Done">Done</option>
-            <!-- Add more options as needed -->
-          </select>
-          <!-- <select v-model="selected">
-            <option v-for="option in options" :value="option.value">
-              {{ option.text }}
-            </option>
+
           </select>
 
-          <div>Selected: {{ selected }}</div> -->
-          <!-- <v-combobox label="Filter by: All" density="compact" :items="['All', 'Pending storage creation', 'Pending document upload', 'Pending L&D verification', 'Done']" variant="solo"></v-combobox> -->
           <v-spacer></v-spacer>
 
           <v-text-field v-model="search" append-icon="mdi-magnify" density="compact" label="Search" style="" variant="solo" single-line hide-details width="30"></v-text-field>
+
         </div>
+
         <div class="tabulate">
           <v-table>
             <thead>
