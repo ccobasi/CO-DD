@@ -22,13 +22,13 @@ import { computed, ref, defineProps } from "vue";
      const recent = [
             {
                 name: 'Chinua Azubike',
-                date: '12 July, 2023 ',
+                date: '12 October, 2023 ',
                 time: '07:49:22 PM ',
                 action: 'Assigned Role',
             },
             {
                 name: 'Osaze Osaghae',
-                date: '9 March, 2023 ',
+                date: '11 October, 2023 ',
                 time: '10:19:56 AM ',
                 action: 'Added User',
             },
@@ -54,13 +54,19 @@ import { computed, ref, defineProps } from "vue";
 
 const filteredItems = computed(() => {
     let items = recent;
+
+    
+
     // return props.items.filter(item => item.status === 'Done')
     switch(radioFilter.value){
-        case 'today':
+        case 'this week':
+          const sevenDaysAgo = new Date().getDate();
+          sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
             // show items due today
-            items = items.filter(item => new Date(item.date) === new Date().getDate());
+            items = items.filter(item => new Date(item.date) < sevenDaysAgo);
+            // items = items.filter(item => new Date(item.date) === new Date().getDate());
             break;
-        case 'past':
+        case 'this month':
             // show items past due
             items = items.filter(item => new Date(item.date) < new Date())
             break;
@@ -103,29 +109,8 @@ const exportToPDF = () => {
             <option value="4">90 Days Ago</option>
           </select>
 
-          <!-- <div class="from">
-          | <label for="from">From</label>
-          <input type="date">
         </div>
-        <div class="to">
-          | <label for="to">to</label>
-          <input type="date">
-        </div> -->
-        </div>
-        <div class="radio">
-          <label for="">
-            <input type="radio" name="show" value="all" checked @change="filter">
-            <span>Show All</span>
-          </label>
-          <label for="">
-            <input type="radio" name="show" value="today" @change="filter">
-            <span>Due Today</span>
-          </label>
-          <label for="">
-            <input type="radio" name="show" value="past" @change="filter">
-            <span>Past Due</span>
-          </label>
-        </div>
+      
       </div>
 
       <v-table id="element-to-convert">

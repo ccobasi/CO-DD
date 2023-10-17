@@ -151,7 +151,7 @@ const handleCheckboxFilter = (filter) => {
         </tr>
       </thead>
       <tbody>
-        <tr class="border-b" v-for="event in filteredEvents" :key="event.id">
+        <tr class="border-b" v-for="event in filteredEvents" :key="event.id" @click="$router.push({ name: 'details', params: { id: event.id } })">
           <td>{{event.id}}</td>
           <td>{{event.transaction}}</td>
           <td>{{event.venue}}</td>

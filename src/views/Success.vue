@@ -29,7 +29,7 @@
     },
     redirectToNewPage() {
       // Replace '/target-page' with the actual route you want to redirect to
-      this.$router.push('/event');
+      this.$router.push('/eventss');
     },
   },
 };
@@ -42,12 +42,6 @@
       <img src="../assets/draw.jpg" alt="success">
       <h2>Great Job!</h2>
       <p>You have successfully created an event. Sit tight while it finishes loading</p>
-      <!-- <p>Loading....</p> -->
-      <!-- <div class="loader-wrapper">
-        <svg>
-          <circle cx="70" cy="70" r="50"></circle>
-        </svg>
-      </div> -->
 
       <p style="visibility:hidden">Redirecting in {{ countdown }} seconds...</p>
       <div class="loader"></div>
