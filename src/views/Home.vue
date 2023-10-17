@@ -1,11 +1,11 @@
 <script>
-import AdminLog from '../views/AdminLog.vue'
+
 export default {
-  components: AdminLog,
+  
     data: () => ({
         tab: null,
     
-        recent: [
+        recents: [
             {
                 dealid: '#CP4526',
                 clientname: 'Lagos Free Zone Company',
@@ -50,6 +50,19 @@ export default {
             },
         ],
     }),
+    computed:{
+         filteredEvents(){
+    let events = props.recents;
+
+    if(searchFilter.value !== ''){
+        
+        events = events.filter(event => event.transaction.toLowerCase().includes(searchFilter.value) || event.coTransactor.toLowerCase().includes(searchFilter.value) || event.status.toLowerCase().includes(searchFilter.value))
+    }
+
+    // return props.events
+    return events
+},
+    },
     methods: {
         getStatusColor(status) {
             switch (status) {
@@ -87,6 +100,8 @@ export default {
                     return 'background-color: #47b65c; display: inline-block; border-radius: 50%; padding: 5px;';
             }
         },
+  
+
     },
 
     return: {
@@ -103,6 +118,7 @@ export default {
         <v-tabs v-model="tab" style="border-bottom:none; margin-left: 34%;">
           <v-tab value="two" style="color:#227CBF;font-family: Roboto;font-size: 16px;font-style: normal;font-weight: 400;line-height: 19.2px;">Home</v-tab>
           <v-tab value="one" style="color:#808080;font-family: Roboto;font-size: 16px;font-style: normal;font-weight: 400;line-height: 19.2px;">Events</v-tab>
+          <v-tab value="one" style="color:#808080;font-family: Roboto;font-size: 16px;font-style: normal;font-weight: 400;line-height: 19.2px;">Audit Log</v-tab>
         </v-tabs>
         <v-spacer></v-spacer>
         <v-badge content=2 color="#227cbf" style="margin:10px 20px; ">
@@ -212,7 +228,7 @@ export default {
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="item in recent" :key="item.name">
+                <tr v-for="item in recents" :key="item.name">
                   <td>{{ item.dealid }}</td>
                   <td>{{ item.clientname }}</td>
                   <td>{{ item.venue }}</td>
@@ -246,10 +262,12 @@ export default {
           </div>
 
           <div class="eve">
+
             <div class="top" style="display: flex; margin-bottom: 0;padding-bottom: 0;">
               <v-combobox label="Filter by: All" density="compact" :items="['All', 'Pending storage creation', 'Pending document upload', 'Pending L&D verification', 'Done']" variant="solo"></v-combobox>
               <v-spacer></v-spacer>
               <v-text-field v-model="search" append-icon="mdi-magnify" density="compact" label="Search" style="" variant="solo" single-line hide-details width="30"></v-text-field>
+
             </div>
             <v-table style="border-radius:none">
               <thead>
@@ -312,7 +330,7 @@ export default {
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="item in recent" :key="item.name">
+                <tr v-for="item in recents" :key="item.name">
                   <td>{{ item.dealid }}</td>
                   <td>{{ item.clientname }}</td>
                   <td>{{ item.venue }}</td>
@@ -495,6 +513,13 @@ tr {
   display: inline-block;
   border-radius: 50%;
   padding: 5px;
+}
+.input-group {
+  width: 400px;
+  margin-right: 20px;
+}
+input {
+  height: 50px;
 }
 </style>
   

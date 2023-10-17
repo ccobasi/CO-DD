@@ -1,13 +1,18 @@
 <script>
 // import {useEventsStore} from "@/store/events"
-
+import SearchForm from "../components/SearchForm.vue"
 
 // const store = useEventsStore()
 // console.log(store);
 
 export default {
-    data: () => ({
+  components: SearchForm,
+  setup () {
+    const emit = defineEmits(['search'])
   
+  },
+    data: () => ({
+      
          selectedFilter: 'All', 
       items: [
         { id: 1, name: 'Item 1', status: 'Pending storage creation' },
@@ -78,6 +83,10 @@ export default {
        onSelectChange() {
   selectedValue.value = selectedValue.value
 },
+
+search(e) {
+        emit('search', e.target.value);
+    },
         getStatusColor(status) {
             switch (status) {
                 case 'Pending storage creation':
@@ -171,7 +180,8 @@ export default {
               </ul>
               <!-- <h5>Event:{{}}</h5> -->
               <v-spacer></v-spacer>
-              <v-text-field v-model="search" append-icon="mdi-magnify" density="compact" label="Search" style="" variant="solo" single-line hide-details width="30"></v-text-field>
+              <!-- <v-text-field v-model="search" append-icon="mdi-magnify" density="compact" label="Search" style="" variant="solo" single-line hide-details width="30"></v-text-field> -->
+              <SearchForm/>
             </div>
             <Table />
             <v-table>

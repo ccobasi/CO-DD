@@ -23,16 +23,6 @@ export default {
 
     return {
       events,
-      
-      // selected: ref('A'),
-      // options: ref([
-      //   { text: 'All', value: 'All' },
-      //   { text: 'Pending storage creation', value: 'Pending storage creation' },
-      //   { text: 'Pending document upload', value: 'Pending document upload' },
-      //   { text: 'Pending L&D verification', value: 'Pending L&D verification' },
-      //   { text: 'Done', value: 'Done' },
-  
-      // ])
   
     };
   },
@@ -64,8 +54,7 @@ export default {
                     return 'background-color: rgb(254, 249, 195); border-radius: 40px;  width: 60%; padding: 10px;';
                 case 'Done':
                     return 'background-color: rgb(220, 252, 231); border-radius: 40px;  width: 60%; padding: 10px;';
-                //   default:
-                //     return 'background-color: rgb(254, 249, 195); border-radius: 10px;  width: 60%; padding: 10px;';
+                
             }
         },
         getStatusIcon(status) {

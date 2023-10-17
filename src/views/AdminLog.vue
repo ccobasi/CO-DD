@@ -1,5 +1,23 @@
 <script setup>
   import NavBar from '../components/NavBar.vue'
+  import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import html2pdf from "html2pdf.js";
+import { computed, ref, defineProps } from "vue";
+
+     const emit = defineEmits(['filter'])
+
+    const filter = (e) => {
+        emit('filter', e.target.value)
+    }
+    const radioFilter = ref('')
+
+    // const props = defineProps({
+    //     recent: {
+    //         type: Array,
+    //         required: true,
+    //     }
+    // })
 
      const recent = [
             {
@@ -33,6 +51,36 @@
                 action: 'Assigned Role',
             },
         ]
+
+const filteredItems = computed(() => {
+    let items = recent;
+    // return props.items.filter(item => item.status === 'Done')
+    switch(radioFilter.value){
+        case 'today':
+            // show items due today
+            items = items.filter(item => new Date(item.date) === new Date().getDate());
+            break;
+        case 'past':
+            // show items past due
+            items = items.filter(item => new Date(item.date) < new Date())
+            break;
+    }
+
+    // return props.items
+    return items
+})
+
+const handleRadioFilter = (filter) => {
+    radioFilter.value = filter
+}
+
+
+const exportToPDF = () => {
+			html2pdf(document.getElementById('element-to-convert'), {
+				margin: 1,
+  			filename: "auditlog.pdf",
+			});
+		}
   
 </script>
 <template>
@@ -41,29 +89,46 @@
     <NavBar />
     <div class="tab">
       <h2>Audit Logs</h2>
-      <div class="btn">Export Log</div>
+      <div class="btn" @click="exportToPDF">Export Log</div>
     </div>
-    <div class="form">
-      <div class="title mb-3">
-        <label for="filter">Filter by:</label>
-        <select class="form-select" aria-label="Default select example">
-          <option selected>All</option>
-          <option value="1">This Week</option>
-          <option value="2">This Month</option>
-          <option value="3">60 Days Ago</option>
-          <option value="4">90 Days Ago</option>
-        </select>
-        <div class="from">
+    <div class="form" ref="document">
+      <div class="header d-flex">
+        <div class="title mb-3">
+          <label for="filter">Filter by:</label>
+          <select class="form-select" @change="filter" aria-label="Default select example">
+            <option selected>All</option>
+            <option value="1">This Week</option>
+            <option value="2">This Month</option>
+            <option value="3">60 Days Ago</option>
+            <option value="4">90 Days Ago</option>
+          </select>
+
+          <!-- <div class="from">
           | <label for="from">From</label>
           <input type="date">
         </div>
         <div class="to">
           | <label for="to">to</label>
           <input type="date">
+        </div> -->
+        </div>
+        <div class="radio">
+          <label for="">
+            <input type="radio" name="show" value="all" checked @change="filter">
+            <span>Show All</span>
+          </label>
+          <label for="">
+            <input type="radio" name="show" value="today" @change="filter">
+            <span>Due Today</span>
+          </label>
+          <label for="">
+            <input type="radio" name="show" value="past" @change="filter">
+            <span>Past Due</span>
+          </label>
         </div>
       </div>
 
-      <v-table>
+      <v-table id="element-to-convert">
         <thead>
           <tr>
             <th class="text-left">
@@ -114,7 +179,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in recent" :key="item.name" @click="$router.push('eventdetails')">
+          <tr v-for="item in filteredItems" :key="item.name">
             <td>{{ item.name }}</td>
             <td>{{ item.date }}</td>
             <td>{{ item.time }}</td>
@@ -180,7 +245,7 @@ body {
   margin-top: 30px;
 }
 .title {
-  width: 486px;
+  width: 256px;
   height: 42px;
   display: flex;
   padding: 10px 20px;
@@ -202,7 +267,7 @@ body {
   position: relative;
 }
 .form-select {
-  width: 100px;
+  width: 150px;
   top: 193px;
   left: 150px;
   position: absolute;

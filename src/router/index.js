@@ -59,7 +59,7 @@ const router = createRouter({
     },
     {
       path: '/success',
-      name: 'success',
+      name: 'success page',
       component: Success,
      
     },

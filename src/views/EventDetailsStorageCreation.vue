@@ -148,9 +148,10 @@
 
           </div>
           <div class="create">
-            <button class="createBtn" :disabled="!isFormValid" @click="$router.push('uploaddocument')">
+            <button class="createBtn" :disabled="!isFormValid" @click="$router.push('/uploaddocument')">
               <caption>Notify transactor</caption>
             </button>
+
           </div>
         </form>
       </div>
