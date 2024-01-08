@@ -1,61 +1,70 @@
-<script>
-    import NavBar from '../components/NavBar.vue'
-    import { useEventsStore } from "@/store/events";
-    
-    export default{
-  components: NavBar,
-  setup() {
-    const store = useEventsStore();
-    const events = store.events;
+<script setup>
+import NavBar from '../components/NavBar.vue';
+import { useEventsStore } from "@/store/events";
+import { useRouter } from 'vue-router';
+import { ref, computed, onMounted, getCurrentInstance, watch } from 'vue';
 
-    
-    return {
-      events,
-    
-    };
-  },
-  data() {
-    return {
-      user: {
-        checkbox: false,
-      },
-    };
-  },
-  computed: {
-    isFormValid() {
-      return (
-        this.user.checkbox !== false 
-      );
-    },
-    detailsId(){
-      return parseInt(this.$route.params.id)
-    },
-    detail(){
-      return this.events.find(event => event.id === this.detailsId)
-    }
-  },
-   methods: {
-  changeRoute(e) {
-    this.$router.push("/" + e.target.value);
-  },
-  toggleCheckbox() {
-      this.checkbox = !this.checkbox
-      this.$emit('setCheckboxVal', this.checkbox)
-  },
-  save() {
-      if (this.isFormValid) {
-        console.log('User Data Saved:', this.user);
-      }
-    },
-    proceed() {
-      if (this.isFormValid) {
-        console.log('User Data Saved:', this.user.checkbox);
-      }
-    },
-},
- }
+const { appContext } = getCurrentInstance();
+const $route = appContext.config.globalProperties.$route;
+const router = useRouter();
+
+const store = useEventsStore();
+const events = ref(store.events);
+const user = ref({
+  checkbox: false,
+});
+
+const isFormValid = computed(() => user.value.checkbox !== false);
+const detailsId = computed(() => parseInt($route.params.id));
+const detail = computed(() => events.value.find(event => event.id === detailsId.value));
+
+
+const toggleCheckbox = () => {
+  user.value.checkbox = !user.value.checkbox;
+};
+
+const save = () => {
+  if (isFormValid.value) {
+    console.log('User Data Saved:', user.value);
+  }
+};
+
+const proceed = () => {
+  if (isFormValid.value) {
+    detail.value.status = 'Pending document upload';
+    console.log('User Data Saved:', user.value.checkbox);
+  }
+};
+
+const proceedAndNavigate = () => {
+  proceed();
+  detail.value.status = 'Pending document upload';
+  router.push('/eventss');
+};
+
+const changeRoute = (e) => {
+  router.push("/" + e.target.value);
+};
+
+const handleSubmit = () => {
+  
+  addStorage();
+  console.log("Event added");
+  console.log(store.events);
+};
+
+watch(() => user.value.checkbox, () => {
+  if (user.value.checkbox) {
+    proceed();
+  }
+});
+
+onMounted(() => {
+  console.log('Component is mounted');
+});
 
 </script>
+
 
 <template>
   <NavBar />
@@ -64,7 +73,7 @@
     <div class="event-info">
       <div class="form">
         <h1>Event Information</h1>
-        <form action="">
+        <form method="post" action="" @submit.prevent="handleSubmit">
           <div class="trans">
             <caption>Transactions </caption>
             <select class="form-select" aria-label="Default select example">
@@ -83,12 +92,12 @@
           <div class="address">
             <div class="one">
               <caption>Address</caption>
-              <!-- <input type="text" placeholder="Allen Avenue"> -->
+
               <div class="dvalue">{{detail.address}}</div>
             </div>
             <div class="one">
               <caption>Address2</caption>
-              <!-- <input type="text" placeholder="Ikeja"> -->
+
               <div class="dvalue">{{detail.addressTwo}}</div>
             </div>
           </div>
@@ -148,7 +157,7 @@
 
           </div>
           <div class="create">
-            <button class="createBtn" :disabled="!isFormValid" @click="$router.push('/uploaddocument')">
+            <button type="submit" class="createBtn" :disabled="!isFormValid" @click="proceedAndNavigate">
               <caption>Notify transactor</caption>
             </button>
 

@@ -1,15 +1,4 @@
-<!-- <script setup>
-  import NavBar from '../components/NavBar.vue'
-  import {useEventsStore} from "@/store/events"
 
-
-const store = useEventsStore()
-console.log(store.events);
-
-
-
-  
-</script> -->
 <script>
 import NavBar from '../components/NavBar.vue'
 import { useEventsStore } from "@/store/events";

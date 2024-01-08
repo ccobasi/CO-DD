@@ -3,7 +3,7 @@
   import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import html2pdf from "html2pdf.js";
-import { computed, ref, defineProps } from "vue";
+import { computed, ref } from "vue";
 
      const emit = defineEmits(['filter'])
 
@@ -110,7 +110,7 @@ const exportToPDF = () => {
           </select>
 
         </div>
-      
+
       </div>
 
       <v-table id="element-to-convert">

@@ -23,7 +23,7 @@
   computed: {
     isFormValid() {
       return (
-        this.user.checkbox !== false 
+        this.user.checkbox !== false && this.user.flyer !== false
       );
     },
   },
@@ -34,6 +34,10 @@
   toggleCheckbox() {
       this.checkbox = !this.checkbox
       this.$emit('setCheckboxVal', this.checkbox)
+  },
+  toggleCheckbox1() {
+      this.flyer = !this.flyer
+      this.$emit('setCheckboxVal', this.flyer)
   },
   onSelectChange() {
   this.selectedValue.value = this.selectedValue.value
@@ -51,32 +55,7 @@
 },
  }
 
-// const additionalInput = ref('')
-// const attend = ref('')
-// const user = {checkbox:false}
-// const { setCheckboxVal } = defineEmits(['setCheckboxVal']);
 
-// const isFormValid = computed(() => user.checkbox !== false);
-
-// const changeRoute = (e) => {
-//     this.$router.push("/" + e.target.value);
-//   }
-
-//  const onSelectChange = () => {
-//   selectedValue.value = selectedValue.value
-// }
-
-//   const toggleCheckbox = () => {
-//   user.checkbox = !user.checkbox;
-//   setCheckboxVal(user.checkbox);
-//   // $emit('setCheckboxVal', user.checkbox);
-// };
-
-// function proceed() {
-//   if(isFormValid) {
-//     console.log('User Data Saved:', user.checkbox);
-//   }
-// }
 </script>
 
 <template>
@@ -217,7 +196,7 @@
             <div class="check" style="width:180px;padding-left:60px">
               <h6>NO</h6>
               <label class="switch">
-                <input type="checkbox" unchecked v-model="user.flyer" required>
+                <input type="checkbox" unchecked v-model="user.flyer" required @click="toggleCheckbox1">
                 <span class="slider round"></span>
               </label>
               <h6>YES</h6>

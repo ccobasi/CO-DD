@@ -16,7 +16,7 @@
   },
   data() {
     return {
-      textToCopy: 'https://www.infracredit_storage/app/public.link', // Replace with the text you want to copy
+      textToCopy: 'https://www.infracredit_storage/app/public.link',
       copiedMessage: '',
       user: {
         checkbox: false,
@@ -48,7 +48,7 @@
       this.copiedMessage = 'Copied!';
       setTimeout(() => {
         this.copiedMessage = '';
-      }, 2000); // Clear the copied message after 2 seconds
+      }, 2000); 
     },
      changeRoute(e) {
     this.$router.push("/" + e.target.value);

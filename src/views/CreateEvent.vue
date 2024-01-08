@@ -154,23 +154,7 @@ onMounted(() => {
         </div>
 
       </form>
-      <!-- <section class="todo-list">
-        <h3>EVENT LIST</h3>
-        <div class="list" id="todo-list">
 
-          <div v-for="event in events_asc" :class="`todo-item ${event.done && 'done'}`">
-            <label>
-              <input type="checkbox" v-model="event.done" />
-            </label>
-
-            <div class="todo-content">
-              <h5>Co-transactor: {{event.coTransactor}}</h5>
-            </div>
-
-          </div>
-
-        </div>
-      </section> -->
     </div>
   </body>
 </template>
