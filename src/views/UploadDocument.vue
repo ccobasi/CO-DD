@@ -75,7 +75,13 @@
 import NavBar from '../components/NavBar.vue';
 import Tab from '../components/Tab/Tab.vue';
 import { useEventsStore } from "@/store/events";
-import { computed, reactive } from 'vue';
+import { computed, reactive, getCurrentInstance } from 'vue';
+import { useRouter } from 'vue-router';
+
+const { appContext } = getCurrentInstance();
+const $route = appContext.config.globalProperties.$route;
+const router = useRouter();
+
 
 const store = useEventsStore();
 const events = store.events;
@@ -108,14 +114,8 @@ const toggleCheckbox = () => {
 const isFormValid = computed(() => {
   return data.user.checkbox !== false;
 });
-
-const detailsId = computed(() => {
-  return parseInt($route.params.id);
-});
-
-const detail = computed(() => {
-  return events.find(event => event.id === detailsId.value);
-});
+const detailsId = computed(() => parseInt($route.params.id));
+const detail = computed(() => events.value.find(event => event.id === detailsId.value));
 
 const copyToClipboard = () => {
   const textarea = document.createElement('textarea');
@@ -155,6 +155,12 @@ const proceed = () => {
     console.log('User Data Saved:', data.user.checkbox);
   }
 };
+
+const proceedAndNavigate = () => {
+  proceed();
+  detail.value.status = 'Pending L&D verification';
+  router.push('/eventss');
+};
 </script>
 
 <template>
@@ -165,61 +171,48 @@ const proceed = () => {
     <div class="event-info">
       <div class="form">
         <h1>Event Information</h1>
-        <form action="">
+        <form method="post" action="" @submit.prevent="handleSubmit">
           <div class="trans">
             <caption>Transactions</caption>
             <select class="form-select" aria-label="Default select example">
-              <option selected>#CP4526-konexa</option>
-              <option value="1">#CP4526-Lagos Free Zone Company</option>
-              <option value="2">#CP4526-konexa</option>
-              <option value="3">#CP4526-Banner Energy Limited</option>
-              <option value="4">#CP4526-Seplat</option>
-              <option value="5">#CP4526-9mobile</option>
-              <option value="6">#CP4526-Total</option>
+              <option selected>{{detail.transaction}}</option>
             </select>
           </div>
           <div class="trans">
             <caption>Venue</caption>
             <select class="form-select" aria-label="Default select example">
-              <option selected>Physical(External)</option>
-              <option value="1">Physical(Internal)</option>
-              <option value="2">Physical(External)</option>
-              <option value="3">Virtual</option>
+              <option selected>{{detail.venue}}</option>
             </select>
 
           </div>
           <div class="address">
             <div class="one">
               <caption>Address</caption>
-              <input type="text" placeholder="Allen Avenue">
+              <div class="dvalue">{{detail.address}}</div>
             </div>
             <div class="one">
               <caption>Address2</caption>
-              <input type="text" placeholder="Ikeja">
+              <div class="dvalue">{{detail.addressTwo}}</div>
             </div>
           </div>
           <div class="address">
             <div class="one">
               <caption>State</caption>
-              <input type="text" placeholder="Lagos">
+              <div class="dvalue">{{detail.state}}</div>
             </div>
             <div class="one">
               <caption>Country</caption>
-              <input type="text" placeholder="Nigeria">
+              <div class="dvalue">{{detail.country}}</div>
             </div>
           </div>
           <div class="address">
             <div class="one">
               <caption>Date</caption>
-              <!-- <input type="date" id="date" name="date"> -->
-
-              <input id="date" name="date" placeholder="03/10/2023">
+              <div class="dvalue">{{detail.date}}</div>
             </div>
             <div class="one">
               <caption>Time</caption>
-              <!-- <input type="time" id="appt" name="appt"> -->
-
-              <input id="appt" name="appt" placeholder="4:54 PM">
+              <div class="dvalue">{{detail.time}}</div>
             </div>
           </div>
           <div class="trans">
@@ -262,7 +255,7 @@ const proceed = () => {
 
           </div>
           <div class="create">
-            <button class="createBtn" :disabled="!isFormValid" @click="$router.push('confirmevent')">
+            <button type="submit" class="createBtn" :disabled="!isFormValid" @click="proceedAndNavigate">
               <caption>Notify L&D</caption>
             </button>
           </div>
@@ -275,7 +268,7 @@ const proceed = () => {
 <style scoped>
 .body {
   background: #eee;
-  height: 1020px;
+  height: 1100px;
   display: flex;
 
   padding: 20px 50px;

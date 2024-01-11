@@ -107,13 +107,11 @@
           <div class="address mt-2">
             <div class="one">
               <caption>Date</caption>
-              <!-- <input type="date" id="date" name="date"> -->
 
               <input id="date" name="date" placeholder="03/10/2023">
             </div>
             <div class="one">
               <caption>Time</caption>
-              <!-- <input type="time" id="appt" name="appt"> -->
 
               <input id="appt" name="appt" placeholder="4:54 PM">
             </div>
@@ -151,12 +149,10 @@
               <div class="one">
                 <caption>Date</caption>
                 <input type="date" id="date" name="date">
-                <!-- <input id="date" name="date" placeholder="20/06/2023"> -->
               </div>
               <div class="one">
                 <caption>Time</caption>
                 <input type="time" id="appt" name="appt">
-                <!-- <input id="appt" name="appt" placeholder="8:00 AM"> -->
               </div>
             </div>
             <div class="trans mt-2">
@@ -185,8 +181,8 @@
 
           </div>
           <div class="feedback mt-4">
-            <h6 class="opt">Session Feedback (Optional)</h6>
-            <input type="text" class="fb" placeholder="Optional">
+            <h6 class="opt">Session Comment (Optional)</h6>
+            <textarea rows="" cols="" class="fb" placeholder="Optional"></textarea>
           </div>
           <div class="create">
             <button class="createBtn" :disabled="!isFormValid" @click="$router.push('invitation')">
@@ -202,7 +198,7 @@
 <style scoped>
 body {
   background: #eee;
-  height: 1080px;
+  height: 1100px;
   display: flex;
 
   padding: 20px 50px;
@@ -219,7 +215,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 660px;
-  height: 1020px;
+  height: 1040px;
   padding: 30px;
   flex-direction: column;
   align-items: flex-start;

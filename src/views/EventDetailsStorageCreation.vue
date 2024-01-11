@@ -106,28 +106,20 @@ onMounted(() => {
           <div class="address">
             <div class="one">
               <caption>State</caption>
-              <!-- <input type="text" placeholder="Lagos"> -->
               <div class="dvalue">{{detail.state}}</div>
             </div>
             <div class="one">
               <caption>Country</caption>
-              <!-- <input type="text" placeholder="Nigeria"> -->
               <div class="dvalue">{{detail.country}}</div>
             </div>
           </div>
           <div class="address">
             <div class="one">
               <caption>Date</caption>
-              <!-- <input type="date" id="date" name="date"> -->
-
-              <!-- <input id="date" name="date" placeholder="03/10/2023"> -->
               <div class="dvalue">{{detail.date}}</div>
             </div>
             <div class="one">
               <caption>Time</caption>
-              <!-- <input type="time" id="appt" name="appt"> -->
-
-              <!-- <input id="appt" name="appt" placeholder="4:54 PM"> -->
               <div class="dvalue">{{detail.time}}</div>
             </div>
           </div>
