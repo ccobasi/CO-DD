@@ -1,6 +1,5 @@
 <script>
     import NavBar from '../components/NavBar.vue'
-    // import TableTwo from '../components/Tables/TableTwo.vue'
   
    export default{
   components: NavBar,
@@ -99,19 +98,15 @@
             <h6>YES</h6>
           </div>
         </div>
-        <hr style="width: 600px;height: 2px;background: #808080;">
-        <div class="agenda">
-          <!-- <img src="../assets/invites.png" alt="agenda">
+        <div class="dry">
+          <h6>Leave a comment:</h6>
+          <div class="text">
+            <textarea name="" class="fb" id="" cols="30" rows="10"></textarea>
+          </div>
 
-        <div class="text">
-          <h4>Send Agenda</h4>
-          <h6>Send agenda.</h6>
-        </div> -->
-          <button class="createBtn" style="margin-left:480px" data-bs-toggle="modal" data-bs-target="#myModal" type="button">
-            <caption>Send Agenda</caption>
-          </button>
         </div>
-        <!-- <hr style="width: 600px;height: 2px;background: #808080;"> -->
+        <hr style="width: 600px;height: 2px;background: #808080;">
+
         <div class="agenda">
           <img src="../assets/agenda.png" alt="agenda">
           <div class="text">
@@ -126,6 +121,19 @@
             </label>
             <h6>YES</h6>
           </div>
+        </div>
+        <div class="dry mt-2">
+          <h6>Leave a comment:</h6>
+          <div class="text">
+            <textarea name="" class="fb" id="" cols="30" rows="10"></textarea>
+          </div>
+
+        </div>
+        <div class="agenda mt-2">
+
+          <button class="createBtn" style="margin-left:480px" data-bs-toggle="modal" data-bs-target="#myModal" type="button">
+            <caption>Send Agenda</caption>
+          </button>
         </div>
         <hr style="width: 600px;height: 2px;background: #808080;">
         <div class="create">
@@ -393,5 +401,25 @@ input:checked + .slider:before {
 }
 .icon {
   display: flex;
+}
+.fb {
+  display: flex;
+  width: 450px;
+  height: 100px;
+  padding: 10px 14px;
+  align-items: center;
+  gap: 8px;
+  border-radius: 5px;
+  border: 1px solid var(--grey-dark, #808080);
+  background: var(--white, #fff);
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+.fb::placeholder {
+  color: var(--grey-dark, #808080);
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14.4px;
 }
 </style>
