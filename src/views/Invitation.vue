@@ -1,11 +1,7 @@
 <script>
     import NavBar from '../components/NavBar.vue'
     import {computed, ref} from "vue";
-    
 
-
-  // const showModal = ref(false)
-  // const errorMessage = ref("")
 
  export default{
   components: NavBar,
@@ -16,7 +12,7 @@
       attend: '',
       user: {
         checkbox: false,
-        
+        flyer: false,
       },
     };
   },
@@ -25,6 +21,9 @@
       return (
         this.user.checkbox !== false && this.user.flyer !== false
       );
+    },
+    isFlyerValid() {
+      return this.user.flyer !== false;
     },
   },
    methods: {
@@ -89,6 +88,7 @@
               <img src="../assets/emoji.png" alt="emoji">
               <img src="../assets/img.png" alt="image">
             </div>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Preview</button>
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Send Invitation</button>
           </div>
 
@@ -147,13 +147,10 @@
           <div class="address mt-3">
             <div class="one">
               <caption>Date</caption>
-              <!-- <input type="date" id="date" name="date"> -->
-
               <input id="date" name="date" placeholder="03/10/2023">
             </div>
             <div class="one">
               <caption>Time</caption>
-              <!-- <input type="time" id="appt" name="appt"> -->
 
               <input id="appt" name="appt" placeholder="4:54 PM">
             </div>
@@ -185,24 +182,6 @@
             <h3>Invitation</h3>
             <h6>Timeline: <br>3 weeks before due date </h6>
           </div>
-
-          <div class="agenda">
-            <img src="../assets/flyer.png" alt="agenda">
-
-            <div class="text">
-              <h4>Flyer</h4>
-              <h6>Design of flyers to be sent to potential investors.</h6>
-            </div>
-            <div class="check" style="width:180px;padding-left:60px">
-              <h6>NO</h6>
-              <label class="switch">
-                <input type="checkbox" unchecked v-model="user.flyer" required @click="toggleCheckbox1">
-                <span class="slider round"></span>
-              </label>
-              <h6>YES</h6>
-            </div>
-          </div>
-          <hr style="width: 600px;height: 2px;background: #808080;">
           <div class="agenda">
             <img src="../assets/availability.png" alt="agenda">
 
@@ -226,13 +205,30 @@
           </div>
           <hr style="width: 600px;height: 2px;background: #808080;">
           <div class="agenda">
+            <img src="../assets/flyer.png" alt="agenda">
+
+            <div class="text">
+              <h4>Flyer</h4>
+              <h6>Design of flyers to be sent to potential investors.</h6>
+            </div>
+            <div class="check" style="width:180px;padding-left:60px">
+              <h6>NO</h6>
+              <label class="switch">
+                <input type="checkbox" unchecked v-model="user.flyer" required @click="toggleCheckbox1">
+                <span class="slider round"></span>
+              </label>
+              <h6>YES</h6>
+            </div>
+          </div>
+          <hr style="width: 600px;height: 2px;background: #808080;">
+          <div class="agenda">
             <img src="../assets/invites.png" alt="agenda">
 
             <div class="text">
               <h4>Invites</h4>
               <h6>Send invites and flyers to potential investors.</h6>
             </div>
-            <button class="createBtn" style="margin-left:80px" data-bs-toggle="modal" data-bs-target="#myModal" type="button">
+            <button class="createBtn" :disabled="!isFlyerValid" style="margin-left:80px" data-bs-toggle="modal" data-bs-target="#myModal" type="button">
               <caption>Invite investors</caption>
             </button>
           </div>
@@ -249,14 +245,10 @@
               <h6>YES</h6>
 
             </div>
-            <!-- <p>{{checkbox}}</p> -->
 
           </div>
 
           <div class="create">
-            <!-- <button class="createBtn">
-              <caption>Save</caption>
-            </button> -->
             <button class="createBtn" :disabled="!isFormValid" @click="$router.push('investordecision')">
               <caption>Proceed</caption>
             </button>
