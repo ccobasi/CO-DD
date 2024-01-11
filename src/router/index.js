@@ -16,6 +16,7 @@ import Agenda from '../views/Agenda.vue'
 import RequestFeedback from '../views/RequestFeedback.vue'
 import Events from '../views/Events.vue'
 import Eventss from '../views/Eventss.vue'
+import IT from '../views/IT.vue'
 import FormInvite from '../views/FormInvite.vue'
 import FormResponse from '../views/FormResponse.vue'
 import Login from '../views/Login.vue'
@@ -27,6 +28,12 @@ import AdminLog from '../views/AdminLog.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+      {
+      path: '/login',
+      name: 'login',
+      component: Login,
+     
+    },
     {
       path: '/',
       name: 'home',
@@ -43,6 +50,12 @@ const router = createRouter({
       path: '/eventss',
       name: 'events',
       component: Eventss,
+    
+    },
+    {
+      path: '/eventit',
+      name: 'IT events',
+      component: IT,
     
     },
     {
@@ -139,12 +152,6 @@ const router = createRouter({
       path: '/formresponse',
       name: 'event form response',
       component: FormResponse,
-     
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: Login,
      
     },
     {

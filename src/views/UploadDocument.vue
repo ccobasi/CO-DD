@@ -1,9 +1,10 @@
-<script>
+<!-- <script>
     import NavBar from '../components/NavBar.vue'
+    import Tab from '../components/Tab/Tab.vue'
     import { useEventsStore } from "@/store/events";
 
  export default {
-  components:NavBar,
+  components:NavBar,Tab,
   setup() {
     const store = useEventsStore();
     const events = store.events;
@@ -69,12 +70,98 @@
     },
   },
 };
+</script> -->
+<script setup>
+import NavBar from '../components/NavBar.vue';
+import Tab from '../components/Tab/Tab.vue';
+import { useEventsStore } from "@/store/events";
+import { computed, reactive } from 'vue';
+
+const store = useEventsStore();
+const events = store.events;
+
+// const data = {
+//   textToCopy: 'https://www.infracredit_storage/app/public.link',
+//   copiedMessage: '',
+//   user: {
+//     checkbox: false,
+//   },
+// };
+
+const data = reactive({
+  textToCopy: 'https://www.infracredit_storage/app/public.link',
+  copiedMessage: '',
+  user: {
+    checkbox: false,
+  },
+});
+
+const toggleCheckbox = () => {
+  if (!data.user) {
+    data.user = { checkbox: false };
+  }
+
+  data.user.checkbox = !data.user.checkbox;
+  $emit('setCheckboxVal', data.user.checkbox);
+};
+
+const isFormValid = computed(() => {
+  return data.user.checkbox !== false;
+});
+
+const detailsId = computed(() => {
+  return parseInt($route.params.id);
+});
+
+const detail = computed(() => {
+  return events.find(event => event.id === detailsId.value);
+});
+
+const copyToClipboard = () => {
+  const textarea = document.createElement('textarea');
+  textarea.value = data.textToCopy;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textarea);
+
+  data.copiedMessage = 'Copied!';
+  setTimeout(() => {
+    data.copiedMessage = '';
+  }, 2000);
+};
+
+const changeRoute = (e) => {
+  $router.push("/" + e.target.value);
+};
+
+// const toggleCheckbox = () => {
+//   data.checkbox = !data.checkbox;
+//   $emit('setCheckboxVal', data.checkbox);
+//   if (data.user) {
+//     data.user.checkbox = !data.user.checkbox;
+//     $emit('setCheckboxVal', data.user.checkbox);
+//   }
+// };
+
+const save = () => {
+  if (isFormValid.value) {
+    console.log('User Data Saved:', data.user);
+  }
+};
+
+const proceed = () => {
+  if (isFormValid.value) {
+    console.log('User Data Saved:', data.user.checkbox);
+  }
+};
 </script>
 
 <template>
   <NavBar />
 
-  <body>
+  <div class="body">
+    <Tab />
     <div class="event-info">
       <div class="form">
         <h1>Event Information</h1>
@@ -167,7 +254,7 @@
             <div class="check">
               <h6>NO</h6>
               <label class="switch">
-                <input type="checkbox" value="ckeckedInvite" unchecked v-model="user.checkbox" required @click="toggleCheckbox">
+                <input type="checkbox" value="ckeckedInvite" unchecked v-model="data.user.checkbox" required @click="toggleCheckbox">
                 <span class="slider round"></span>
               </label>
               <h6>YES</h6>
@@ -182,11 +269,11 @@
         </form>
       </div>
     </div>
-  </body>
+  </div>
 </template>
 
 <style scoped>
-body {
+.body {
   background: #eee;
   height: 1020px;
   display: flex;

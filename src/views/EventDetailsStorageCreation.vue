@@ -1,5 +1,6 @@
 <script setup>
 import NavBar from '../components/NavBar.vue';
+import Tab from '../components/Tab/Tab.vue'
 import { useEventsStore } from "@/store/events";
 import { useRouter } from 'vue-router';
 import { ref, computed, onMounted, getCurrentInstance, watch } from 'vue';
@@ -70,6 +71,7 @@ onMounted(() => {
   <NavBar />
 
   <body>
+    <Tab />
     <div class="event-info">
       <div class="form">
         <h1>Event Information</h1>
