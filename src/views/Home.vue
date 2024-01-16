@@ -1,20 +1,23 @@
-<script>
-import AdminLog from '../views/AdminLog.vue'
-export default {
-  components: AdminLog,
-  
-    data: () => ({
-        tab: null,
-    
-        recents: [
-            {
-                dealid: '#CP4526',
-                clientname: 'Lagos Free Zone Company',
-                venue: 'Virtual',
-                datetime: 'Thursday July 20, 2023 8:00 AM',
-                status: 'Pending storage creation',
-            },
-            {
+<script setup>
+import AdminLog from '../views/AdminLog.vue';
+import { ref, computed } from 'vue';
+import { useEventsStore } from "@/store/events";
+
+
+const store = useEventsStore();
+const events = store.events;
+console.log(events)
+
+const tab = ref(null);
+const recents = ref([
+  {
+    dealid: '#CP4526',
+    clientname: 'Lagos Free Zone Company',
+    venue: 'Virtual',
+    datetime: 'Thursday July 20, 2023 8:00 AM',
+    status: 'Pending storage creation',
+  },
+  {
                 dealid: '#CP4526',
                 clientname: 'konexa',
                 venue: 'Physical(internal)',
@@ -49,68 +52,58 @@ export default {
                 datetime: 'Thursday July 20, 2023 8:00 AM',
                 status: 'Done',
             },
-        ],
-    }),
-    computed:{
-         filteredEvents(){
-    let events = props.recents;
+]);
 
-    if(searchFilter.value !== ''){
-        
-        events = events.filter(event => event.transaction.toLowerCase().includes(searchFilter.value) || event.coTransactor.toLowerCase().includes(searchFilter.value) || event.status.toLowerCase().includes(searchFilter.value))
-    }
+const filteredEvents = computed(() => {
+  let events = recents.value;
 
-    // return props.events
-    return events
-},
-    },
-    methods: {
-        getStatusColor(status) {
-            switch (status) {
-                case 'Pending storage creation':
-                    return 'background-color: rgb(254, 249, 195); border-radius: 40px; width: 60%; padding: 10px;';
-                    
-                case 'Pending document upload':
-                    return 'background-color: rgb(254, 249, 195); border-radius: 40px;  width: 60%; padding: 10px;';
-                case 'Pending L&D verification':
-                    return 'background-color: rgb(254, 249, 195); border-radius: 40px;  width: 60%; padding: 10px;';
-                case 'Pending schedule':
-                    return 'background-color: rgb(254, 249, 195); border-radius: 40px;  width: 60%; padding: 10px;';
-                case 'Pending access to dataroom':
-                    return 'background-color: rgb(254, 249, 195); border-radius: 40px;  width: 60%; padding: 10px;';
-                case 'Done':
-                    return 'background-color: rgb(220, 252, 231); border-radius: 40px;  width: 60%; padding: 10px;';
-                  // default:
-                  //   return 'background-color: rgb(254, 249, 195); border-radius: 10px;  width: 60%; padding: 10px;';
-            }
-        },
-        getStatusIcon(status) {
-            switch (status) {
-                
-                case 'Pending storage creation':
-                    return 'background-color: #ffbf1a; display: inline-block; border-radius: 50%; padding: 5px;';
-                case 'Pending document upload':
-                    return 'background-color: #ffbf1a; display: inline-block; border-radius: 50%; padding: 5px;';
-                case 'Pending L&D verification':
-                    return 'background-color: #ffbf1a; display: inline-block; border-radius: 50%; padding: 5px;';
-                case 'Pending schedule':
-                    return 'background-color: #ffbf1a; display: inline-block; border-radius: 50%; padding: 5px;';
-                case 'Pending access to dataroom':
-                    return 'background-color: #ffbf1a; display: inline-block; border-radius: 50%; padding: 5px;';
-                case 'Done':
-                    return 'background-color: #47b65c; display: inline-block; border-radius: 50%; padding: 5px;';
-            }
-        },
-  
+  if (searchFilter.value !== '') {
+    events = events.filter(
+      (event) =>
+        event.transaction.toLowerCase().includes(searchFilter.value) ||
+        event.coTransactor.toLowerCase().includes(searchFilter.value) ||
+        event.status.toLowerCase().includes(searchFilter.value)
+    );
+  }
 
-    },
+  return events;
+});
 
-    return: {
-        page: 1,
-        search: '',
-    }
+const getStatusColor = (status) => {
+  switch (status) {
+    case 'Pending storage creation':
+    case 'Pending document upload':
+    case 'Pending L&D verification':
+    case 'Pending schedule':
+    case 'Pending access to dataroom':
+      return 'background-color: rgb(254, 249, 195); border-radius: 40px; width: 60%; padding: 10px;';
+
+    case 'Done':
+      return 'background-color: rgb(220, 252, 231); border-radius: 40px; width: 60%; padding: 10px;';
+
+    
+  }
 };
+
+const getStatusIcon = (status) => {
+  switch (status) {
+    case 'Pending storage creation':
+    case 'Pending document upload':
+    case 'Pending L&D verification':
+    case 'Pending schedule':
+    case 'Pending access to dataroom':
+      return 'background-color: #ffbf1a; display: inline-block; border-radius: 50%; padding: 5px;';
+
+    case 'Done':
+      return 'background-color: #47b65c; display: inline-block; border-radius: 50%; padding: 5px;';
+  }
+};
+
+const page = ref(1);
+const search = ref('');
+
 </script>
+
 <template>
   <v-card>
     <nav class="navbar navbar-expand-lg bg-light ">
@@ -206,7 +199,18 @@ export default {
                   </th>
                   <th class="text-left">
                     <div class="d-flex align-center gap-1">
-                      <span> Date & Time </span>
+                      <span> Date </span>
+
+                      <span class="d-flex flex-column align-center">
+                        <v-icon icon="mdi-chevron-up" size="x-small" class="mb-n1"></v-icon>
+                        <v-icon icon="mdi-chevron-down" size="x-small"></v-icon>
+                      </span>
+
+                    </div>
+                  </th>
+                  <th class="text-left">
+                    <div class="d-flex align-center gap-1">
+                      <span> Time </span>
 
                       <span class="d-flex flex-column align-center">
                         <v-icon icon="mdi-chevron-up" size="x-small" class="mb-n1"></v-icon>
@@ -229,11 +233,12 @@ export default {
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="item in recents" :key="item.name">
-                  <td>{{ item.dealid }}</td>
-                  <td>{{ item.clientname }}</td>
+                <tr v-for="item in events" :key="item.id">
+                  <td>{{ item.id }}</td>
+                  <td>{{ item.transaction }}</td>
                   <td>{{ item.venue }}</td>
-                  <td>{{ item.datetime }}</td>
+                  <td>{{ item.date }}</td>
+                  <td>{{ item.time }}</td>
                   <td>
 
                     <p class="status" :style="getStatusColor(item.status)">
@@ -331,9 +336,9 @@ export default {
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="item in recents" :key="item.name">
-                  <td>{{ item.dealid }}</td>
-                  <td>{{ item.clientname }}</td>
+                <tr v-for="item in events" :key="item.name">
+                  <td>{{ item.id }}</td>
+                  <td>{{ item.transaction }}</td>
                   <td>{{ item.venue }}</td>
                   <td>{{ item.datetime }}</td>
                   <td>
