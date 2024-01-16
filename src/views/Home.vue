@@ -233,7 +233,7 @@ const search = ref('');
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="item in events" :key="item.id">
+                <tr v-for="item in events" :key="item.id" @click="$router.push({ name: 'details', params: { id: item.id } })">
                   <td>{{ item.id }}</td>
                   <td>{{ item.transaction }}</td>
                   <td>{{ item.venue }}</td>
@@ -255,105 +255,17 @@ const search = ref('');
         </v-window-item>
 
         <v-window-item value="one" style="padding: 1rem; border-radius: none;">
-          <div class="tab-two" style="display: flex; margin: 10px 30px 20px 30px;">
-            <h2>
-              <b>Events</b>
-            </h2>
-            <v-spacer></v-spacer>
-            <router-link to="/createevent">
-              <v-btn style=" color: white; background-image: linear-gradient(to right, rgb(40, 126, 193), rgb(85, 187, 105)); margin: 2px 5px 20px 0; border-radius: 100px;" dark>
-                Create event
-              </v-btn>
-            </router-link>
-          </div>
+          <div class="container-fluid mt-3 justify-content-start">
+            <h3 style="color: var(--black, #000);font-size: 24px;font-family: Roboto;font-style: normal;font-weight: 500;line-height: 28.8px;">Settings</h3>
+            <p style="color: var(--grey-dark, #808080);font-size: 16px;font-family: Roboto;font-style: normal;font-weight: 400;line-height: 19.2px;">System Configuration</p>
 
-          <div class="eve">
-
-            <div class="top" style="display: flex; margin-bottom: 0;padding-bottom: 0;">
-              <v-combobox label="Filter by: All" density="compact" :items="['All', 'Pending storage creation', 'Pending document upload', 'Pending L&D verification', 'Done']" variant="solo"></v-combobox>
-              <v-spacer></v-spacer>
-              <v-text-field v-model="search" append-icon="mdi-magnify" density="compact" label="Search" style="" variant="solo" single-line hide-details width="30"></v-text-field>
+            <div class="list-group">
+              <div class="list-group-item" style="background:#F7F7F7;color: var(--black, #000);font-size: 20px;font-family: Roboto;font-style: normal;font-weight: 600;line-height: 24px;">
+                <h4>Roles</h4>
+              </div>
 
             </div>
-            <v-table style="border-radius:none">
-              <thead>
-                <tr>
-                  <th class="text-left">
-                    <div class="d-flex align-center gap-1">
-                      <span> Deal ID </span>
 
-                      <span class="d-flex flex-column align-center">
-                        <v-icon icon="mdi-chevron-up" size="x-small" class="mb-n1"></v-icon>
-                        <v-icon icon="mdi-chevron-down" size="x-small"></v-icon>
-                      </span>
-
-                    </div>
-                  </th>
-                  <th class="text-left">
-                    <div class="d-flex align-center gap-1">
-                      <span> Client Name </span>
-
-                      <span class="d-flex flex-column align-center">
-                        <v-icon icon="mdi-chevron-up" size="x-small" class="mb-n1"></v-icon>
-                        <v-icon icon="mdi-chevron-down" size="x-small"></v-icon>
-                      </span>
-
-                    </div>
-                  </th>
-                  <th class="text-left">
-                    <div class="d-flex align-center gap-1">
-                      <span> Venue </span>
-
-                      <span class="d-flex flex-column align-center">
-                        <v-icon icon="mdi-chevron-up" size="x-small" class="mb-n1"></v-icon>
-                        <v-icon icon="mdi-chevron-down" size="x-small"></v-icon>
-                      </span>
-
-                    </div>
-                  </th>
-                  <th class="text-left">
-                    <div class="d-flex align-center gap-1">
-                      <span> Date & Time </span>
-
-                      <span class="d-flex flex-column align-center">
-                        <v-icon icon="mdi-chevron-up" size="x-small" class="mb-n1"></v-icon>
-                        <v-icon icon="mdi-chevron-down" size="x-small"></v-icon>
-                      </span>
-
-                    </div>
-                  </th>
-                  <th class="text-left">
-                    <div class="d-flex align-center gap-1">
-                      <span> Status </span>
-
-                      <span class="d-flex flex-column align-center">
-                        <v-icon icon="mdi-chevron-up" size="x-small" class="mb-n1"></v-icon>
-                        <v-icon icon="mdi-chevron-down" size="x-small"></v-icon>
-                      </span>
-
-                    </div>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="item in events" :key="item.name">
-                  <td>{{ item.id }}</td>
-                  <td>{{ item.transaction }}</td>
-                  <td>{{ item.venue }}</td>
-                  <td>{{ item.datetime }}</td>
-                  <td>
-                    <p class="status" :style="getStatusColor(item.status)">
-                      <i class="dot" :style="getStatusIcon(item.status)"></i>
-                      {{ item.status }}
-                    </p>
-                  </td>
-                </tr>
-              </tbody>
-            </v-table>
-
-          </div>
-          <div class="text-center">
-            <v-pagination v-model="page" :length="15" :total-visible="7"></v-pagination>
           </div>
         </v-window-item>
 
@@ -390,6 +302,14 @@ const search = ref('');
   padding-left: 0px;
   padding-bottom: 0px;
   justify-content: space-around;
+}
+
+.main {
+  background: #fafafb;
+  height: 160vh;
+  width: 100vw;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .greet {
@@ -526,6 +446,25 @@ tr {
 }
 input {
   height: 50px;
+}
+.list-group-item {
+  box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.05);
+}
+
+input[type='text'] {
+  width: 230px;
+  height: 50px;
+  padding: 12px 0px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 0.5px solid #dfdfdf;
+  color: var(--grey-dark, #808080);
+
+  font-size: 12px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14.4px;
 }
 </style>
   
