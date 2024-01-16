@@ -64,6 +64,19 @@
         </div>
       </div>
       <hr style="width: 600px;height: 2px;background: #808080;">
+      <div class="request">
+        <div class="img">
+          <img src="../assets/invites.png" alt="feedback">
+        </div>
+        <div class="r-text">
+          <h4>Request feedback</h4>
+          <p>Get feedback from participants of event</p>
+        </div>
+        <div class="btn">
+          <button data-bs-toggle="modal" @click="$router.push('formresponse')" data-bs-target="" type="button">Event Feedback</button>
+        </div>
+      </div>
+      <hr style="width: 600px;height: 2px;background: #808080;">
       <div class="table">
         <h3>Feedback response</h3>
         <TableThree />
