@@ -1,76 +1,3 @@
-<!-- <script>
-    import NavBar from '../components/NavBar.vue'
-    import Tab from '../components/Tab/Tab.vue'
-    import { useEventsStore } from "@/store/events";
-
- export default {
-  components:NavBar,Tab,
-  setup() {
-    const store = useEventsStore();
-    const events = store.events;
-
-    
-    return {
-      events,
-    
-    };
-  },
-  data() {
-    return {
-      textToCopy: 'https://www.infracredit_storage/app/public.link',
-      copiedMessage: '',
-      user: {
-        checkbox: false,
-      },
-    };
-  },
-  computed: {
-    isFormValid() {
-      return (
-        this.user.checkbox !== false 
-      );
-    },
-    detailsId(){
-      return parseInt(this.$route.params.id)
-    },
-    detail(){
-      return this.events.find(event => event.id === this.detailsId)
-    }
-  },
-  methods: {
-    copyToClipboard() {
-      const textarea = document.createElement('textarea');
-      textarea.value = this.textToCopy;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
-
-      this.copiedMessage = 'Copied!';
-      setTimeout(() => {
-        this.copiedMessage = '';
-      }, 2000); 
-    },
-     changeRoute(e) {
-    this.$router.push("/" + e.target.value);
-  },
-  toggleCheckbox() {
-      this.checkbox = !this.checkbox
-      this.$emit('setCheckboxVal', this.checkbox)
-  },
-  save() {
-      if (this.isFormValid) {
-        console.log('User Data Saved:', this.user);
-      }
-    },
-    proceed() {
-      if (this.isFormValid) {
-        console.log('User Data Saved:', this.user.checkbox);
-      }
-    },
-  },
-};
-</script> -->
 <script setup>
 import NavBar from '../components/NavBar.vue';
 import Tab from '../components/Tab/Tab.vue';
@@ -85,14 +12,6 @@ const router = useRouter();
 
 const store = useEventsStore();
 const events = store.events;
-
-// const data = {
-//   textToCopy: 'https://www.infracredit_storage/app/public.link',
-//   copiedMessage: '',
-//   user: {
-//     checkbox: false,
-//   },
-// };
 
 const data = reactive({
   textToCopy: 'https://www.infracredit_storage/app/public.link',
@@ -114,8 +33,9 @@ const toggleCheckbox = () => {
 const isFormValid = computed(() => {
   return data.user.checkbox !== false;
 });
-const detailsId = computed(() => parseInt($route.params.id));
-const detail = computed(() => events.value.find(event => event.id === detailsId.value));
+// const detailsId = computed(() => parseInt($route.params.id));
+// const detail = computed(() => events.value.find(event => event.id === detailsId.value));
+
 
 const copyToClipboard = () => {
   const textarea = document.createElement('textarea');
@@ -135,21 +55,6 @@ const changeRoute = (e) => {
   $router.push("/" + e.target.value);
 };
 
-// const toggleCheckbox = () => {
-//   data.checkbox = !data.checkbox;
-//   $emit('setCheckboxVal', data.checkbox);
-//   if (data.user) {
-//     data.user.checkbox = !data.user.checkbox;
-//     $emit('setCheckboxVal', data.user.checkbox);
-//   }
-// };
-
-const save = () => {
-  if (isFormValid.value) {
-    console.log('User Data Saved:', data.user);
-  }
-};
-
 const proceed = () => {
   if (isFormValid.value) {
     console.log('User Data Saved:', data.user.checkbox);
@@ -158,8 +63,9 @@ const proceed = () => {
 
 const proceedAndNavigate = () => {
   proceed();
-  detail.value.status = 'Pending L&D verification';
-  router.push('/eventss');
+  // detail.value.status = 'Pending L&D verification';
+  router.push('/confirmevent');
+  
 };
 </script>
 
@@ -175,44 +81,53 @@ const proceedAndNavigate = () => {
           <div class="trans">
             <caption>Transactions</caption>
             <select class="form-select" aria-label="Default select example">
-              <option selected>{{detail.transaction}}</option>
+              <!-- <option selected>{{detail.transaction}}</option> -->
+              <option selected>#CP4526 Lagos Free Zone Company</option>
+
             </select>
           </div>
           <div class="trans">
             <caption>Venue</caption>
             <select class="form-select" aria-label="Default select example">
-              <option selected>{{detail.venue}}</option>
+              <!-- <option selected>{{detail.venue}}</option> -->
+              <option selected>Physical(Internal)</option>
             </select>
 
           </div>
           <div class="address">
             <div class="one">
               <caption>Address</caption>
-              <div class="dvalue">{{detail.address}}</div>
+              <!-- <div class="dvalue">Allen</div> -->
+              <input type="text" placeholder="Allen">
             </div>
             <div class="one">
               <caption>Address2</caption>
-              <div class="dvalue">{{detail.addressTwo}}</div>
+              <!-- <div class="dvalue">Jones</div> -->
+              <input type="text" placeholder="Jones">
             </div>
           </div>
           <div class="address">
             <div class="one">
               <caption>State</caption>
-              <div class="dvalue">{{detail.state}}</div>
+              <!-- <div class="dvalue">Lagos</div> -->
+              <input type="text" placeholder="Lagos">
             </div>
             <div class="one">
               <caption>Country</caption>
-              <div class="dvalue">{{detail.country}}</div>
+              <!-- <div class="dvalue">Nigeria</div> -->
+              <input type="text" placeholder="Nigeria">
             </div>
           </div>
           <div class="address">
             <div class="one">
               <caption>Date</caption>
-              <div class="dvalue">{{detail.date}}</div>
+              <!-- <div class="dvalue">2024-01-15</div> -->
+              <input id="date" name="date" placeholder="2024-01-15">
             </div>
             <div class="one">
               <caption>Time</caption>
-              <div class="dvalue">{{detail.time}}</div>
+              <!-- <div class="dvalue">14:59</div> -->
+              <input id="appt" name="appt" placeholder="14:59">
             </div>
           </div>
           <div class="trans">

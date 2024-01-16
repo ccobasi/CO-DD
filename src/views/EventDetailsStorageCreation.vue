@@ -37,11 +37,13 @@ const proceed = () => {
   }
 };
 
-const proceedAndNavigate = () => {
+const proceedAndNavigate = (selectedEvent) => {
   proceed();
+ 
   detail.value.status = 'Pending document upload';
-  router.push('/eventss');
-};
+  router.push({ name: 'UploadDetails', params: { id: detail.value.id } });
+ };
+
 
 const changeRoute = (e) => {
   router.push("/" + e.target.value);
@@ -152,6 +154,8 @@ onMounted(() => {
           </div>
           <div class="create">
             <button type="submit" class="createBtn" :disabled="!isFormValid" @click="proceedAndNavigate">
+              <!-- <button type="submit" class="createBtn" :disabled="!isFormValid" :key="detail.value.id" @click="() => proceedAndNavigate(detail.value)"> -->
+
               <caption>Notify transactor</caption>
             </button>
 

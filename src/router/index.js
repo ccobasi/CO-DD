@@ -8,8 +8,6 @@ import UploadDocument from '../views/UploadDocument.vue'
 import ConfirmEventDocument from '../views/ConfirmEventDocument.vue'
 import ScheduleDate from '../views/ScheduleDate.vue'
 import Invitation from '../views/Invitation.vue'
-import InvitationTwo from '../views/InvitationTwo.vue'
-import InvitationThree from '../views/InvitationThree.vue'
 import InvestorDecision from '../views/InvestorDecision.vue'
 import Access from '../views/Access.vue'
 import Agenda from '../views/Agenda.vue'
@@ -20,7 +18,6 @@ import IT from '../views/IT.vue'
 import FormInvite from '../views/FormInvite.vue'
 import FormResponse from '../views/FormResponse.vue'
 import Login from '../views/Login.vue'
-import Demo from '../views/Demo.vue'
 import Event from '../views/Event.vue'
 import AdminLog from '../views/AdminLog.vue'
 
@@ -42,13 +39,13 @@ const router = createRouter({
     },
      {
       path: '/events',
-      name: 'events',
+      name: 'Events',
       component: Events,
     
     },
     {
       path: '/eventss',
-      name: 'events',
+      name: 'Events',
       component: Eventss,
     
     },
@@ -60,19 +57,19 @@ const router = createRouter({
     },
     {
       path: '/createevent',
-      name: 'create event',
+      name: 'Create event',
       component: CreateEvent,
      
     },
     {
       path: '/virtual',
-      name: 'virtual',
+      name: 'Virtual',
       component: Virtual,
      
     },
     {
       path: '/success',
-      name: 'success page',
+      name: 'Success Page',
       component: Success,
      
     },
@@ -83,56 +80,44 @@ const router = createRouter({
      
     },
     {
-      path: '/uploaddocument',
-      name: 'event details upload document',
+      path: '/uploaddocument/:id',
+      name: 'UploadDetails',
       component: UploadDocument,
      
     },
     {
       path: '/confirmevent',
-      name: 'confirm event document',
+      name: 'Confirm event document',
       component: ConfirmEventDocument,
      
     },
     {
       path: '/scheduledate',
-      name: 'schedule date',
+      name: 'Schedule date',
       component: ScheduleDate,
      
     },
     {
       path: '/invitation',
-      name: 'event details invitation',
+      name: 'Event details invitation',
       component: Invitation,
      
     },
     {
-      path: '/invitationtwo',
-      name: 'event details invitation two',
-      component: InvitationTwo,
-     
-    },
-    {
-      path: '/invitationthree',
-      name: 'event details invitation three',
-      component: InvitationThree,
-     
-    },
-    {
       path: '/investordecision',
-      name: 'event details investordecision',
+      name: 'Event details investordecision',
       component: InvestorDecision,
      
     },
     {
       path: '/access',
-      name: 'event details access',
+      name: 'Event details access',
       component: Access,
      
     },
     {
       path: '/agenda',
-      name: 'event details agenda',
+      name: 'Event details agenda',
       component: Agenda,
      
     },
@@ -144,7 +129,7 @@ const router = createRouter({
     },
     {
       path: '/forminvite',
-      name: 'event form',
+      name: 'Event form',
       component: FormInvite,
      
     },
@@ -155,20 +140,14 @@ const router = createRouter({
      
     },
     {
-      path: '/demo',
-      name: 'demo',
-      component: Demo,
-     
-    },
-    {
       path: '/event',
-      name: 'event',
+      name: 'Event',
       component: Event,
      
     },
     {
       path: '/adminlog',
-      name: 'admin log',
+      name: 'Admin log',
       component: AdminLog,
      
     },
