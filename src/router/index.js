@@ -86,14 +86,14 @@ const router = createRouter({
      
     },
     {
-      path: '/confirmevent',
-      name: 'Confirm event document',
+      path: '/confirmevent/:id',
+      name: 'ConfirmDetails',
       component: ConfirmEventDocument,
      
     },
     {
-      path: '/scheduledate',
-      name: 'Schedule date',
+      path: '/scheduledate/:id',
+      name: 'ScheduleDetails',
       component: ScheduleDate,
      
     },

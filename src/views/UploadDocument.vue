@@ -2,7 +2,7 @@
 import NavBar from '../components/NavBar.vue';
 import Tab from '../components/Tab/Tab.vue';
 import { useEventsStore } from "@/store/events";
-import { computed, reactive, getCurrentInstance } from 'vue';
+import { computed, reactive, getCurrentInstance, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const { appContext } = getCurrentInstance();
@@ -12,6 +12,7 @@ const router = useRouter();
 
 const store = useEventsStore();
 const events = store.events;
+console.log(events)
 
 const data = reactive({
   textToCopy: 'https://www.infracredit_storage/app/public.link',
@@ -33,8 +34,9 @@ const toggleCheckbox = () => {
 const isFormValid = computed(() => {
   return data.user.checkbox !== false;
 });
-// const detailsId = computed(() => parseInt($route.params.id));
-// const detail = computed(() => events.value.find(event => event.id === detailsId.value));
+
+const detailsId = ref(parseInt($route.params.id));
+const detail = computed(() => events.find(event => event.id === detailsId.value));
 
 
 const copyToClipboard = () => {
@@ -51,20 +53,20 @@ const copyToClipboard = () => {
   }, 2000);
 };
 
-const changeRoute = (e) => {
-  $router.push("/" + e.target.value);
-};
-
 const proceed = () => {
   if (isFormValid.value) {
+    detail.value.status = 'Pending L&D verification';
     console.log('User Data Saved:', data.user.checkbox);
   }
-};
-
+}
 const proceedAndNavigate = () => {
   proceed();
-  // detail.value.status = 'Pending L&D verification';
-  router.push('/confirmevent');
+  if (detail.value) { 
+    detail.value.status = 'Pending L&D verification';
+    router.push({ name: 'ConfirmDetails', params: { id: detail.value.id } });
+  } else {
+    console.error('Detail is undefined');
+  }
   
 };
 </script>
@@ -81,59 +83,58 @@ const proceedAndNavigate = () => {
           <div class="trans">
             <caption>Transactions</caption>
             <select class="form-select" aria-label="Default select example">
-              <!-- <option selected>{{detail.transaction}}</option> -->
-              <option selected>#CP4526 Lagos Free Zone Company</option>
+              <option selected>{{detail.transaction}}</option>
 
             </select>
           </div>
           <div class="trans">
             <caption>Venue</caption>
             <select class="form-select" aria-label="Default select example">
-              <!-- <option selected>{{detail.venue}}</option> -->
-              <option selected>Physical(Internal)</option>
+              <option selected>{{detail.venue}}</option>
+
             </select>
 
           </div>
           <div class="address">
             <div class="one">
               <caption>Address</caption>
-              <!-- <div class="dvalue">Allen</div> -->
-              <input type="text" placeholder="Allen">
+              <div class="dvalue">{{detail.address}}</div>
+
             </div>
             <div class="one">
               <caption>Address2</caption>
-              <!-- <div class="dvalue">Jones</div> -->
-              <input type="text" placeholder="Jones">
+              <div class="dvalue">{{detail.addressTwo}}</div>
+
             </div>
           </div>
           <div class="address">
             <div class="one">
               <caption>State</caption>
-              <!-- <div class="dvalue">Lagos</div> -->
-              <input type="text" placeholder="Lagos">
+              <div class="dvalue">{{detail.state}}</div>
+
             </div>
             <div class="one">
               <caption>Country</caption>
-              <!-- <div class="dvalue">Nigeria</div> -->
-              <input type="text" placeholder="Nigeria">
+              <div class="dvalue">{{detail.country}}</div>
+
             </div>
           </div>
           <div class="address">
             <div class="one">
               <caption>Date</caption>
-              <!-- <div class="dvalue">2024-01-15</div> -->
-              <input id="date" name="date" placeholder="2024-01-15">
+              <div class="dvalue">{{detail.date}}</div>
+
             </div>
             <div class="one">
               <caption>Time</caption>
-              <!-- <div class="dvalue">14:59</div> -->
-              <input id="appt" name="appt" placeholder="14:59">
+              <div class="dvalue">{{detail.time}}</div>
+
             </div>
           </div>
           <div class="trans">
             <caption>Time Zone</caption>
             <select class="form-select" aria-label="Default select example">
-              <option selected>(GMT +01:00)Africa West Central</option>
+              <option selected>(GMT +01:00){{detail.timeZone}}</option>
               <option value="1">(GMT +00:00)Greenwich(London)</option>
               <option value="2">(GMT +01:00)Africa West Central</option>
               <option value="3">(GMT +01:00)Europe Central</option>
@@ -148,7 +149,7 @@ const proceedAndNavigate = () => {
           <div class="storage">
             <caption>Storage Link</caption>
             <div class="input">
-              <input v-model="textToCopy" readonly />
+              <input v-model="textToCopy" placeholder="https://www.infracredit_storage/app/public.link" readonly />
               <div class="copy" @click="copyToClipboard">
                 <h6>Copy<img src="../assets/frame.png" alt="copy"></h6>
                 <p>{{ copiedMessage }}</p>
@@ -246,7 +247,8 @@ caption {
   gap: 2px;
   align-self: stretch;
 }
-input {
+input,
+.dvalue {
   display: flex;
   padding: 12.5px 14px;
   align-items: center;

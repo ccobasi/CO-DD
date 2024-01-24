@@ -9,6 +9,9 @@ export const useEventsStore = defineStore('events', {
     getEvents() {
       return this.events;
     },
+     getEventById(id) {
+      return this.events.find(event => event.id === id);
+    },
   },
   actions: {
     addEvent(transaction, venue, coTransactor, address, addressTwo, state, country, date, time,timeZone, status) {

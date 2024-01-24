@@ -1,77 +1,57 @@
-<script>
-    import NavBar from '../components/NavBar.vue'
+<script setup>
+import NavBar from '../components/NavBar.vue';
+import { ref, computed, getCurrentInstance } from 'vue';
+import { useEventsStore } from "@/store/events";
+import { useRouter } from 'vue-router';
 
-     export default {
-  components:NavBar,
-  // data() {
-  //   return {
-  //     textToCopy: 'https://www.infracredit_storage/app/public.link', // Replace with the text you want to copy
-  //     copiedMessage: '',
-  //   };
-  // },
-  // methods: {
-  //   copyToClipboard() {
-  //     const textarea = document.createElement('textarea');
-  //     textarea.value = this.textToCopy;
-  //     document.body.appendChild(textarea);
-  //     textarea.select();
-  //     document.execCommand('copy');
-  //     document.body.removeChild(textarea);
+const { appContext } = getCurrentInstance();
+const $route = appContext.config.globalProperties.$route;
+const router = useRouter();
+const store = useEventsStore();
+const events = store.events;
 
-  //     this.copiedMessage = 'Copied!';
-  //     setTimeout(() => {
-  //       this.copiedMessage = '';
-  //     }, 2000); // Clear the copied message after 2 seconds
-  //   },
-  // },
-  data() {
-    return {
-      textToCopy: 'https://www.infracredit_storage/app/public.link', // Replace with the text you want to copy
-      copiedMessage: '',
-      user: {
-        checkbox: false,
-      },
-    };
-  },
-  computed: {
-    isFormValid() {
-      return (
-        this.user.checkbox !== false 
-      );
-    },
-  },
-  methods: {
-    copyToClipboard() {
-      const textarea = document.createElement('textarea');
-      textarea.value = this.textToCopy;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
+const textToCopy = 'https://www.infracredit_storage/app/public.link';
+let copiedMessage = '';
+const user = ref({
+  checkbox: false,
+});
 
-      this.copiedMessage = 'Copied!';
-      setTimeout(() => {
-        this.copiedMessage = '';
-      }, 2000); // Clear the copied message after 2 seconds
-    },
-     changeRoute(e) {
-    this.$router.push("/" + e.target.value);
-  },
-  toggleCheckbox() {
-      this.checkbox = !this.checkbox
-      this.$emit('setCheckboxVal', this.checkbox)
-  },
-  save() {
-      if (this.isFormValid) {
-        console.log('User Data Saved:', this.user);
-      }
-    },
-    proceed() {
-      if (this.isFormValid) {
-        console.log('User Data Saved:', this.user.checkbox);
-      }
-    },
-  },
+const isFormValid = computed(() => user.value.checkbox !== false);
+
+const copyToClipboard = () => {
+  const textarea = document.createElement('textarea');
+  textarea.value = textToCopy;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textarea);
+
+  copiedMessage = 'Copied!';
+  setTimeout(() => {
+    copiedMessage = '';
+  }, 2000);
+};
+
+const detailsId = ref(parseInt($route.params.id));
+const detail = computed(() => events.find(event => event.id === detailsId.value));
+
+const toggleCheckbox = () => {
+  user.value.checkbox = !user.value.checkbox;
+};
+
+const save = () => {
+  if (isFormValid.value) {
+    console.log('User Data Saved:', user.value);
+  }
+};
+
+const proceedAndNavigate = () => {
+  if (isFormValid.value) {
+    detail.value.status = 'Pending schedule';
+    router.push({ name: 'ScheduleDetails', params: { id: detail.value.id } });
+  } else {
+    console.error('User checkbox is not checked');
+  }
 };
 </script>
 
@@ -86,7 +66,7 @@
           <div class="trans">
             <caption>Transactions</caption>
             <select class="form-select" aria-label="Default select example">
-              <option selected>#CP4526-konexa</option>
+              <option selected>{{detail.transaction}}</option>
               <option value="1">#CP4526-Lagos Free Zone Company</option>
               <option value="2">#CP4526-konexa</option>
               <option value="3">#CP4526-Banner Energy Limited</option>
@@ -98,7 +78,7 @@
           <div class="trans">
             <caption>Venue</caption>
             <select class="form-select" aria-label="Default select example">
-              <option selected>Physical(External)</option>
+              <option selected>{{detail.venue}}</option>
               <option value="1">Physical(Internal)</option>
               <option value="2">Physical(External)</option>
               <option value="3">Virtual</option>
@@ -108,41 +88,38 @@
           <div class="address">
             <div class="one">
               <caption>Address</caption>
-              <input type="text" placeholder="Allen Avenue">
+              <div class="dvalue">{{detail.address}}</div>
             </div>
             <div class="one">
               <caption>Address2</caption>
-              <input type="text" placeholder="Ikeja">
+              <div class="dvalue">{{detail.addressTwo}}</div>
             </div>
           </div>
           <div class="address">
             <div class="one">
               <caption>State</caption>
-              <input type="text" placeholder="Lagos">
+              <div class="dvalue">{{detail.state}}</div>
             </div>
             <div class="one">
               <caption>Country</caption>
-              <input type="text" placeholder="Nigeria">
+              <div class="dvalue">{{detail.country}}</div>
             </div>
           </div>
           <div class="address">
             <div class="one">
               <caption>Date</caption>
-              <!-- <input type="date" id="date" name="date"> -->
+              <div class="dvalue">{{detail.date}}</div>
 
-              <input id="date" name="date" placeholder="03/10/2023">
             </div>
             <div class="one">
               <caption>Time</caption>
-              <!-- <input type="time" id="appt" name="appt"> -->
-
-              <input id="appt" name="appt" placeholder="4:54 PM">
+              <div class="dvalue">{{detail.time}}</div>
             </div>
           </div>
           <div class="trans">
             <caption>Time Zone</caption>
             <select class="form-select" aria-label="Default select example">
-              <option selected>(GMT +01:00)Africa West Central</option>
+              <option selected>{{detail.timeZone}}</option>
               <option value="1">(GMT +00:00)Greenwich(London)</option>
               <option value="2">(GMT +01:00)Africa West Central</option>
               <option value="3">(GMT +01:00)Europe Central</option>
@@ -180,7 +157,7 @@
 
           </div>
           <div class="create">
-            <button class="createBtn" :disabled="!isFormValid" @click="$router.push('scheduledate')">
+            <button class="createBtn" :disabled="!isFormValid" @click="proceedAndNavigate">
               <caption>Proceed</caption>
             </button>
           </div>
@@ -256,7 +233,8 @@ caption {
   gap: 2px;
   align-self: stretch;
 }
-input {
+input,
+.dvalue {
   display: flex;
   padding: 12.5px 14px;
   align-items: center;

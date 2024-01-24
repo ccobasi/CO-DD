@@ -18,7 +18,7 @@ const user = ref({
 const isFormValid = computed(() => user.value.checkbox !== false);
 const detailsId = computed(() => parseInt($route.params.id));
 const detail = computed(() => events.value.find(event => event.id === detailsId.value));
-
+// const detail = computed(() => store.getEventById(detailsId.value));
 
 const toggleCheckbox = () => {
   user.value.checkbox = !user.value.checkbox;
@@ -43,11 +43,6 @@ const proceedAndNavigate = (selectedEvent) => {
   detail.value.status = 'Pending document upload';
   router.push({ name: 'UploadDetails', params: { id: detail.value.id } });
  };
-
-
-const changeRoute = (e) => {
-  router.push("/" + e.target.value);
-};
 
 const handleSubmit = () => {
   
