@@ -106,7 +106,12 @@
 
         </div>
         <hr style="width: 600px;height: 2px;background: #808080;">
+        <div class="agenda mt-2">
 
+          <button class="createBtn" style="margin-left:480px" data-bs-toggle="modal" data-bs-target="#myModal" type="button">
+            <caption>Send Agenda</caption>
+          </button>
+        </div>
         <div class="agenda">
           <img src="../assets/agenda.png" alt="agenda">
           <div class="text">
@@ -129,12 +134,7 @@
           </div>
 
         </div>
-        <div class="agenda mt-2">
 
-          <button class="createBtn" style="margin-left:480px" data-bs-toggle="modal" data-bs-target="#myModal" type="button">
-            <caption>Send Agenda</caption>
-          </button>
-        </div>
         <hr style="width: 600px;height: 2px;background: #808080;">
         <div class="create">
           <button class="createBtn" :disabled="!isFormValid" @click="$router.push('feedback')">

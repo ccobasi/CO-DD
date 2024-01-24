@@ -69,7 +69,7 @@
           <img src="../assets/invites.png" alt="feedback">
         </div>
         <div class="r-text">
-          <h4>Request feedback</h4>
+          <h4>Request Site Visit</h4>
           <p>Get feedback from participants of event</p>
         </div>
         <div class="btn">

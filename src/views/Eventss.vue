@@ -42,50 +42,6 @@ const getStatusColor = (status) => {
                     return 'background-color: #47b65c; display: inline-block; border-radius: 50%; padding: 5px;';
             }
         }
-const items = [
-            {
-                dealid: '#CP4526',
-                clientname: 'Lagos Free Zone Company',
-                venue: 'Virtual',
-                datetime: 'Thursday October 12, 2023 10:36 AM',
-                status: 'Pending storage creation',
-            },
-            {
-                dealid: '#CP4526',
-                clientname: 'konexa',
-                venue: 'Physical(internal)',
-                datetime: 'Thursday October 12, 2023 10:36 AM',
-                status: 'Pending document upload',
-            },
-            {
-                dealid: '#CP4526',
-                clientname: 'Banner Energy Limited',
-                venue: 'Physical(external)',
-                datetime: 'Thursday July 20, 2023 8:00 AM',
-                status: 'Pending L&D verification',
-            },
-            {
-                dealid: '#CP4526',
-                clientname: 'Seplat',
-                venue: 'Virtual',
-                datetime: 'Thursday July 20, 2023 8:00 AM',
-                status: 'Pending schedule',
-            },
-            {
-                dealid: '#CP4526',
-                clientname: '9mobile',
-                venue: 'Virtual',
-                datetime: 'Thursday July 20, 2023 8:00 AM',
-                status: 'Pending access to dataroom',
-            },
-            {
-                dealid: '#CP4526',
-                clientname: 'Total',
-                venue: 'Physical(internal)',
-                datetime: 'Thursday July 20, 2023 8:00 AM',
-                status: 'Done',
-            },
-        ]
   
 </script>
 

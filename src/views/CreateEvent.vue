@@ -2,10 +2,13 @@
   import NavBar from '../components/NavBar.vue'
   import { ref, onMounted, computed, watch, reactive } from 'vue'
   import {useEventsStore} from "@/store/events"
+ import { useRoute, useRouter } from 'vue-router';
   
       
 const store = useEventsStore();
 console.log(store.events);
+const route = useRoute();
+const router = useRouter();
 
 const addEvent = () => {
   if (transaction.value.trim() !== '' || venue.value.trim() !== '' || coTransactor.value.trim() !== ''
@@ -16,7 +19,7 @@ const addEvent = () => {
   
   }
 };
-// const updateId = computed(() => store.$state.id);
+
 
 const event = ref([])
   const transaction = ref('')
@@ -35,8 +38,9 @@ const handleSubmit = () => {
   addEvent();
   console.log("Event added")
   console.log(store.events)
-  
+  router.push('/success')
 };
+
 
 onMounted(() => {
   store.fetchEvents();
@@ -60,7 +64,7 @@ onMounted(() => {
 
     </div>
     <div class="form">
-      <form method="post" action="" @submit.prevent="handleSubmit">
+      <form @submit.prevent="handleSubmit">
         <div class="trans">
           <caption>Transactions</caption>
           <select class="form-select" aria-label="Default select example" v-on:change="onSelectChange(e)" v-model="transaction">
@@ -139,7 +143,7 @@ onMounted(() => {
             <caption>Cancel</caption>
           </button>
 
-          <button type="submit" value="Add event" class="createBtn" @click="$router.push('/success')">
+          <button type="submit" value="Add event" class="createBtn">
 
             <caption>Create Event</caption>
           </button>

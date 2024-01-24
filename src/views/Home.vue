@@ -2,6 +2,7 @@
 import AdminLog from '../views/AdminLog.vue';
 import { ref, computed } from 'vue';
 import { useEventsStore } from "@/store/events";
+import FilterTable from '../components/Tables/FilterTable.vue'
 
 
 const store = useEventsStore();
@@ -9,50 +10,6 @@ const events = store.events;
 console.log(events)
 
 const tab = ref(null);
-const recents = ref([
-  {
-    dealid: '#CP4526',
-    clientname: 'Lagos Free Zone Company',
-    venue: 'Virtual',
-    datetime: 'Thursday July 20, 2023 8:00 AM',
-    status: 'Pending storage creation',
-  },
-  {
-                dealid: '#CP4526',
-                clientname: 'konexa',
-                venue: 'Physical(internal)',
-                datetime: 'Thursday July 20, 2023 8:00 AM',
-                status: 'Pending document upload',
-            },
-            {
-                dealid: '#CP4526',
-                clientname: 'Banner Energy Limited',
-                venue: 'Physical(external)',
-                datetime: 'Thursday July 20, 2023 8:00 AM',
-                status: 'Pending L&D verification',
-            },
-            {
-                dealid: '#CP4526',
-                clientname: 'Seplat',
-                venue: 'Virtual',
-                datetime: 'Thursday July 20, 2023 8:00 AM',
-                status: 'Pending schedule',
-            },
-            {
-                dealid: '#CP4526',
-                clientname: '9mobile',
-                venue: 'Virtual',
-                datetime: 'Thursday July 20, 2023 8:00 AM',
-                status: 'Pending access to dataroom',
-            },
-            {
-                dealid: '#CP4526',
-                clientname: 'Total',
-                venue: 'Physical(internal)',
-                datetime: 'Thursday July 20, 2023 8:00 AM',
-                status: 'Done',
-            },
-]);
 
 const filteredEvents = computed(() => {
   let events = recents.value;
@@ -162,7 +119,8 @@ const search = ref('');
           </div>
           <div class="admin">
             <v-table>
-              <thead>
+              <FilterTable :events="events" />
+              <!-- <thead>
                 <tr>
                   <th class="text-left">
                     <div class="d-flex align-center gap-1">
@@ -248,7 +206,7 @@ const search = ref('');
                     </p>
                   </td>
                 </tr>
-              </tbody>
+              </tbody> -->
             </v-table>
 
           </div>
