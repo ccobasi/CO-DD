@@ -1,10 +1,8 @@
 <script setup>
-    import NavBar from '../components/NavBar.vue'
     import TableThree from '../components/Tables/TableThree.vue'
 </script>
 
 <template>
-  <NavBar />
 
   <body>
     <!-- The Modal -->

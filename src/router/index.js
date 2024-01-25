@@ -20,7 +20,7 @@ import FormResponse from '../views/FormResponse.vue'
 import Login from '../views/Login.vue'
 import Event from '../views/Event.vue'
 import AdminLog from '../views/AdminLog.vue'
-
+import UserRole from '../views/UserRole.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -149,6 +149,12 @@ const router = createRouter({
       path: '/adminlog',
       name: 'Admin log',
       component: AdminLog,
+     
+    },
+    {
+      path: '/userrole',
+      name: 'User Role',
+      component: UserRole,
      
     },
   ]

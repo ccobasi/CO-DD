@@ -1,7 +1,8 @@
 <script setup>
-import AdminLog from '../views/AdminLog.vue';
-import { ref, computed } from 'vue';
+import UserRole from '../views/UserRole.vue';
+import { ref, computed, onMounted } from 'vue';
 import { useEventsStore } from "@/store/events";
+import { useUsersStore } from "@/store/users";
 import FilterTable from '../components/Tables/FilterTable.vue'
 
 
@@ -9,6 +10,12 @@ const store = useEventsStore();
 const events = store.events;
 console.log(events)
 
+
+ 
+
+ const onSelectChange = () => {
+  selectedValue.value = selectedValue.value
+}
 const tab = ref(null);
 
 const filteredEvents = computed(() => {
@@ -59,6 +66,7 @@ const getStatusIcon = (status) => {
 const page = ref(1);
 const search = ref('');
 
+
 </script>
 
 <template>
@@ -69,7 +77,7 @@ const search = ref('');
         <v-tabs v-model="tab" style="border-bottom:none; margin-left: 34%;">
           <v-tab value="two" style="color:#227CBF;font-family: Roboto;font-size: 16px;font-style: normal;font-weight: 400;line-height: 19.2px;">Home</v-tab>
           <v-tab value="one" style="color:#808080;font-family: Roboto;font-size: 16px;font-style: normal;font-weight: 400;line-height: 19.2px;">Settings</v-tab>
-          <v-tab to="/adminlog" value="three" style="color:#808080;font-family: Roboto;font-size: 16px;font-style: normal;font-weight: 400;line-height: 19.2px;">Audit Log</v-tab>
+
         </v-tabs>
         <v-spacer></v-spacer>
         <v-badge content=2 color="#227cbf" style="margin:10px 20px; ">
@@ -120,93 +128,6 @@ const search = ref('');
           <div class="admin">
             <v-table>
               <FilterTable :events="events" />
-              <!-- <thead>
-                <tr>
-                  <th class="text-left">
-                    <div class="d-flex align-center gap-1">
-                      <span> Deal ID </span>
-
-                      <span class="d-flex flex-column align-center">
-                        <v-icon icon="mdi-chevron-up" size="x-small" class="mb-n1"></v-icon>
-                        <v-icon icon="mdi-chevron-down" size="x-small"></v-icon>
-                      </span>
-
-                    </div>
-                  </th>
-                  <th class="text-left">
-                    <div class="d-flex align-center gap-1">
-                      <span> Client Name </span>
-
-                      <span class="d-flex flex-column align-center">
-                        <v-icon icon="mdi-chevron-up" size="x-small" class="mb-n1"></v-icon>
-                        <v-icon icon="mdi-chevron-down" size="x-small"></v-icon>
-                      </span>
-
-                    </div>
-                  </th>
-                  <th class="text-left">
-                    <div class="d-flex align-center gap-1">
-                      <span> Venue </span>
-
-                      <span class="d-flex flex-column align-center">
-                        <v-icon icon="mdi-chevron-up" size="x-small" class="mb-n1"></v-icon>
-                        <v-icon icon="mdi-chevron-down" size="x-small"></v-icon>
-                      </span>
-
-                    </div>
-                  </th>
-                  <th class="text-left">
-                    <div class="d-flex align-center gap-1">
-                      <span> Date </span>
-
-                      <span class="d-flex flex-column align-center">
-                        <v-icon icon="mdi-chevron-up" size="x-small" class="mb-n1"></v-icon>
-                        <v-icon icon="mdi-chevron-down" size="x-small"></v-icon>
-                      </span>
-
-                    </div>
-                  </th>
-                  <th class="text-left">
-                    <div class="d-flex align-center gap-1">
-                      <span> Time </span>
-
-                      <span class="d-flex flex-column align-center">
-                        <v-icon icon="mdi-chevron-up" size="x-small" class="mb-n1"></v-icon>
-                        <v-icon icon="mdi-chevron-down" size="x-small"></v-icon>
-                      </span>
-
-                    </div>
-                  </th>
-                  <th class="text-left">
-                    <div class="d-flex align-center gap-1">
-                      <span> Status </span>
-
-                      <span class="d-flex flex-column align-center">
-                        <v-icon icon="mdi-chevron-up" size="x-small" class="mb-n1"></v-icon>
-                        <v-icon icon="mdi-chevron-down" size="x-small"></v-icon>
-                      </span>
-
-                    </div>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="item in events" :key="item.id" @click="$router.push({ name: 'details', params: { id: item.id } })">
-                  <td>{{ item.id }}</td>
-                  <td>{{ item.transaction }}</td>
-                  <td>{{ item.venue }}</td>
-                  <td>{{ item.date }}</td>
-                  <td>{{ item.time }}</td>
-                  <td>
-
-                    <p class="status" :style="getStatusColor(item.status)">
-                      <i class="dot" :style="getStatusIcon(item.status)"></i>
-                      {{ item.status }}
-
-                    </p>
-                  </td>
-                </tr>
-              </tbody> -->
             </v-table>
 
           </div>
@@ -218,10 +139,7 @@ const search = ref('');
             <p style="color: var(--grey-dark, #808080);font-size: 16px;font-family: Roboto;font-style: normal;font-weight: 400;line-height: 19.2px;">System Configuration</p>
 
             <div class="list-group">
-              <div class="list-group-item" style="background:#F7F7F7;color: var(--black, #000);font-size: 20px;font-family: Roboto;font-style: normal;font-weight: 600;line-height: 24px;">
-                <h4>Roles</h4>
-              </div>
-
+              <UserRole />
             </div>
 
           </div>

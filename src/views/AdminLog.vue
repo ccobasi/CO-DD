@@ -1,6 +1,5 @@
 <script setup>
-  import NavBar from '../components/NavBar.vue'
-  import html2canvas from 'html2canvas';
+import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import html2pdf from "html2pdf.js";
 import { computed, ref } from "vue";
@@ -92,7 +91,6 @@ const exportToPDF = () => {
 <template>
 
   <body>
-    <NavBar />
     <div class="tab">
       <h2>Audit Logs</h2>
       <div class="btn" @click="exportToPDF">Export Log</div>
