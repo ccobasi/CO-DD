@@ -1,5 +1,5 @@
 <script setup>
-  import NavBar from '../components/NavBar.vue'
+ 
   import { ref, onMounted, computed, watch } from 'vue'
 
 
@@ -49,11 +49,10 @@ onMounted(() => {
 <template>
 
   <body>
-    <NavBar />
 
     <div class="form">
       <form action="" @submit.prevent="addInvite">
-        <h1>Site Visit Feedback</h1>
+        <h1>Request Feedback</h1>
 
         <div class="address">
           <div class="one">
@@ -91,25 +90,8 @@ onMounted(() => {
           </select>
 
         </div>
+
         <div class="trans mt-3">
-          <caption>Comment</caption>
-          <textarea class="comment" name="Comment" id="" cols="30" rows="10"></textarea>
-
-        </div>
-        <div class="trans mt-3">
-          <caption>Rate your experience</caption>
-          <select class="form-select" aria-label="Default select example" v-model="rating">
-            <option selected>Select Feedback</option>
-            <option value="Excellent">Excellent</option>
-            <option value="Very Good">Very Good</option>
-            <option value="Good">Good</option>
-            <option value="Average">Average</option>
-            <option value="Below Average">Below Average</option>
-
-          </select>
-
-        </div>
-        <!-- <div class="trans mt-3">
           <caption>Are you open to visit our site?</caption>
           <select class="form-select" aria-label="Default select example" @change="onSelectChange(e)" v-model="attend">
             <option selected>Select Response</option>
@@ -125,7 +107,7 @@ onMounted(() => {
             <textarea id="w3review" name="w3review" rows="4" cols="80" v-model="additionalInput"></textarea>
           </div>
 
-        </div> -->
+        </div>
         <div class="create">
           <button class="cancel" @click="$router.push('/')">
             <caption>Cancel</caption>

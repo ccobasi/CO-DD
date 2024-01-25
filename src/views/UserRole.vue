@@ -32,7 +32,7 @@ const handleSubmit = () => {
   addUser();
   console.log("User added")
   console.log(store.users)
-  router.push('/userrole')
+  router.push('/')
 };
 
 
@@ -102,7 +102,7 @@ const tab1 = ref(null);
           </div>
           <div class="modal-footer">
 
-            <button type="submit" class="btn btn-success" data-bs-dismiss="modal" @click="$router.push('/userrole')">Add User</button>
+            <button type="submit" class="btn btn-success" data-bs-dismiss="modal" @click="$router.push('/')">Add User</button>
           </div>
 
         </div>

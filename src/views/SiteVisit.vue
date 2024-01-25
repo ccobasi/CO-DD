@@ -52,7 +52,7 @@ onMounted(() => {
 
     <div class="form">
       <form action="" @submit.prevent="addInvite">
-        <h1>Event Attendance</h1>
+        <h1>Site Visit Feedback</h1>
 
         <div class="address">
           <div class="one">
@@ -78,23 +78,37 @@ onMounted(() => {
 
         </div>
         <div class="trans mt-3">
-          <caption>Response</caption>
-          <select class="form-select" aria-label="Default select example" @change="onSelectChange(e)" v-model="attend">
-            <option selected>Select Response</option>
-            <option value="I will attend">I will attend</option>
-            <option value="addInput">I may not be able to attend</option>
+          <caption>Feedback</caption>
+          <select class="form-select" aria-label="Default select example" v-model="rating">
+            <option selected>Select Feedback</option>
+            <option value="Excellent">Excellent<i class="checked">&#9733;</i><i class="checked">&#9733;</i><i class="checked">&#9733;</i><i class="checked">&#9733;</i><i class="checked">&#9733;</i></option>
+            <option value="Very Good">Very Good<i class="checked">&#9733;</i><i class="checked">&#9733;</i><i class="checked">&#9733;</i><i class="checked">&#9733;</i></option>
+            <option value="Good">Good<i class="checked">&#9733;</i><i class="checked">&#9733;</i><i class="checked">&#9733;</i></option>
+            <option value="Average">Average<i class="checked">&#9733;</i><i class="checked">&#9733;</i></option>
+            <option value="Below Average">Below Average<span>&#9733;</span></option>
 
           </select>
 
         </div>
-        <div class="address mt-3" v-if="attend === 'addInput'">
-          <div class="one">
-            <caption>Reason</caption>
-            <!-- <input type="text" style="width:600px" id="dynamicInput" v-model="additionalInput"> -->
-            <textarea id="w3review" name="w3review" rows="4" cols="80" v-model="additionalInput"></textarea>
-          </div>
+        <div class="trans mt-3">
+          <caption>Comment</caption>
+          <textarea class="comment" name="Comment" id="" cols="30" rows="10"></textarea>
 
         </div>
+        <div class="trans mt-3">
+          <caption>Rate your experience</caption>
+          <select class="form-select" aria-label="Default select example" v-model="rating">
+            <option selected>Select Feedback</option>
+            <option value="Excellent">Excellent</option>
+            <option value="Very Good">Very Good</option>
+            <option value="Good">Good</option>
+            <option value="Average">Average</option>
+            <option value="Below Average">Below Average</option>
+
+          </select>
+
+        </div>
+
         <div class="create">
           <button class="cancel" @click="$router.push('/')">
             <caption>Cancel</caption>
@@ -148,6 +162,10 @@ caption {
 .form-select {
   width: 600px;
   height: 40px;
+  color: #43b067;
+}
+.form-select i {
+  color: orange;
 }
 .cap {
   font-size: 10px;
@@ -212,5 +230,29 @@ textarea {
   border: 1px solid #ddd;
   border-radius: 5px;
   margin-top: 5px;
+}
+.checked {
+  color: orange !important;
+}
+.orange-star {
+  color: #ffcc3d !important ;
+}
+select {
+  padding: 5px;
+  width: 200px;
+}
+
+/* Style the options with images */
+option {
+  padding-left: 30px; /* Add spacing for the image */
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+.rating {
+  color: #43b067;
+}
+.comment {
+  width: 600px;
+  height: 100px;
 }
 </style>

@@ -21,6 +21,7 @@ import Login from '../views/Login.vue'
 import Event from '../views/Event.vue'
 import AdminLog from '../views/AdminLog.vue'
 import UserRole from '../views/UserRole.vue'
+import SiteVisit from '../views/SiteVisit.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -137,6 +138,12 @@ const router = createRouter({
       path: '/formresponse',
       name: 'event form response',
       component: FormResponse,
+     
+    },
+    {
+      path: '/sitevisit',
+      name: 'Site visit form',
+      component: SiteVisit,
      
     },
     {
