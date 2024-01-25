@@ -98,20 +98,20 @@ const router = createRouter({
      
     },
     {
-      path: '/invitation',
-      name: 'Event details invitation',
+      path: '/invitation/:id',
+      name: 'InvitationDetails',
       component: Invitation,
      
     },
     {
-      path: '/investordecision',
-      name: 'Event details investordecision',
+      path: '/investordecision/:id',
+      name: 'InvestordecisionDetails',
       component: InvestorDecision,
      
     },
     {
-      path: '/access',
-      name: 'Event details access',
+      path: '/access/:id',
+      name: 'AccessDetails',
       component: Access,
      
     },

@@ -1,60 +1,37 @@
-<!-- <script setup>
-  import NavBar from '../components/NavBar.vue'
-  import TableTwo from '../components/Tables/TableTwo.vue'
-</script> -->
-<script>
-    import NavBar from '../components/NavBar.vue'
-    import TableTwo from '../components/Tables/TableTwo.vue'
-    export default {
-  components:{NavBar,TableTwo},
-  data() {
-    return {
-      textToCopy: 'https://www.infracredit_storage/app/public.link', // Replace with the text you want to copy
-      copiedMessage: '',
-      user: {
-        checkbox: false,
-      },
-    };
-  },
-  computed: {
-    isFormValid() {
-      return (
-        this.user.checkbox !== false 
-      );
-    },
-  },
-  methods: {
-    copyToClipboard() {
-      const textarea = document.createElement('textarea');
-      textarea.value = this.textToCopy;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
+<script setup>
+import NavBar from '../components/NavBar.vue'
+import TableTwo from '../components/Tables/TableTwo.vue'
+import { ref, computed, getCurrentInstance } from 'vue';
+import { useEventsStore } from "@/store/events";
+import { useRouter } from 'vue-router';
 
-      this.copiedMessage = 'Copied!';
-      setTimeout(() => {
-        this.copiedMessage = '';
-      }, 2000); // Clear the copied message after 2 seconds
-    },
-     changeRoute(e) {
-    this.$router.push("/" + e.target.value);
-  },
-  toggleCheckbox() {
-      this.checkbox = !this.checkbox
-      this.$emit('setCheckboxVal', this.checkbox)
-  },
-  save() {
-      if (this.isFormValid) {
-        console.log('User Data Saved:', this.user);
-      }
-    },
-    proceed() {
-      if (this.isFormValid) {
-        console.log('User Data Saved:', this.user.checkbox);
-      }
-    },
-  },
+const { appContext } = getCurrentInstance();
+const $route = appContext.config.globalProperties.$route;
+const router = useRouter();
+const store = useEventsStore();
+const events = store.events;
+
+const isFormValid = computed(() => user.value.checkbox !== false);
+
+const user = ref({
+  checkbox: false,
+});
+
+const toggleCheckbox = () => {
+  user.value.checkbox = !user.value.checkbox;
+  $emit('setCheckboxVal', user.value.checkbox);
+};
+
+const detailsId = ref(parseInt($route.params.id));
+const detail = computed(() => events.find(event => event.id === detailsId.value));
+
+const proceedAndNavigate = () => {
+  if (isFormValid.value) {
+    detail.value.status = 'Done';
+    router.push('/agenda');
+  } else {
+    console.error('User checkbox is not checked');
+  }
 };
 </script>
 <template>
@@ -88,7 +65,7 @@
       <hr style="width: 600px;height: 2px;background: #808080;">
 
       <div class="btn">
-        <button :disabled="!isFormValid" @click="$router.push('agenda')">Notify L&D</button>
+        <button :disabled="!isFormValid" @click="proceedAndNavigate">Notify L&D</button>
       </div>
     </div>
   </body>

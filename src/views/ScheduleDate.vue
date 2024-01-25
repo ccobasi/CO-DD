@@ -1,59 +1,54 @@
-<script>
-    import NavBar from '../components/NavBar.vue'
+<script setup>
+import NavBar from '../components/NavBar.vue';
+import { ref, computed, getCurrentInstance } from 'vue';
+import { useEventsStore } from "@/store/events";
+import { useRouter } from 'vue-router';
 
-    export default {
-  components:NavBar,
-  data() {
-    return {
-      textToCopy: 'https://www.infracredit_storage/app/public.link', // Replace with the text you want to copy
-      copiedMessage: '',
-      user: {
-        checkbox: false,
-      },
-    };
-  },
-  computed: {
-    isFormValid() {
-      return (
-        this.user.checkbox !== false 
-      );
-    },
-  },
-  methods: {
-    copyToClipboard() {
-      const textarea = document.createElement('textarea');
-      textarea.value = this.textToCopy;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
+const { appContext } = getCurrentInstance();
+const $route = appContext.config.globalProperties.$route;
+const router = useRouter();
+const store = useEventsStore();
+const events = store.events;
 
-      this.copiedMessage = 'Copied!';
-      setTimeout(() => {
-        this.copiedMessage = '';
-      }, 2000); // Clear the copied message after 2 seconds
-    },
-     changeRoute(e) {
-    this.$router.push("/" + e.target.value);
-  },
-  toggleCheckbox() {
-      this.checkbox = !this.checkbox
-      this.$emit('setCheckboxVal', this.checkbox)
-  },
-  save() {
-      if (this.isFormValid) {
-        console.log('User Data Saved:', this.user);
-      }
-    },
-    proceed() {
-      if (this.isFormValid) {
-        console.log('User Data Saved:', this.user.checkbox);
-      }
-    },
-  },
+const textToCopy = ref('https://www.infracredit_storage/app/public.link');
+const copiedMessage = ref('');
+const user = ref({
+  checkbox: false,
+});
+
+const isFormValid = computed(() => user.value.checkbox !== false);
+
+const copyToClipboard = () => {
+  const textarea = document.createElement('textarea');
+  textarea.value = textToCopy.value;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textarea);
+
+  copiedMessage.value = 'Copied!';
+  setTimeout(() => {
+    copiedMessage.value = '';
+  }, 2000);
+};
+
+const toggleCheckbox = () => {
+  user.value.checkbox = !user.value.checkbox;
+  $emit('setCheckboxVal', user.value.checkbox);
+};
+
+const detailsId = ref(parseInt($route.params.id));
+const detail = computed(() => events.find(event => event.id === detailsId.value));
+
+const proceedAndNavigate = () => {
+  if (isFormValid.value) {
+    detail.value.status = 'Pending access to dataroom';
+    router.push({ name: 'InvitationDetails', params: { id: detail.value.id } });
+  } else {
+    console.error('User checkbox is not checked');
+  }
 };
 </script>
-
 <template>
   <NavBar />
 
@@ -65,66 +60,66 @@
           <div class="trans">
             <caption>Transactions</caption>
             <select class="form-select" aria-label="Default select example">
-              <option selected>#CP4526-konexa</option>
-              <option value="1">#CP4526-Lagos Free Zone Company</option>
+              <option selected>{{detail.transaction}}</option>
+              <!-- <option value="1">#CP4526-Lagos Free Zone Company</option>
               <option value="2">#CP4526-konexa</option>
               <option value="3">#CP4526-Banner Energy Limited</option>
               <option value="4">#CP4526-Seplat</option>
               <option value="5">#CP4526-9mobile</option>
-              <option value="6">#CP4526-Total</option>
+              <option value="6">#CP4526-Total</option> -->
             </select>
           </div>
           <div class="trans">
             <caption>Venue</caption>
             <select class="form-select" aria-label="Default select example">
-              <option selected>Physical(External)</option>
-              <option value="1">Physical(Internal)</option>
+              <option selected>{{detail.venue}}</option>
+              <!-- <option value="1">Physical(Internal)</option>
               <option value="2">Physical(External)</option>
-              <option value="3">Virtual</option>
+              <option value="3">Virtual</option> -->
             </select>
 
           </div>
           <div class="address">
             <div class="one">
               <caption>Address</caption>
-              <input type="text" placeholder="Allen Avenue">
+              <div class="dvalue">{{detail.address}}</div>
             </div>
             <div class="one">
               <caption>Address2</caption>
-              <input type="text" placeholder="Ikeja">
+              <div class="dvalue">{{detail.addressTwo}}</div>
             </div>
           </div>
           <div class="address mt-2">
             <div class="one">
               <caption>State</caption>
-              <input type="text" placeholder="Lagos">
+              <div class="dvalue">{{detail.state}}</div>
             </div>
             <div class="one">
               <caption>Country</caption>
-              <input type="text" placeholder="Nigeria">
+              <div class="dvalue">{{detail.country}}</div>
             </div>
           </div>
           <div class="address mt-2">
             <div class="one">
               <caption>Date</caption>
 
-              <input id="date" name="date" placeholder="03/10/2023">
+              <div class="dvalue">{{detail.date}}</div>
             </div>
             <div class="one">
               <caption>Time</caption>
 
-              <input id="appt" name="appt" placeholder="4:54 PM">
+              <div class="dvalue">{{detail.time}}</div>
             </div>
           </div>
           <div class="trans mt-2">
             <caption>Time Zone</caption>
             <select class="form-select" aria-label="Default select example">
-              <option selected>(GMT +01:00)Africa West Central</option>
-              <option value="1">(GMT +00:00)Greenwich(London)</option>
+              <option selected>{{detail.timeZone}}</option>
+              <!-- <option value="1">(GMT +00:00)Greenwich(London)</option>
               <option value="2">(GMT +01:00)Africa West Central</option>
               <option value="3">(GMT +01:00)Europe Central</option>
               <option value="4">(GMT +02:00)Europe Eastern</option>
-              <option value="5">(GMT +02:00)Egypt</option>
+              <option value="5">(GMT +02:00)Egypt</option> -->
             </select>
           </div>
           <div class="storage mt-1">
@@ -185,7 +180,7 @@
             <textarea rows="" cols="" class="fb" placeholder="Optional"></textarea>
           </div>
           <div class="create">
-            <button class="createBtn" :disabled="!isFormValid" @click="$router.push('invitation')">
+            <button class="createBtn" :disabled="!isFormValid" @click="proceedAndNavigate">
               <caption>Proceed</caption>
             </button>
           </div>
@@ -275,7 +270,8 @@ caption {
   align-self: stretch;
   height: 57px;
 }
-input {
+input,
+.dvalue {
   display: flex;
   padding: 12.5px 14px;
   align-items: center;

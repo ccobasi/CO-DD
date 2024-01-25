@@ -1,6 +1,23 @@
 <script setup>
   import NavBar from '../components/NavBar.vue'
   import TableTwo from '../components/Tables/TableTwo.vue'
+  import { ref, computed, getCurrentInstance } from 'vue';
+import { useEventsStore } from "@/store/events";
+import { useRouter } from 'vue-router';
+
+const { appContext } = getCurrentInstance();
+const $route = appContext.config.globalProperties.$route;
+const router = useRouter();
+const store = useEventsStore();
+const events = store.events;
+
+const detailsId = ref(parseInt($route.params.id));
+const detail = computed(() => events.find(event => event.id === detailsId.value));
+
+const proceedAndNavigate = () => {
+    router.push({ name: 'AccessDetails', params: { id: detail.value.id } });
+};
+
 </script>
 <template>
   <NavBar />
@@ -10,7 +27,7 @@
       <h1>Investors Response</h1>
       <TableTwo />
       <div class="btn">
-        <button @click="$router.push('access')">Notify IT to grant access to interested investors</button>
+        <button @click="proceedAndNavigate">Notify IT to grant access to interested investors</button>
       </div>
 
     </div>
