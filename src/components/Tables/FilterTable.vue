@@ -185,4 +185,27 @@ const handleCheckboxFilter = (filter) => {
 .d-flex {
   justify-content: space-between;
 }
+@media screen and (max-width: 768px) {
+  .bg-white {
+    margin: 0px 15px 15px 15px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 991px) {
+  .bg-white {
+    margin: 0px 20px 20px 20px;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .bg-white {
+    margin: 0px 30px 30px 30px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .bg-white {
+    margin: 0px 40px 40px 40px;
+  }
+}
 </style>

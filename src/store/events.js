@@ -16,8 +16,10 @@ export const useEventsStore = defineStore('events', {
   actions: {
     addEvent(transaction, venue, coTransactor, address, addressTwo, state, country, date, time,timeZone, status) {
       try {
+        const nextId = this.events.length + 1;
+        
         this.events.push({
-          id: Date.now(),
+          id: nextId,
           transaction: transaction,
           venue: venue,
           coTransactor: coTransactor,

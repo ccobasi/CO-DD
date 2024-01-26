@@ -91,9 +91,7 @@ const search = ref('');
 
     <v-card-text style="background-color: rgba(235, 235, 235, 0.64); padding: 0; box-shadow: none;">
       <v-window v-model="tab">
-        <!-- <v-window-item value="three">
 
-        </v-window-item> -->
         <v-window-item value="two">
           <div>
             <h3 class="greet">
@@ -104,9 +102,7 @@ const search = ref('');
             <h2><b>Ready to create your next event?</b></h2>
             <v-spacer></v-spacer>
             <router-link to="/createevent">
-              <!-- <v-btn class="cbtn" dark>
-                <h6>Create event</h6>
-              </v-btn> -->
+
               <v-btn style=" color: #227cbf; background: #fff; margin: 2px 5px 20px 0; border-radius: 100px; text-transform:capitalize" dark>
                 Create event
               </v-btn>
@@ -172,7 +168,7 @@ const search = ref('');
   padding-bottom: 5px;
   width: 100%;
 }
-/* Your existing scoped styles */
+
 .navbar-nav {
   margin-left: 200px;
   padding-left: 0px;
@@ -341,6 +337,34 @@ input[type='text'] {
   font-style: normal;
   font-weight: 400;
   line-height: 14.4px;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    height: auto;
+    padding-bottom: 15px;
+  }
+
+  .navbar-nav {
+    margin-left: 0;
+  }
+
+  .top {
+    gap: 20px;
+  }
+
+  .next h2 {
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 991px) {
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+}
+
+@media screen and (min-width: 1200px) {
 }
 </style>
   

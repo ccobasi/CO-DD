@@ -1,5 +1,5 @@
 <script setup>
-  import NavBar from '../components/NavBar.vue'
+ 
   import { ref, onMounted, computed, watch, reactive } from 'vue'
   import {useEventsStore} from "@/store/events"
  import { useRoute, useRouter } from 'vue-router';
@@ -56,7 +56,7 @@ onMounted(() => {
 <template>
 
   <body>
-    <NavBar />
+
     <div class="next">
       <h2>Tell us a little about the event.</h2>
       <p>You can always update these details later.</p>
@@ -282,5 +282,59 @@ input {
 }
 .createBtn caption {
   color: #fff;
+}
+@media screen and (max-width: 768px) {
+  body {
+    height: auto;
+  }
+  .next {
+    padding: 20px 10px;
+  }
+  .next h2 {
+    margin-left: 8%;
+    font-size: 28px;
+  }
+
+  .next p {
+    margin-left: 10%;
+  }
+
+  .form {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .form-select {
+    width: 100%;
+  }
+
+  .one input {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 991px) {
+  .next {
+    padding: 70px 30px;
+  }
+  .next h2 {
+    margin-left: 8%;
+    font-size: 36px;
+  }
+
+  .next p {
+    margin-left: 23%;
+  }
+  .form {
+    width: 660px;
+    padding: 30px;
+  }
+
+  .form-select {
+    width: 600px;
+  }
+
+  .one input {
+    width: 290px;
+  }
 }
 </style>
