@@ -1,5 +1,5 @@
 <script setup>
-import NavBar from '../components/NavBar.vue';
+
 import { ref, computed, getCurrentInstance } from 'vue';
 import { useEventsStore } from "@/store/events";
 import { useRouter } from 'vue-router';
@@ -10,7 +10,7 @@ const router = useRouter();
 const store = useEventsStore();
 const events = store.events;
 
-
+const selectedValue = ref('')
 const additionalInput = ref('');
 const attend = ref('');
 const user = ref({
@@ -49,7 +49,6 @@ const proceedAndNavigate = () => {
 </script>
 
 <template>
-  <NavBar />
 
   <body>
 
@@ -116,46 +115,54 @@ const proceedAndNavigate = () => {
 
           </div>
           <div class="address">
-            <div class="one">
-              <caption>Address</caption>
-              <div class="dvalue">{{detail.address}}</div>
-            </div>
-            <div class="one">
-              <caption>Address2</caption>
-              <div class="dvalue">{{detail.addressTwo}}</div>
-            </div>
-          </div>
-          <div class="address mt-3">
-            <div class="one mt-2">
-              <caption>State</caption>
-              <div class="dvalue">{{detail.state}}</div>
-            </div>
-            <div class="one mt-2">
-              <caption>Country</caption>
-              <div class="dvalue">{{detail.country}}</div>
+            <div class="block">
+              <div class="one">
+                <caption>Address</caption>
+                <div class="dvalue">{{detail.address}}</div>
+              </div>
+              <div class="one">
+                <caption>Address2</caption>
+                <div class="dvalue">{{detail.addressTwo}}</div>
+              </div>
             </div>
           </div>
-          <div class="address mt-3">
-            <div class="one mt-2">
-              <caption>Date</caption>
-              <div class="dvalue">{{detail.date}}</div>
+          <div class="wall">
+            <div class="address mt-3">
+              <div class="one mt-2">
+                <caption>State</caption>
+                <div class="dvalue">{{detail.state}}</div>
+              </div>
+              <div class="one mt-2">
+                <caption>Country</caption>
+                <div class="dvalue">{{detail.country}}</div>
+              </div>
             </div>
-            <div class="one mt-2">
-              <caption>Time</caption>
+          </div>
+          <div class="partition">
+            <div class="address mt-3">
+              <div class="one mt-2">
+                <caption>Date</caption>
+                <div class="dvalue">{{detail.date}}</div>
+              </div>
+              <div class="one mt-2">
+                <caption>Time</caption>
 
-              <div class="dvalue">{{detail.time}}</div>
+                <div class="dvalue">{{detail.time}}</div>
+              </div>
             </div>
           </div>
-          <div class="trans mt-5">
-            <h6>Time Zone</h6>
-            <select class="form-select" aria-label="Default select example">
-              <option selected>{{detail.timeZone}}</option>
-              <!-- <option value="1">(GMT +00:00)Greenwich(London)</option>
+          <div class="bar">
+            <div class="trans mt-5">
+              <h6>Time Zone</h6>
+              <select class="form-select" aria-label="Default select example">
+                <option selected>{{detail.timeZone}}</option>
+                <!-- <option value="1">(GMT +00:00)Greenwich(London)</option>
               <option value="2">(GMT +01:00)Africa West Central</option>
               <option value="3">(GMT +01:00)Europe Central</option>
               <option value="4">(GMT +02:00)Europe Eastern</option>
               <option value="5">(GMT +02:00)Egypt</option> -->
-            </select>
+              </select>
+            </div>
           </div>
           <div class="storage mt-1">
             <h6>Storage Link</h6>
@@ -173,55 +180,61 @@ const proceedAndNavigate = () => {
             <h3>Invitation</h3>
             <h6>Timeline: <br>3 weeks before due date </h6>
           </div>
-          <div class="agenda">
-            <img src="../assets/availability.png" alt="agenda">
+          <div class="first">
+            <div class="agenda">
+              <img src="../assets/availability.png" alt="agenda">
 
-            <div class="text">
-              <h4>Availability of Facilitators</h4>
+              <div class="text">
+                <h4>Availability of Facilitators</h4>
 
+              </div>
+              <select class="form-select" aria-label="Default select example" @change="onSelectChange(e)" v-model="attend">
+                <option selected>All facilitators will be available</option>
+                <option value="invitation">All facilitators will be available</option>
+                <option value="addInput">
+                  Some facilitators will be available
+                </option>
+
+                <option value="invitationthree">None facilitators will be available</option>
+
+              </select>
             </div>
-            <select class="form-select" aria-label="Default select example" @change="onSelectChange(e)" v-model="attend">
-              <option selected>All facilitators will be available</option>
-              <option value="invitation">All facilitators will be available</option>
-              <option value="addInput">
-                Some facilitators will be available
-              </option>
-
-              <option value="invitationthree">None facilitators will be available</option>
-
-            </select>
-          </div>
-          <div class="comment" v-if="attend === 'addInput'">
-            <textarea id="w3review" name="w3review" rows="4" cols="80" v-model="additionalInput"></textarea>
-          </div>
-          <hr style="width: 600px;height: 2px;background: #808080;">
-          <div class="agenda">
-            <img src="../assets/flyer.png" alt="agenda">
-
-            <div class="text">
-              <h4>Flyer</h4>
-              <h6>Design of flyers to be sent to potential investors.</h6>
-            </div>
-            <div class="check" style="width:180px;padding-left:60px">
-              <h6>NO</h6>
-              <label class="switch">
-                <input type="checkbox" unchecked v-model="user.flyer" required @click="toggleCheckbox1">
-                <span class="slider round"></span>
-              </label>
-              <h6>YES</h6>
+            <div class="comment" v-if="attend === 'addInput'">
+              <textarea id="w3review" name="w3review" rows="4" cols="80" v-model="additionalInput"></textarea>
             </div>
           </div>
           <hr style="width: 600px;height: 2px;background: #808080;">
-          <div class="agenda">
-            <img src="../assets/invites.png" alt="agenda">
+          <div class="second">
+            <div class="agenda">
+              <img src="../assets/flyer.png" alt="agenda">
 
-            <div class="text">
-              <h4>Invites</h4>
-              <h6>Send invites and flyers to potential investors.</h6>
+              <div class="text">
+                <h4>Flyer</h4>
+                <h6>Design of flyers to be sent to potential investors.</h6>
+              </div>
+              <div class="checks">
+                <h6>NO</h6>
+                <label class="switch">
+                  <input type="checkbox" unchecked v-model="user.flyer" required @click="toggleCheckbox1">
+                  <span class="slider round"></span>
+                </label>
+                <h6>YES</h6>
+              </div>
             </div>
-            <button class="createBtn" :disabled="!isFlyerValid" style="margin-left:80px" data-bs-toggle="modal" data-bs-target="#myModal" type="button">
-              <caption>Invite investors</caption>
-            </button>
+          </div>
+          <hr style="width: 600px;height: 2px;background: #808080;">
+          <div class="third">
+            <div class="agenda">
+              <img src="../assets/invites.png" alt="agenda">
+
+              <div class="text">
+                <h4>Invites</h4>
+                <h6>Send invites and flyers to potential investors.</h6>
+              </div>
+              <button class="createBtn" :disabled="!isFlyerValid" data-bs-toggle="modal" data-bs-target="#myModal" type="button">
+                <caption>Invite investors</caption>
+              </button>
+            </div>
           </div>
           <hr style="width: 600px;height: 2px;background: #808080;">
           <div class="no-yes">
@@ -493,6 +506,10 @@ hr {
   font-weight: 400;
   line-height: 19.2px;
 }
+.checks {
+  width: 180px;
+  padding-left: 60px;
+}
 .create {
   display: flex;
   justify-content: flex-end;
@@ -520,6 +537,9 @@ hr {
 }
 .createBtn caption {
   color: #fff;
+}
+.agenda .createBtn {
+  margin-left: 80px;
 }
 .switch {
   position: relative;
@@ -666,5 +686,93 @@ textarea {
   border: 1px solid #ddd;
   border-radius: 5px;
   margin-top: 5px;
+}
+@media screen and (max-width: 767px) {
+  body {
+    padding: 20px;
+    overflow-x: hidden;
+  }
+
+  .event-info {
+    padding: 20px;
+    height: auto;
+  }
+
+  .form {
+    width: 60%;
+    height: auto;
+  }
+
+  .form-select,
+  .link,
+  .input {
+    width: 55%;
+  }
+
+  .address,
+  .storage {
+    flex-direction: column;
+  }
+  .block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .wall {
+    margin-top: 60px;
+    padding-top: 10px;
+  }
+  .partition {
+    margin-top: 70px;
+    padding-top: 20px;
+  }
+  .bar {
+    margin-top: 80px;
+    padding-top: 5px;
+  }
+  .one input,
+  .dvalue,
+  .link {
+    width: 55%;
+  }
+  .agenda {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .agenda img {
+    justify-self: start;
+  }
+  .second {
+    margin-top: 70px;
+  }
+  .checks {
+    display: flex;
+    padding-left: 5px;
+  }
+  .comment textarea {
+    width: 55%;
+    padding: 5px 10px;
+    margin-left: 0px;
+    margin-top: 97px;
+  }
+  .third {
+    margin-top: 70px;
+  }
+  hr {
+    visibility: hidden;
+  }
+  .no-yes {
+    margin-top: 80px;
+  }
+  .agenda .createBtn {
+    margin-left: 5px;
+  }
+  .createBtn {
+    justify-content: left;
+  }
+  .create {
+    margin-top: 30px;
+    justify-content: flex-start;
+  }
 }
 </style>

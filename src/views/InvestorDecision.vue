@@ -1,5 +1,5 @@
 <script setup>
-  import NavBar from '../components/NavBar.vue'
+  
   import TableTwo from '../components/Tables/TableTwo.vue'
   import { ref, computed, getCurrentInstance } from 'vue';
 import { useEventsStore } from "@/store/events";
@@ -20,7 +20,6 @@ const proceedAndNavigate = () => {
 
 </script>
 <template>
-  <NavBar />
 
   <body>
     <div class="response">
@@ -80,5 +79,21 @@ button {
   font-weight: 400;
   line-height: 19.2px;
   justify-self: end;
+}
+@media screen and (max-width: 767px) {
+  body {
+    padding: 20px;
+  }
+
+  .response {
+    width: 100%;
+    padding: 15px;
+  }
+
+  button {
+    width: 100%;
+    justify-self: center;
+    font-size: 12px;
+  }
 }
 </style>

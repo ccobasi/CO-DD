@@ -1,6 +1,5 @@
 <script setup>
-import NavBar from '../components/NavBar.vue';
-import Tab from '../components/Tab/Tab.vue';
+// import Tab from '../components/Tab/Tab.vue';
 import { useEventsStore } from "@/store/events";
 import { computed, reactive, getCurrentInstance, ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -72,10 +71,9 @@ const proceedAndNavigate = () => {
 </script>
 
 <template>
-  <NavBar />
 
   <div class="body">
-    <Tab />
+    <!-- <Tab /> -->
     <div class="event-info">
       <div class="form">
         <h1>Event Information</h1>
@@ -440,5 +438,45 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+@media screen and (max-width: 767px) {
+  body {
+    padding: 20px;
+    overflow-x: hidden;
+  }
+
+  .event-info {
+    padding: 5px;
+    height: auto;
+  }
+
+  .form {
+    width: 85%;
+    height: auto;
+  }
+
+  .form-select,
+  .link {
+    width: 80%;
+  }
+
+  .address,
+  .storage {
+    flex-direction: column;
+  }
+
+  .one input,
+  .dvalue,
+  .link,
+  .input {
+    width: 80%;
+  }
+  hr {
+    display: none;
+  }
+  .create {
+    margin-top: 30px;
+    justify-content: flex-start;
+  }
 }
 </style>

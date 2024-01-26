@@ -1,5 +1,4 @@
 <script setup>
-import NavBar from '../components/NavBar.vue';
 import { ref, computed, getCurrentInstance } from 'vue';
 import { useEventsStore } from "@/store/events";
 import { useRouter } from 'vue-router';
@@ -50,7 +49,6 @@ const proceedAndNavigate = () => {
 };
 </script>
 <template>
-  <NavBar />
 
   <body>
     <div class="event-info">
@@ -89,24 +87,28 @@ const proceedAndNavigate = () => {
               <div class="dvalue">{{detail.addressTwo}}</div>
             </div>
           </div>
-          <div class="address mt-2">
-            <div class="one">
+          <div class="address1 mb-3">
+            <div class="one mt-1">
               <caption>State</caption>
               <div class="dvalue">{{detail.state}}</div>
             </div>
-            <div class="one">
+            <div class="one mt-2">
               <caption>Country</caption>
               <div class="dvalue">{{detail.country}}</div>
             </div>
           </div>
-          <div class="address mt-2">
+          <div class="address2 mb-3">
             <div class="one">
-              <caption>Date</caption>
+              <div class="title">
+                <caption>Date</caption>
+              </div>
 
               <div class="dvalue">{{detail.date}}</div>
             </div>
             <div class="one">
-              <caption>Time</caption>
+              <div class="title">
+                <caption>Time</caption>
+              </div>
 
               <div class="dvalue">{{detail.time}}</div>
             </div>
@@ -150,8 +152,10 @@ const proceedAndNavigate = () => {
                 <input type="time" id="appt" name="appt">
               </div>
             </div>
-            <div class="trans mt-2">
-              <caption>Time Zone</caption>
+            <div class="trans">
+              <div class="title">
+                <caption>Time Zone</caption>
+              </div>
               <select class="form-select" aria-label="Default select example">
                 <option selected>(GMT +01:00)Africa West Central</option>
                 <option value="1">(GMT +00:00)Greenwich(London)</option>
@@ -210,7 +214,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 660px;
-  height: 1040px;
+  height: 1140px;
   padding: 30px;
   flex-direction: column;
   align-items: flex-start;
@@ -257,7 +261,9 @@ caption {
 .session .one input {
   background: #fff;
 }
-.address {
+.address,
+.address1,
+.address2 {
   display: flex;
   gap: 20px;
   height: 57px;
@@ -524,5 +530,68 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+@media screen and (max-width: 767px) {
+  body {
+    padding: 20px;
+    overflow-x: hidden;
+  }
+
+  .event-info {
+    padding: 5px;
+    height: auto;
+  }
+
+  .form {
+    width: 55%;
+    height: auto;
+  }
+
+  .form-select,
+  .link {
+    width: 52%;
+  }
+
+  .address,
+  .storage {
+    flex-direction: column;
+  }
+  .address1 {
+    margin-top: 90px;
+    flex-direction: column;
+  }
+  .address2 {
+    flex-direction: column;
+  }
+  .address2 .one {
+    margin-top: 32px 0px;
+  }
+
+  .one input,
+  .dvalue,
+  .link,
+  .input {
+    width: 52%;
+  }
+  hr {
+    display: none;
+  }
+  .sub h3 {
+    font-size: 18px;
+  }
+  .sub h6 {
+    font-size: 10px;
+    width: 131px;
+  }
+  .feedback textarea {
+    width: 300px;
+  }
+  .title {
+    margin-top: 80px;
+  }
+  .create {
+    margin-top: 30px;
+    justify-content: flex-start;
+  }
 }
 </style>

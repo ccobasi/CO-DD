@@ -1,5 +1,5 @@
 <script setup>
-import NavBar from '../components/NavBar.vue'
+
 import TableTwo from '../components/Tables/TableTwo.vue'
 import { ref, computed, getCurrentInstance } from 'vue';
 import { useEventsStore } from "@/store/events";
@@ -35,7 +35,6 @@ const proceedAndNavigate = () => {
 };
 </script>
 <template>
-  <NavBar />
 
   <body>
     <div class="response">
@@ -53,7 +52,7 @@ const proceedAndNavigate = () => {
           <h4>Data room access</h4>
           <h6>Grant interested investors access to data room</h6>
         </div>
-        <div class="check" style="width:180px;padding-left:60px">
+        <div class="check">
           <h6>NO</h6>
           <label class="switch">
             <input type="checkbox" value="ckeckedInvite" unchecked v-model="user.checkbox" required @click="toggleCheckbox">
@@ -62,7 +61,7 @@ const proceedAndNavigate = () => {
           <h6>YES</h6>
         </div>
       </div>
-      <hr style="width: 600px;height: 2px;background: #808080;">
+      <hr>
 
       <div class="btn">
         <button :disabled="!isFormValid" @click="proceedAndNavigate">Notify L&D</button>
@@ -239,5 +238,74 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+hr {
+  width: 600px;
+  height: 2px;
+  background: #808080;
+}
+.check {
+  width: 180px;
+  padding-left: 60px;
+}
+@media screen and (max-width: 767px) {
+  body {
+    padding: 20px;
+  }
+
+  .response {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .btn button {
+    width: 100%;
+    justify-self: center;
+  }
+
+  .access,
+  .agenda {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .access h3 {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .access h6,
+  .caption,
+  .text h4,
+  .text h6,
+  .check h6 {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .agenda img {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .agenda .text {
+    width: 60%;
+  }
+
+  .check {
+    padding-left: 0;
+  }
+
+  hr {
+    width: 100%;
+    visibility: hidden;
+  }
+  .btn {
+    margin-top: 200px;
+  }
+  .check {
+    padding-left: 5px;
+    margin-bottom: 20px;
+  }
 }
 </style>

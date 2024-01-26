@@ -185,24 +185,24 @@ table th.r {
     top: 0;
   }
   table tbody tr td:nth-child(1):before {
-    content: "Code";
+    content: 'Code';
   }
   table tbody tr td:nth-child(2):before {
-    content: "Stock";
+    content: 'Stock';
   }
   table tbody tr td:nth-child(3):before {
-    content: "Cap";
+    content: 'Cap';
   }
   table tbody tr td:nth-child(4):before {
-    content: "Inch";
+    content: 'Inch';
   }
   table tbody tr td:nth-child(5):before {
-    content: "Box Type";
+    content: 'Box Type';
   }
 }
 body {
   background: #9bc86a;
-  font: 400 14px "Calibri", "Arial";
+  font: 400 14px 'Calibri', 'Arial';
   padding: 20px;
 }
 
@@ -232,5 +232,43 @@ button {
   font-weight: 400;
   line-height: 19.2px;
   justify-self: end;
+}
+@media screen and (max-width: 35.5em) {
+  table {
+    display: block;
+  }
+  table > *,
+  table tr,
+  table td,
+  table th {
+    display: block;
+  }
+  table thead {
+    display: none;
+  }
+  table tbody tr {
+    height: auto;
+    padding: 8px 0;
+    margin-bottom: 12px;
+  }
+  table tbody tr td {
+    padding-left: 45%;
+  }
+  table tbody tr td:before {
+    position: absolute;
+    font-weight: 700;
+    width: 40%;
+    left: 10px;
+    top: 0;
+  }
+  table tbody tr td:nth-child(1):before {
+    content: 'Investors';
+  }
+  table tbody tr td:nth-child(2):before {
+    content: 'Responses';
+  }
+  table tbody tr td:nth-child(3):before {
+    content: 'Reason';
+  }
 }
 </style>
