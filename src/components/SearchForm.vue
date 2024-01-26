@@ -14,8 +14,7 @@ const emit = defineEmits(['search']);
 
 <template>
   <form action="">
-    <!-- <label for="">Search</label>
-    <div class="search"><input type="text" @input="search" placeholder="Search"></div> -->
+
     <div class="input-group rounded mt-3">
       <input type="search" class="form-control rounded" @input="search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
       <span class="input-group-text border-0" id="search-addon">

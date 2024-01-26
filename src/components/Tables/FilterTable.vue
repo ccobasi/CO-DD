@@ -5,6 +5,7 @@ import SearchForm from '../SearchForm.vue'
 
 import FilterDropdown from '../FilterDropdown.vue'
 
+
 const searchFilter = ref('')
 const radioFilter = ref('')
 const statusesFilter = ref([])
@@ -65,7 +66,7 @@ const filteredEvents = computed(() => {
         events = events.filter(event => event.transaction.toLowerCase().includes(searchFilter.value) || event.coTransactor.toLowerCase().includes(searchFilter.value) || event.status.toLowerCase().includes(searchFilter.value))
     }
 
-    // return props.events
+    
     return events
 })
 
@@ -80,7 +81,7 @@ const handleCheckboxFilter = (filter) => {
     }
     return statusesFilter.value.push(filter)
 }
-    
+  console.log('searchFilter:', searchFilter.value);
 </script>
 
 <template>

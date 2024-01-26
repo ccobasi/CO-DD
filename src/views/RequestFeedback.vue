@@ -71,7 +71,7 @@
           <p>Get feedback from participants of event</p>
         </div>
         <div class="btn">
-          <button data-bs-toggle="modal" @click="$router.push('formresponse')" data-bs-target="" type="button">Event Feedback</button>
+          <button data-bs-toggle="modal" @click="$router.push('/sitevisit')" data-bs-target="" type="button">Event Feedback</button>
         </div>
       </div>
       <hr style="width: 600px;height: 2px;background: #808080;">

@@ -40,7 +40,7 @@ const filteredItems = computed(() => {
     }
 
     if(searchFilter.value !== ''){
-        // return props.items.filter(item => item.clientname.toLowerCase().includes(searchFilter.value) || item.dealid.toLowerCase().includes(searchFilter.value) || item.status.toLowerCase().includes(searchFilter.value))
+        
         items = items.filter(item => item.clientname.toLowerCase().includes(searchFilter.value) || item.dealid.toLowerCase().includes(searchFilter.value) || item.status.toLowerCase().includes(searchFilter.value))
     }
 
