@@ -61,7 +61,7 @@
           <button data-bs-toggle="modal" data-bs-target="#myModal" type="button">Request Feedback</button>
         </div>
       </div>
-      <hr style="width: 600px;height: 2px;background: #808080;">
+      <hr>
       <div class="request">
         <div class="img">
           <img src="../assets/invites.png" alt="feedback">
@@ -74,7 +74,7 @@
           <button data-bs-toggle="modal" @click="$router.push('/sitevisit')" data-bs-target="" type="button">Event Feedback</button>
         </div>
       </div>
-      <hr style="width: 600px;height: 2px;background: #808080;">
+      <hr>
       <div class="table">
         <h3>Feedback response</h3>
         <TableThree />
@@ -261,5 +261,97 @@ button {
 }
 .icon {
   display: flex;
+}
+hr {
+  width: 600px;
+  height: 2px;
+  background: #808080;
+}
+@media screen and (max-width: 767px) {
+  body {
+    padding: 20px;
+  }
+  .feedback {
+    width: 100%;
+    padding: 15px;
+  }
+  .readiness {
+    width: 100%;
+    padding: 15px;
+  }
+
+  h3 {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .top h6 {
+    font-size: 10px;
+    line-height: 12px;
+  }
+
+  .dry,
+  .table,
+  .agenda,
+  .modal-header,
+  .modal-body,
+  .modal-footer,
+  .icon,
+  .fb {
+    width: 100%;
+  }
+
+  .modal-header {
+    width: 100%;
+  }
+
+  .modal-title {
+    font-size: 14px;
+    line-height: 16.8px;
+  }
+
+  .btn-close {
+    font-size: 14px;
+  }
+
+  .modal-body input,
+  .modal-body textarea,
+  .fb {
+    width: 100%;
+  }
+
+  .modal-body input {
+    height: 20px;
+  }
+
+  .modal-body textarea {
+    height: 150px;
+  }
+
+  .modal-footer {
+    width: 100%;
+  }
+
+  .modal-footer button {
+    font-size: 14px;
+    line-height: 16.8px;
+    padding: 8px 15px;
+  }
+
+  .complete {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .back,
+  .done {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+  hr {
+    width: 300px;
+  }
 }
 </style>

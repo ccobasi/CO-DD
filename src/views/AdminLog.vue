@@ -305,4 +305,51 @@ td {
   background: #fff;
   box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.05);
 }
+@media (max-width: 768px) {
+  .tab {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 20px 10px;
+  }
+
+  .tab .btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .form {
+    height: auto;
+    margin-top: 20px;
+  }
+
+  .title {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title select {
+    width: 100%;
+  }
+  #element-to-convert th,
+  #element-to-convert td {
+    font-size: 14px;
+  }
+
+  #element-to-convert thead {
+    display: none;
+  }
+
+  #element-to-convert tbody tr {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  #element-to-convert tbody td {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
 </style>

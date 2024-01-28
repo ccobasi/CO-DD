@@ -1,8 +1,8 @@
 <script>
-    import NavBar from '../components/NavBar.vue'
+   
   
    export default{
-  components: NavBar,
+  
   data() {
     return {
       user: {
@@ -40,7 +40,6 @@
  }
 </script>
 <template>
-  <NavBar />
 
   <body>
     <!-- The Modal -->
@@ -105,20 +104,20 @@
           </div>
 
         </div>
-        <hr style="width: 600px;height: 2px;background: #808080;">
-        <div class="agenda mt-2">
+        <hr>
+        <div class="agenda">
 
-          <button class="createBtn" style="margin-left:480px" data-bs-toggle="modal" data-bs-target="#myModal" type="button">
+          <button class="createBtn" data-bs-toggle="modal" data-bs-target="#myModal" type="button">
             <caption>Send Agenda</caption>
           </button>
         </div>
-        <div class="agenda">
+        <div class="agenda mb-5">
           <img src="../assets/agenda.png" alt="agenda">
           <div class="text">
             <h4>Agenda</h4>
             <h6>Send agenda to interested investors.</h6>
           </div>
-          <div class="check" style="width:260px;padding-left:140px">
+          <div class="check">
             <h6>NO</h6>
             <label class="switch">
               <input type="checkbox" unchecked v-model="user.checkbox" required @click="toggleCheckbox">
@@ -127,15 +126,17 @@
             <h6>YES</h6>
           </div>
         </div>
-        <div class="dry mt-2">
-          <h6>Leave a comment:</h6>
+        <div class="dry mt-5">
+          <div class="title mt-5">
+            <h6>Leave a comment:</h6>
+          </div>
           <div class="text">
             <textarea name="" class="fb" id="" cols="30" rows="10"></textarea>
           </div>
 
         </div>
 
-        <hr style="width: 600px;height: 2px;background: #808080;">
+        <hr>
         <div class="create">
           <button class="createBtn" :disabled="!isFormValid" @click="$router.push('feedback')">
             <caption>Proceed</caption>
@@ -297,6 +298,7 @@ input:checked + .slider:before {
   border-radius: 5px;
   background: var(--gradient, linear-gradient(90deg, #227cbf 0%, #47b65c 100%));
   color: #fff;
+  margin-left: 480px;
 }
 .createBtn caption {
   color: #fff;
@@ -421,5 +423,94 @@ input:checked + .slider:before {
   font-style: normal;
   font-weight: 400;
   line-height: 14.4px;
+}
+hr {
+  width: 600px;
+  height: 2px;
+  background: #808080;
+}
+@media screen and (max-width: 767px) {
+  body {
+    padding: 20px;
+  }
+
+  .readiness {
+    width: 100%;
+    padding: 15px;
+  }
+
+  h3 {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .top h6 {
+    font-size: 10px;
+    line-height: 12px;
+  }
+
+  .dry {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .createBtn {
+    margin-left: 150px;
+  }
+  .agenda {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .modal-header,
+  .modal-body,
+  .modal-footer,
+  .icon,
+  .fb {
+    width: 100%;
+  }
+
+  .modal-header {
+    width: 100%;
+  }
+
+  .modal-title {
+    font-size: 14px;
+    line-height: 16.8px;
+  }
+
+  .btn-close {
+    font-size: 14px;
+  }
+
+  .modal-body input,
+  .modal-body textarea,
+  .fb {
+    width: 100%;
+  }
+
+  .modal-body input {
+    height: 20px;
+  }
+
+  .modal-body textarea {
+    height: 150px;
+  }
+
+  .modal-footer {
+    width: 100%;
+  }
+
+  .modal-footer button {
+    font-size: 14px;
+    line-height: 16.8px;
+    padding: 8px 15px;
+  }
+  hr {
+    width: 300px;
+  }
+  .check {
+    padding-left: 5px;
+  }
 }
 </style>

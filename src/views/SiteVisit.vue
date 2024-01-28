@@ -255,4 +255,48 @@ option {
   width: 600px;
   height: 100px;
 }
+@media screen and (max-width: 767px) {
+  .form {
+    width: 100%;
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 24px;
+    line-height: 28.8px;
+  }
+
+  .trans,
+  .create {
+    align-items: flex-start;
+  }
+
+  .form-select,
+  input {
+    width: 100%;
+  }
+
+  .address {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .one {
+    align-items: flex-start;
+  }
+  .one input {
+    width: 100%;
+  }
+  .form-select {
+    width: 100%;
+  }
+  .comment {
+    width: 345px;
+  }
+  .createBtn,
+  .cancel {
+    width: 100%;
+    justify-content: center;
+  }
+}
 </style>

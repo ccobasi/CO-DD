@@ -6,6 +6,7 @@ import { useUsersStore } from "@/store/users";
 import FilterTable from '../components/Tables/FilterTable.vue'
 
 
+
 const store = useEventsStore();
 const events = store.events;
 console.log(events)
@@ -136,6 +137,7 @@ const search = ref('');
 
             <div class="list-group">
               <UserRole />
+
             </div>
 
           </div>
@@ -338,7 +340,9 @@ input[type='text'] {
   font-weight: 400;
   line-height: 14.4px;
 }
-
+.modal-backdrop {
+  --bs-backdrop-zindex: 1;
+}
 @media screen and (max-width: 768px) {
   .navbar {
     height: auto;

@@ -283,20 +283,19 @@ input {
 .createBtn caption {
   color: #fff;
 }
-@media screen and (max-width: 768px) {
-  body {
-    height: auto;
-  }
+@media screen and (max-width: 767px) {
   .next {
-    padding: 20px 10px;
+    padding-top: 10px;
+    padding-left: 10px;
   }
   .next h2 {
-    margin-left: 8%;
-    font-size: 28px;
+    font-size: 24px;
+    margin-left: 10%;
   }
 
   .next p {
-    margin-left: 10%;
+    font-size: 14px;
+    margin-left: 15%;
   }
 
   .form {
@@ -304,37 +303,32 @@ input {
     padding: 20px;
   }
 
+  .trans {
+    align-items: flex-start;
+  }
+
   .form-select {
     width: 100%;
+  }
+
+  .address {
+    flex-direction: column;
+    gap: 10px;
   }
 
   .one input {
     width: 100%;
   }
-}
-@media screen and (max-width: 991px) {
-  .next {
-    padding: 70px 30px;
-  }
-  .next h2 {
-    margin-left: 8%;
-    font-size: 36px;
+
+  .create {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
 
-  .next p {
-    margin-left: 23%;
-  }
-  .form {
-    width: 660px;
-    padding: 30px;
-  }
-
-  .form-select {
-    width: 600px;
-  }
-
-  .one input {
-    width: 290px;
+  .cancel,
+  .createBtn {
+    width: 100%;
   }
 }
 </style>

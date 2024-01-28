@@ -239,7 +239,7 @@ const tab1 = ref(null);
   margin-top: 0px !important;
 }
 .modal-dialog {
-  z-index: 1500;
+  z-index: 1;
   width: 900px;
   height: 630px;
   margin-left: 20%;
@@ -359,5 +359,51 @@ const tab1 = ref(null);
   height: 40px;
   color: #fff;
   font-size: 18px;
+}
+@media (max-width: 768px) {
+  .modal-dialog {
+    width: 90%;
+    margin-left: 18%;
+    height: auto;
+  }
+  .modal-body {
+    width: 100%;
+  }
+
+  .goal {
+    flex-direction: column;
+  }
+
+  .left,
+  .right {
+    width: 100%;
+  }
+
+  .goal textarea {
+    width: 100%;
+  }
+  .form-select {
+    width: 100%;
+  }
+  th,
+  td {
+    font-size: 14px;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tbody tr {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  tbody td {
+    width: 100%;
+    box-sizing: border-box;
+  }
 }
 </style>

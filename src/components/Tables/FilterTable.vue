@@ -185,27 +185,71 @@ const handleCheckboxFilter = (filter) => {
 .d-flex {
   justify-content: space-between;
 }
-@media screen and (max-width: 768px) {
-  .bg-white {
-    margin: 0px 15px 15px 15px;
+@media screen and (max-width: 767px) {
+  th {
+    font-size: 14px;
   }
-}
 
-@media screen and (min-width: 769px) and (max-width: 991px) {
-  .bg-white {
-    margin: 0px 20px 20px 20px;
+  td,
+  th {
+    padding: 8px;
   }
-}
 
-@media screen and (min-width: 992px) and (max-width: 1199px) {
-  .bg-white {
-    margin: 0px 30px 30px 30px;
+  .d-flex {
+    flex-direction: column;
+    align-items: flex-start;
   }
-}
 
-@media screen and (min-width: 1200px) {
-  .bg-white {
-    margin: 0px 40px 40px 40px;
+  .align-center {
+    align-items: flex-start;
+  }
+
+  .gap-1 {
+    gap: 8px;
+  }
+
+  .mb-n1 {
+    margin-bottom: -1px;
+  }
+
+  .text-left {
+    text-align: left !important;
+  }
+
+  .status {
+    font-size: 14px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+  }
+
+  tbody tr {
+    cursor: pointer;
+  }
+  th,
+  td {
+    font-size: 14px;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  tbody td {
+    width: 100%;
+    box-sizing: border-box;
   }
 }
 </style>
