@@ -360,7 +360,7 @@ const tab1 = ref(null);
   color: #fff;
   font-size: 18px;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .modal-dialog {
     width: 90%;
     margin-left: 18%;
