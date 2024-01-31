@@ -149,7 +149,7 @@ const proceedAndNavigate = () => {
             <div class="input">
               <input v-model="textToCopy" placeholder="https://www.infracredit_storage/app/public.link" readonly />
               <div class="copy" @click="copyToClipboard">
-                <h6>Copy<img src="../assets/frame.png" alt="copy"></h6>
+                <h6>Copy<img src="../assets/Frame.png" alt="copy"></h6>
                 <p>{{ copiedMessage }}</p>
 
               </div>
