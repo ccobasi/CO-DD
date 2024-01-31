@@ -231,9 +231,14 @@ const proceedAndNavigate = () => {
                 <h4>Invites</h4>
                 <h6>Send invites and flyers to potential investors.</h6>
               </div>
-              <button class="createBtn" :disabled="!isFlyerValid" data-bs-toggle="modal" data-bs-target="#myModal" type="button">
-                <caption>Invite investors</caption>
-              </button>
+              <div class="btn">
+                <button class="createBtn" :disabled="!isFlyerValid" data-bs-toggle="modal" data-bs-target="#myModal" type="button">
+                  <caption>Invite investors</caption>
+                </button>
+                <button class="createBtn" :disabled="!isFlyerValid" data-bs-toggle="modal" data-bs-target="#myModal" type="button">
+                  <caption>Reminder</caption>
+                </button>
+              </div>
             </div>
           </div>
           <hr style="width: 600px;height: 2px;background: #808080;">
@@ -507,6 +512,7 @@ hr {
   line-height: 19.2px;
 }
 .checks {
+  display: flex;
   width: 180px;
   padding-left: 60px;
 }
@@ -686,6 +692,11 @@ textarea {
   border: 1px solid #ddd;
   border-radius: 5px;
   margin-top: 5px;
+}
+.btn {
+  display: flex;
+  justify-content: flex-start;
+  padding: 5px;
 }
 @media screen and (max-width: 767px) {
   body {

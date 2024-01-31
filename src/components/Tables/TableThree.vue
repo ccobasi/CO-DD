@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <th>Investors</th>
-        <th>Feedbacks</th>
+        <th>Comments</th>
         <th>Site visitation</th>
         <th>Reasons</th>
 

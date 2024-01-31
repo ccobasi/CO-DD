@@ -48,14 +48,14 @@
       </div>
     </div>
     <div class="feedback">
-      <h3>CO-DD Feedback</h3>
+      <h3>Site Visit Feedback</h3>
       <div class="request">
         <div class="img">
           <img src="../assets/invites.png" alt="feedback">
         </div>
         <div class="r-text">
           <h4>Request feedback</h4>
-          <p>Get feedback from participants on the Co-DD day</p>
+          <p>Get feedback from participants of site visit</p>
         </div>
         <div class="btn">
           <button data-bs-toggle="modal" data-bs-target="#myModal" type="button">Request Feedback</button>
@@ -67,11 +67,11 @@
           <img src="../assets/invites.png" alt="feedback">
         </div>
         <div class="r-text">
-          <h4>Send Reminder</h4>
-          <p>Send reminder to investors</p>
+          <h4>Send reminder</h4>
+          <p>Send reminder to participants of site visit</p>
         </div>
         <div class="btn">
-          <button data-bs-toggle="modal" data-bs-target="#myModal" type="button">Reminder</button>
+          <button data-bs-toggle="modal" @click="$router.push('/sitevisit')" data-bs-target="" type="button">Reminder</button>
         </div>
       </div>
       <hr>
@@ -79,8 +79,8 @@
         <h3>Feedback response</h3>
         <TableThree />
         <div class="complete">
-          <button class="back" @click="$router.push('agenda')">Back</button>
-          <button class="done" @click="$router.push('/sitefeedback')">Complete</button>
+          <button class="back" @click="$router.push('feedback')">Back</button>
+          <button class="done" @click="$router.push('/')">Complete</button>
         </div>
       </div>
     </div>
