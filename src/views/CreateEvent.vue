@@ -11,10 +11,10 @@ const route = useRoute();
 const router = useRouter();
 
 const addEvent = () => {
-  if (transaction.value.trim() !== '' || venue.value.trim() !== '' || coTransactor.value.trim() !== ''
+  if (transaction.value.trim() !== '' || transactionDescription.value.trim() !== '' || venue.value.trim() !== '' || coTransactor.value.trim() !== ''
       || address.value.trim() !== ''  || addressTwo.value.trim() !== '' || state.value.trim() !== ''
       || country.value.trim() !== '' || date.value.trim() !== '' || time.value.trim() !== '' || timeZone.value.trim() !== '') {
-    store.addEvent(transaction.value.trim(), venue.value.trim(), coTransactor.value.trim(),
+    store.addEvent(transaction.value.trim(), transactionDescription.value.trim(), venue.value.trim(), coTransactor.value.trim(),
       address.value.trim(), addressTwo.value.trim(), state.value.trim(), country.value.trim(), date.value.trim(), time.value.trim(), timeZone.value.trim());
   
   }
@@ -23,6 +23,7 @@ const addEvent = () => {
 
 const event = ref([])
   const transaction = ref('')
+  const transactionDescription = ref('')
   const venue = ref('')
   const coTransactor = ref('')
   const address = ref('')
@@ -76,6 +77,10 @@ onMounted(() => {
             <option value="#CP4526-9mobile">#CP4526-9mobile</option>
             <option value="#CP4526-Total">#CP4526-Total</option>
           </select>
+        </div>
+        <div class="trans">
+          <caption>Transaction Description</caption>
+          <textarea name="Transaction Description" v-model="transactionDescription" id="" cols="30" rows="10"></textarea>
         </div>
         <div class="trans">
           <caption>Venue</caption>
@@ -158,7 +163,7 @@ onMounted(() => {
 <style scoped>
 body {
   background: #eeeeee;
-  height: 1080px;
+  height: auto;
 }
 .next {
   color: white;
@@ -211,6 +216,12 @@ body {
   align-items: flex-start;
   gap: 8px;
   align-self: stretch;
+}
+textarea {
+  width: 600px;
+  height: 100px;
+  border-radius: 5px;
+  border: 1px solid var(--grey-dark, #808080);
 }
 caption {
   color: var(--black, #000);

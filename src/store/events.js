@@ -14,13 +14,14 @@ export const useEventsStore = defineStore('events', {
     },
   },
   actions: {
-    addEvent(transaction, venue, coTransactor, address, addressTwo, state, country, date, time,timeZone, status) {
+    addEvent(transaction, transactionDescription, venue, coTransactor, address, addressTwo, state, country, date, time,timeZone, status) {
       try {
         const nextId = this.events.length + 1;
         
         this.events.push({
           id: nextId,
           transaction: transaction,
+          transactionDescription,
           venue: venue,
           coTransactor: coTransactor,
           address: address,
