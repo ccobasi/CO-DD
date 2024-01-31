@@ -147,8 +147,7 @@ onMounted(() => {
           </div>
           <div class="create">
             <button type="submit" class="createBtn" :disabled="!isFormValid" @click="proceedAndNavigate">
-              <!-- <button type="submit" class="createBtn" :disabled="!isFormValid" :key="detail.value.id" @click="() => proceedAndNavigate(detail.value)"> -->
-
+              
               <caption>Notify transactor</caption>
             </button>
 
