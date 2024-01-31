@@ -80,7 +80,7 @@
             <div class="input">
               <h6>https://www.infracredit_storage/app/public.link</h6>
               <div class="copy">
-                <h6>Copy<img src="../assets/frame.png" alt="copy"></h6>
+                <h6>Copy<img src="../assets/Frame.png" alt="copy"></h6>
 
               </div>
             </div>
