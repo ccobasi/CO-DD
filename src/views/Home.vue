@@ -71,6 +71,68 @@ const search = ref('');
 </script>
 
 <template>
+  <form method="post" action="" @submit.prevent="handleSubmit">
+    <div class="modal" id="myModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">User Role</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+
+            <div class="goal">
+              <div class="left">
+                <h4>Name</h4>
+                <textarea name="Name" placeholder="Name" id="" cols="30" rows="10" v-model="name"></textarea>
+              </div>
+              <div class="right">
+                <h4 class="">Email</h4>
+                <textarea name="Email" placeholder="Email" id="" cols="30" rows="10" v-model="email"></textarea>
+              </div>
+            </div>
+            <div class="goal">
+              <div class="left">
+                <h4>Company</h4>
+                <textarea name="Company" placeholder="Company" id="" cols="30" rows="10" v-model="company"></textarea>
+              </div>
+              <div class="right">
+                <h4 class="">Phone Number</h4>
+                <textarea name="Phone Number" placeholder="Phone Number" id="" cols="30" rows="10" v-model="phone"></textarea>
+              </div>
+            </div>
+            <div class="goal">
+              <div class="left">
+                <h4>Role</h4>
+                <select class="form-select" aria-label="Default select example" v-on:change="onSelectChange(e)" v-model="role">
+
+                  <option class="opt" value="Co-Transactor">Co-Transactor</option>
+                  <option class="opt" value="IT">IT</option>
+                  <option class="opt" value="Management">Management</option>
+                  <option class="opt" value="Transactor">Transactor</option>
+                </select>
+              </div>
+              <div class="right">
+                <h4 class="">Status</h4>
+                <select class="form-select" aria-label="Default select example" v-on:change="onSelectChange(e)" v-model="status">
+
+                  <option class="opt" value="Active">Active</option>
+                  <option class="opt" value="In-Active">In-Active</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+
+            <button type="submit" class="btn btn-success" data-bs-dismiss="modal" @click="$router.push('/')">Add User</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </form>
   <v-card>
     <nav class="navbar navbar-expand-lg bg-light ">
       <div class="container-fluid" style="display: flex;">
@@ -136,6 +198,8 @@ const search = ref('');
             <p style="color: var(--grey-dark, #808080);font-size: 16px;font-family: Roboto;font-style: normal;font-weight: 400;line-height: 19.2px;">System Configuration</p>
 
             <div class="list-group">
+
+              <button style="display:none" data-bs-toggle="modal" data-bs-target="#myModal" type="button">Add User</button>
               <UserRole />
 
             </div>
@@ -340,8 +404,13 @@ input[type='text'] {
   font-weight: 400;
   line-height: 14.4px;
 }
-.modal-backdrop {
-  --bs-backdrop-zindex: 1;
+.list-group button {
+  border-radius: 5px;
+  background: var(--Secondary, #47b65c);
+  width: 180px;
+  height: 40px;
+  color: #fff;
+  font-size: 18px;
 }
 @media screen and (max-width: 768px) {
   .navbar {
@@ -360,6 +429,140 @@ input[type='text'] {
   .next h2 {
     font-size: 24px;
   }
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  height: 30px !important;
+}
+.modal-body {
+  gap: 20px;
+  background: #fff;
+  margin-top: 0px !important;
+}
+.modal-dialog {
+  z-index: 1;
+  width: 900px;
+  height: 630px;
+  margin-left: 20%;
+  display: inline-flex;
+  padding: 30px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--Grey-Light, #eee);
+  background: var(--Grey-Light, #eee);
+}
+.modal-content {
+  display: flex;
+  padding: 30px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  border-radius: 10px;
+  background: #fff;
+}
+.goal {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: 20px;
+}
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+.left h4,
+.right h4 {
+  color: var(--Black, #000);
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19.2px;
+}
+.goal textarea {
+  display: flex;
+  width: 320px;
+  height: 70px;
+  padding: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  border: 1px solid #808080;
+  border-radius: 5px;
+}
+.type input {
+  display: flex;
+  width: 320px;
+  height: 40px;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid var(--Grey-Light, #eee);
+  background: var(--White, #fff);
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.1);
+}
+.modal-footer {
+  display: flex;
+  height: 40px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  align-self: stretch;
+}
+.modal-footer .btn {
+  border-radius: 5px;
+  background: var(--Secondary, #47b65c);
+  color: #fff;
+}
+.form-select {
+  display: flex;
+  width: 320px;
+  height: 40px;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid var(--Grey-Light, #eee);
+  background: var(--White, #fff);
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.1);
+}
+.dev h3 {
+  color: var(--Black, #000);
+  font-family: Roboto;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28.8px;
+  width: 900px;
+}
+.dev {
+  display: flex;
+  padding: 10px 30px;
+  align-items: center;
+  gap: 10px;
+}
+.dev button {
+  border-radius: 5px;
+  background: var(--Secondary, #47b65c);
+  width: 180px;
+  height: 40px;
+  color: #fff;
+  font-size: 18px;
 }
 
 @media screen and (min-width: 769px) and (max-width: 991px) {
